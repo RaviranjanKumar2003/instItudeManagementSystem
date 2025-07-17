@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    <link rel="stylesheet" href="./output.css">
+    <link rel="stylesheet" href="./index.css">
+    <title>Student Management System</title>
+</head>
+<body>
+    <header>
+        <nav class="w-full h-[60px] bg-[#0c1b2c] flex justify-between  items-center fixed top-0 left-0">
+            
+            <div class="part1  text-xl text-[#fff] font-bold ml-5">
+                <!-- <img src="./img/logo.png" class="h-[50px]"> -->
+                <h1>CODING AGE</h1>
+            </div>
+            <ul class="part2 flex text-[#fff] gap-6 font-semibold text-lg cursor-pointer">
+                <a href="./index.html"><li class="text-[#d4d4d8]">Home</li></a>
+                <a href="./AdminLogin.html"><li class="text-[#d4d4d8]">Admin</li></a>
+                <a href="./TeacherLogin.html"><li class="text-[#d4d4d8]">Teacher</li></a>
+                <a href="./StudentLogin.html"><li class="text-[#d4d4d8]">Student</li></a>
+            </ul>
+            <ul class="part3 flex text-[#fff] gap-6 mr-6 font-semibold text-lg cursor-pointer">
+                <li class="text-[#d4d4d8]">About Us</li>
+                <li class="text-[#d4d4d8] active">Contact Us</li>
+            </ul>
+            <div class="sidebarIcon text-white  text-2xl hidden" onclick="toggleMenu()">
+                <i class="fa-solid fa-bars-staggered"></i>
+           </div>
+        </nav>
+        <div class="mobileMenu hidden">
+            <ul class=" text-[#000] font-semibold text-lg cursor-pointer">
+                <a href="./index.html"><li>Home</li></a>
+                <a href="./AdminLogin.html"><li class="mt-[10px]">Admin</li></a>
+                <a href="./TeacherLogin.html"><li class="mt-[10px]">Teacher</li></a>
+                <a href="./StudentLogin.html"><li class="mt-[10px]">Student</li></a>
+                <li class="mt-[10px]">About Us</li>
+                <a href="./contact.html"><li class="mt-[10px] active2">Contact Us</li></a>
+            </ul>
+        </div>
+        <!-- HERO -->
+        <div class="contacthero heroContainer w-full h-[90vh] gap-10 bg-[#f3f4f6] flex items-center justify-center mt-[50px]">
+           <div class="leftCard p-6  w-[40%] shadow-md  bg-[#fff] rounded-md">
+              <h2 class="text-xl font-semibold text-gray-700 mb-4 animate__animated animate__fadeIn animate__delay-0s">Get in Touch</h2>
+              <input type="text" placeholder="Your Name" required class="placeholder:text-[#5a5858] w-full text-[#1f1e1e] p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500 animate__animated animate__fadeInUp animate__delay-0s"> 
+              <input type="email" placeholder="Your Email" required class="placeholder:text-[#5a5858] mt-5 text-[#1f1e1e] w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500 animate__animated animate__fadeInUp animate__delay-0s">
+              <textarea name="message" placeholder="Your Message" rows="5" class="placeholder:text-[#5a5858] mt-5 text-[#1f1e1e] w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500 animate__animated animate__fadeInUp animate__delay-1s" required=""></textarea>
+              <button type="submit" class="mt-8 w-full bg-orange-500 text-white py-3 rounded-lg font-semibold hover:bg-orange-600 transition duration-300 animate__animated animate__fadeInUp animate__delay-1.5s">Send Message</button>
+            </div>
+           <div class="rightCard  w-[40%] h-[75%] bg-[#f3f4f6] rounded-md">
+               <div class="flex items-center gap-4 bg-white p-4 shadow-md rounded-lg ">
+                  <i class="fa-solid fa-location-dot text-orange-500 text-xl"></i><span class="text-black">Patna, Bihar, India</span>
+               </div>
+               <div class="flex mt-6 items-center gap-4 bg-white p-4 shadow-md rounded-lg ">
+                  <i class="fa-solid fa-phone text-orange-500 text-xl"></i><span class="text-black">+91 9264XXXXXX</span>
+               </div>
+               <div class="flex mt-6 items-center gap-4 bg-white p-4 shadow-md rounded-lg ">
+                  <i class="fa-solid fa-envelope text-orange-500 text-xl"></i><span class="text-black">support@eatzy.com</span>
+               </div>
+               <div class="map h-[250px] shadow-md w-full bg-[#fff] mt-5 rounded-md">
+                   <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3598.2016877536685!2d85.14863167517741!3d25.598213477455015!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39ed5923d9f293b3%3A0x23c18082d351e271!2sCoding%20Age!5e0!3m2!1sen!2sin!4v1749818968662!5m2!1sen!2sin" height="250" width="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" class="rounded-md"></iframe>
+               </div>
+           </div>
+        </div>
+        <!-- FOOTER -->
+       <footer class="confooter h-[150px] w-full bg-[#000]">
+            <div class="media flex justify-center gap-3 pt-5">
+                <span class="cursor-pointer flex justify-center items-center text-[#fff] h-[50px] w-[50px] bg-[#343486] rounded-full"><i class="fa-brands fa-facebook-f"></i></span>
+                <span class="cursor-pointer flex justify-center items-center text-[#fff] h-[50px] w-[50px] bg-[#61f761] rounded-full"><i class="fa-brands fa-whatsapp"></i></span>
+                <span class="cursor-pointer flex justify-center items-center text-[#fff] h-[50px] w-[50px] bg-[#2e2e52] rounded-full"><i class="fa-brands fa-instagram"></i></span>
+                <span class="cursor-pointer flex justify-center items-center text-[#fff] h-[50px] w-[50px] bg-[#20cbcb] rounded-full"><i class="fa-brands fa-twitter"></i></span>
+            </div>
+            <div class="mt-5">
+                <h1 class="flex justify-center text-[#d4d4d8]">Made in india</h1>
+                <h1 class="flex justify-center text-[#d4d4d8]">Copyright © 2025 Raviranjan Gupta</h1>
+            </div>
+       </footer>
+    </header>
+</body>
+<script src="./app.js"></script>
+</html>

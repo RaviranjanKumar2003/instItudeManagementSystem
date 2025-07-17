@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    <link rel="stylesheet" href="./output.css">
+    <link rel="stylesheet" href="./index.css">
+    <title>Student Management System</title>
+</head>
+<body>
+    <header>
+        <nav class="w-full h-[60px] bg-[#0c1b2c] flex justify-between  items-center fixed top-0">
+            
+            <div class="part1  text-xl text-[#fff] font-bold ml-5">
+                <!-- <img src="./img/logo.png" class="h-[50px]"> -->
+                <h1>CODING AGE</h1>
+            </div>
+            <ul class="part2 flex text-[#fff] gap-6 font-semibold text-lg cursor-pointer">
+                <a href="./index.html"><li class="text-[#d4d4d8]">Home</li></a>
+                <a href="./AdminLogin.html"><li class="text-[#d4d4d8]">Admin</li></a>
+                <li class="text-[#d4d4d8] active">Teacher</li>
+                <a href="./StudentLogin.html"><li class="text-[#d4d4d8]">Student</li></a>
+            </ul>
+            <ul class="part3 flex text-[#fff] gap-6 mr-6 font-semibold text-lg cursor-pointer">
+                <li class="text-[#d4d4d8]">About Us</li>
+                <a href="./contact.html"><li class="text-[#d4d4d8]">Contact Us</li></a>
+            </ul>
+            <div class="sidebarIcon text-white  text-2xl hidden" onclick="toggleMenu()">
+                <i class="fa-solid fa-bars-staggered"></i>
+           </div>
+        </nav>
+        <div class="mobileMenu  hidden">
+            <ul class=" text-[#000] font-semibold text-lg cursor-pointer">
+                <a href="./index.html"><li class="">Home</li></a>
+                <a href="./AdminLogin.html"><li class="mt-[10px]">Admin</li></a>
+                <li class="mt-[10px] active2">Teacher</li>
+                <a href="./StudentLogin.html"><li class="mt-[10px]">Student</li></a>
+                <li class="mt-[10px]">About Us</li>
+                <a href="./contact.html"><li class="mt-[10px]">Contact Us</li></a>
+            </ul>
+        </div>
+        <!-- HERO -->
+        <div class="hero h-[520px] flex flex-col justify-center items-center">
+            <div class="Adpart1 text-center w-[80%] border-b-2 border-[#dcd9d9] pb-3">
+                <h1 class="text-4xl font-semibold">Hello, Teacher</h1>
+                <p class="mt-3">Welcome To Coding Age</p>
+            </div>
+            <div class="Adpart2 mt-3 text-center">
+                <h class="font-semibold">You Can Access Various Features After Login</h1>
+                <div class="mt-5">
+                    <a href="./TSignUp.html" class="p-2 bg-[blue] text-[#fff] rounded-md transform transition duration-300 hover:scale-110">Apply For Job</a>
+                    <a href="./TLogin.html" class="p-2 bg-[blue] text-[#fff] rounded-md ml-5">Login</a>
+                </div>
+            </div>
+        </div>
+       <!-- FOOTER -->
+       <footer class=" h-[150px] w-full bg-[#000]">
+            <div class="media flex justify-center gap-3 pt-5">
+                <span class="cursor-pointer flex justify-center items-center text-[#fff]  h-[50px] w-[50px] bg-[#343486] rounded-full"><i class="fa-brands fa-facebook-f"></i></span>
+                <span class="cursor-pointer flex justify-center items-center text-[#fff]  h-[50px] w-[50px] bg-[#61f761] rounded-full"><i class="fa-brands fa-whatsapp"></i></span>
+                <span class="cursor-pointer flex justify-center items-center text-[#fff]  h-[50px] w-[50px] bg-[#2e2e52] rounded-full"><i class="fa-brands fa-instagram"></i></span>
+                <span class="cursor-pointer flex justify-center items-center text-[#fff]  h-[50px] w-[50px] bg-[#20cbcb] rounded-full"><i class="fa-brands fa-twitter"></i></span>
+            </div>
+            <div class="mt-5">
+                <h1 class="flex justify-center text-[#d4d4d8]">Made in india</h1>
+                <h1 class="flex justify-center text-[#d4d4d8]">Copyright © 2025 Raviranjan Gupta</h1>
+            </div>
+       </footer>
+    </header>
+</body>
+<script src="./app.js"></script>
+<script>
+
+    window.addEventListener('DOMContentLoaded', () => {
+    const recentUser = JSON.parse(localStorage.getItem('trecentRegisteredUser'));
+    const adPart1 = document.querySelector('.Adpart1');
+    const adPart2 = document.querySelector('.Adpart2');
+
+    if (recentUser && adPart1 && adPart2) {
+        adPart1.innerHTML = `
+            <h1 class="text-4xl font-semibold">Hello, ${recentUser.name}</h1>
+            <p class="mt-3">Your Account is Not Approved Till Now</p>
+            <p class="mt-3">Our Team Is Checking Your Profile</p>
+            <p class="mt-3">Soon You Will Be Hired To Our Insitute</p>
+        `;
+        adPart2.innerHTML=`
+            <div class="mt-3">
+                <a href="#" class="p-2 border text-[#000] rounded-md ml-5">Check Later</a>
+            </div>
+            <div class="mt-6 ml-5">
+                <a href="#" class="texitLogin p-2 bg-[blue] text-[#fff] rounded-md transform transition duration-300 hover:scale-110">Logout For Now</a>
+            </div>
+        
+        `;
+        setTimeout(() => {
+            const logoutBtn = document.querySelector('.texitLogin');
+            if (logoutBtn) {
+                logoutBtn.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    localStorage.removeItem('trecentRegisteredUser');
+                    alert("Logged out!");
+                    location.reload(); // Optional: refresh page
+                });
+            }
+        }, 0);
+
+    }
+});
+
+</script>
+</html>

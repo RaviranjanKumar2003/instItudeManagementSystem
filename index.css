@@ -1,0 +1,118 @@
+.active {
+  color: #f97316;
+  border-bottom: 5px solid #f97316;
+}
+
+.active2{
+  transition: all 0.3s;
+  border-bottom: 5px solid #f97316; 
+  color: #f97316;
+}
+.dasActive{
+  color: red;
+}
+
+@media (max-width: 425px) {
+  .part2,  
+  .part3 {
+    display: none;
+  }
+  .sidebarIcon{
+    display: block;
+    margin-right: 20px;
+  }
+
+  .mobileMenu{
+    width: 100vw;
+    padding: 20px;
+    color: black;
+    margin-top: 60px;
+  }
+  .main1{
+    background-image: url('./img/ved-blog-1.png');
+    background-size: cover;       
+    background-position: center;
+    height: 250px;
+    width: 100%;
+    margin-top: 60px;
+  }
+  .main{
+    display: none;
+  }
+  .contacthero{
+    flex-direction: column;
+  }
+  .leftCard{
+    width: 100%;
+    margin-top: 400px;
+  }
+  .rightCard{
+    width: 100%;
+    height: 100%;
+  }
+  .confooter{
+    margin-top: 420px;
+  }
+  .heroCard{
+    width: 100%;
+  }
+  .SignUpheroCard{
+    height: 100%;
+    width: 100%;
+  }
+  .singUpFooter{
+    margin-top: 55px;
+  }
+  .LoginmobileMenu{
+    height: 200px;
+  }
+
+  .sidebar{
+    display: none;
+  }
+  .mobileDashboard{
+    height: 600px;
+  }
+  .mainContaint1,
+  .mainContaint2,
+  .mainContaint3,
+  .mainContaint4,
+  .mainContaint5,
+  .mainContaint6{
+    width: 100%;
+    height: auto;
+  }
+  .allCards1{
+    height: auto;
+    flex-direction: column;
+    align-items: center;
+  }
+  .teacherForm{
+    display: none;
+  }
+  .teacherForm2{
+    display: block;
+    flex-direction: column;
+    margin-top: 80px;
+  }
+  .teacherForm2 .inputs{
+    width: 80%;
+  }
+  .hireDive{
+    height: 400px;
+    width: 100%;
+  }
+  .allInputs{
+    width: 100%;
+  }
+  .teacherFooter{
+    margin-top: 160px;
+  }
+  .cutNoticeDive1,
+  .cutNoticeDive2,
+  .cutNoticeDive3{
+    width: 90%;
+  }
+
+  
+}

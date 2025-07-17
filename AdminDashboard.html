@@ -1,0 +1,957 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    <link rel="stylesheet" href="./output.css">
+    <link rel="stylesheet" href="./index.css">
+    <title>Student Management System</title>
+</head>
+<body>
+    <header>
+        <nav class="w-full h-[60px] bg-[#000] flex justify-between  items-center fixed top-0 left-0">
+            <div class="part1  text-xl text-[#fff] font-bold ml-5">
+                <!-- <img src="./img/logo.png" class="h-[50px]"> -->
+                <h1>CODING AGE</h1>
+            </div>
+            <ul class="part3 flex text-[#fff] gap-6 mr-6 font-semibold text-lg cursor-pointer">
+                <a href="./index.html"><li class="exitLogin text-[#d4d4d8]">Logout</li></a>
+            </ul>
+            <div class="sidebarIcon text-white  text-2xl mr-5 hidden" onclick="toggleDashBoard()">
+                <i class="fa-solid fa-bars-staggered"></i>
+           </div>
+        </nav>
+        <div class="mobileDashboard hidden">
+            <div class=" w-full mt-[55px] h-full bg-[rgb(12,27,44)]">
+                <div class="profil flex flex-col justify-center items-center">
+                    <div class="loginImg profileImg h-[150px] w-[150px] rounded-full mt-[10px]">
+                        <img src="./img/use.jpeg" class=" rounded-full">
+                    </div>
+                    <h1 class="profileName text-[#d4d4d8] text-xl mt-[10px]">Admin</h1>
+                    <a href="./index.html"><div class="exitLogin2 text-[#d4d4d8] h-[40px] w-[100px] border-1 rounded-md flex justify-center items-center mt-3">Logout</div></a>
+                </div>
+                <div class="sidebarContainer text-lg">
+                    <a href="#" class="dashboard1 dasActive flex text-[#fff] ml-10 mt-15 hover:text-[red]" onclick="toggleDashboard()">
+                        <i class="fa-solid fa-table-columns"></i>
+                        <h1 class="ml-5 mt-[-5px]">Dashboard</h1>
+                    </a>
+                    <a href="#" class="teacher1 flex text-[#d4d4d8] ml-10 mt-8 hover:text-[red]" onclick="toggleTeacher()">
+                        <i class="fa-solid fa-chalkboard-user"></i>
+                        <h1 class="ml-5 mt-[-5px]">Teacher</h1>
+                    </a>
+                    <a href="#" class="student1 flex text-[#d4d4d8] ml-10 mt-8 hover:text-[red]" onclick="toggleStudent()">
+                        <i class="fa-solid fa-user-graduate"></i>
+                        <h1 class="ml-5 mt-[-5px]">Student</h1>
+                    </a>
+                    <a href="#" class="attendance1 flex text-[#d4d4d8] ml-10 mt-8 hover:text-[red]" onclick="toggleAttendance()">
+                        <i class="fa-solid fa-clipboard-user"></i>
+                        <h1 class="ml-5 mt-[-5px]">Attendance</h1>
+                    </a>
+                    <a href="#" class="fee1 flex text-[#d4d4d8] ml-10 mt-8 hover:text-[red]" onclick="toggleFee()">
+                        <i class="fa-solid fa-magnifying-glass-dollar"></i>
+                        <h1 class="ml-5 mt-[-5px]">Fee</h1>
+                    </a>
+                    <a href="#" class="notice1 flex text-[#d4d4d8] ml-10 mt-8 hover:text-[red]" onclick="toggleNotice()">
+                        <i class="fa-solid fa-headset"></i>
+                        <h1 class="ml-5 mt-[-5px]">Notice</h1>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="hero h-[680px] w-full mt-[60px] flex">
+            <div class="sidebar w-[18%] h-full bg-[rgb(12,27,44)]">
+                <div class="profil flex flex-col justify-center items-center">
+                    <div class="loginImg2 profileImg h-[150px] w-[150px] rounded-full mt-[10px]">
+                        <img src="./img/use.jpeg" class="rounded-full">
+                    </div>
+                    <h1 class="profileName2 text-[#d4d4d8] text-xl mt-[10px]">Admin</h1>
+                </div>
+                <div class="sidebarContainer text-lg">
+                    <a href="#" class="dashboard dasActive flex text-[#fff] ml-10 mt-15 hover:text-[red]" onclick="toggleDashboard()">
+                        <i class="fa-solid fa-table-columns"></i>
+                        <h1 class="ml-5 mt-[-5px]">Dashboard</h1>
+                    </a>
+                    <a href="#" class="teacher flex text-[#d4d4d8] ml-10 mt-8 hover:text-[red]" onclick="toggleTeacher()">
+                        <i class="fa-solid fa-chalkboard-user"></i>
+                        <h1 class="ml-5 mt-[-5px]">Teacher</h1>
+                    </a>
+                    <a href="#" class="student flex text-[#d4d4d8] ml-10 mt-8 hover:text-[red]" onclick="toggleStudent()">
+                        <i class="fa-solid fa-user-graduate"></i>
+                        <h1 class="ml-5 mt-[-5px]">Student</h1>
+                    </a>
+                    <a href="#" class="attendance flex text-[#d4d4d8] ml-10 mt-8 hover:text-[red]" onclick="toggleAttendance()">
+                        <i class="fa-solid fa-clipboard-user"></i>
+                        <h1 class="ml-5 mt-[-5px]">Attendance</h1>
+                    </a>
+                    <a href="#" class="fee flex text-[#d4d4d8] ml-10 mt-8 hover:text-[red]" onclick="toggleFee()">
+                        <i class="fa-solid fa-magnifying-glass-dollar"></i>
+                        <h1 class="ml-5 mt-[-5px]">Fee</h1>
+                    </a>
+                    <a href="#" class="notice flex text-[#d4d4d8] ml-10 mt-8 hover:text-[red]" onclick="toggleNotice()">
+                        <i class="fa-solid fa-headset"></i>
+                        <h1 class="ml-5 mt-[-5px]">Notice</h1>
+                    </a>
+                </div>
+            </div>
+            <!-- FIRST -->
+            <div class="mainContaint1 w-[82%] ">
+                <div class="allCards1 h-[156px] flex justify-around">
+                    <div class="addCard h-[150px] w-[270px] bg-[#6b6bf3] mt-[30px] rounded-md text-[#fff] p-7 text-xl">
+                        <h1>Total Teachers</h1>
+                        <div class="flex justify-between mt-3 text-2xl font-semibold">
+                            <i class="fa-solid fa-chalkboard-user"></i>
+                            <span class="totalHiredTeacher">0</span>
+                        </div>
+                        <div class="flex justify-between mt-2 text-sm">
+                            <h1 class="ml-[40px]">Pending Teacher</h1>
+                            <span class="pendingTeacher">0</span>
+                        </div>
+                    </div>
+                    <div class="addCard h-[150px] w-[270px] bg-[#61f761] mt-[30px] rounded-md text-[#fff] p-7 text-xl">
+                        <h1>Total Students</h1>
+                        <div class="flex justify-between mt-3 text-2xl font-semibold">
+                            <i class="fa-solid fa-user-graduate"></i>
+                            <span class="totalAddStudent">0</span>
+                        </div>
+                        <div class="flex justify-between mt-2 text-sm">
+                            <h1 class="ml-[40px]">Pending Students</h1>
+                            <span class="pendingStudent">0</span>
+                        </div>
+                    </div>
+                    <div class="addCard h-[150px] w-[270px] bg-[#2e2e52] mt-[30px] rounded-md text-[#fff] p-7 text-xl">
+                        <h1>Teachers Salary</h1>
+                        <div class="flex justify-between mt-3 text-2xl font-semibold">
+                            <i class="fa-solid fa-magnifying-glass-dollar"></i>
+                            <span>None</span>
+                        </div>
+                        <div class="flex justify-between mt-2 text-sm">
+                            <h1 class="ml-[40px]">Pending Salary</h1>
+                            <span>None</span>
+                        </div>
+                    </div>
+                    <div class="addCard h-[150px] w-[270px] bg-[#6b6bf3] mt-[30px] rounded-md text-[#fff] p-7 text-xl">
+                        <h1>Students Fee</h1>
+                        <div class="flex justify-between mt-3 text-2xl font-semibold">
+                            <i class="fa-solid fa-magnifying-glass-dollar"></i>
+                            <span>None</span>
+                        </div>
+                        <div class="flex justify-between mt-2 text-sm">
+                            <h1 class="ml-[40px]">Pending Duse</h1>
+                            <span>None</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="noticeBoard h-[370px] flex flex-col items-center ">
+                    <div class="w-full h-[300px] flex flex-col items-center  pt-10">
+                        <div class="w-[100%] h-[40px] bg-[#8a8af7] mt-[30px]  flex justify-center items-center  text-xl text-[#fff]">
+                            <h1>Notice Board</h1>
+                        </div>
+                        <div class="cutNoticeDive1 w-[60%] h-1/2 p-5 flex justify-between text-[#fff] bg-[#d54e4e] mt-8 rounded-md">
+                            <div id="noticeBoard1"> </div>
+                            <div class="cutNotice1 text-2xl cursor-pointer"><i class="fa-solid fa-xmark"></i></div>
+                        </div>
+                    </div>
+                </div>
+                <footer class="h-[150px] w-full bg-[#000]">
+                   <div class="media flex justify-center gap-3 pt-5">
+                     <span class="cursor-pointer flex justify-center items-center text-[#fff]  h-[50px] w-[50px] bg-[#343486] rounded-full"><i class="fa-brands fa-facebook-f"></i></span>
+                     <span class="cursor-pointer flex justify-center items-center text-[#fff]  h-[50px] w-[50px] bg-[#61f761] rounded-full"><i class="fa-brands fa-whatsapp"></i></span>
+                     <span class="cursor-pointer flex justify-center items-center text-[#fff]  h-[50px] w-[50px] bg-[#2e2e52] rounded-full"><i class="fa-brands fa-instagram"></i></span>
+                     <span class="cursor-pointer flex justify-center items-center text-[#fff]  h-[50px] w-[50px] bg-[#20cbcb] rounded-full"><i class="fa-brands fa-twitter"></i></span>
+                   </div>
+                   <div class="mt-5">
+                     <h1 class="flex justify-center text-[#d4d4d8]">Made in india</h1>
+                     <h1 class="flex justify-center text-[#d4d4d8]">Copyright © 2025 Raviranjan Gupta</h1>
+                   </div>
+                </footer>
+            </div>
+            <!-- SECOND -->
+             <div class="mainContaint2 w-[82%] hidden">
+                <div class="allCards1 h-[156px] flex justify-around">
+                    <div class="addCard h-[150px] w-[270px] bg-[#6b6bf3] mt-[30px] rounded-md text-[#fff] p-7 text-xl" onclick="toggleViewAllTeacher()">
+                        <h1>View All Teacher</h1>
+                        <i class="fa-solid fa-eye mt-[30px] text-3xl"></i>
+                    </div>
+                    <div class="addCard h-[150px] w-[270px] bg-[#79c579] mt-[30px] rounded-md text-[#fff] p-7 text-xl" onclick="toggleAddTeacher()">
+                        <h1>Add Teacher</h1>
+                        <i class="fa-solid fa-circle-plus mt-[30px] text-3xl"></i>
+                    </div>
+                    <div class="addCard h-[150px] w-[270px] bg-[#ddd64d] mt-[30px] rounded-md text-[#fff] p-7 text-xl" onclick="toggleApproveTeacher()">
+                        <h1>Approve Teacher</h1>
+                        <i class="fa-solid fa-circle-check mt-[30px] text-3xl"></i>
+                    </div>
+                    <div class="addCard h-[150px] w-[270px] bg-[#f36b96] mt-[30px] rounded-md text-[#fff] p-7 text-xl" onclick="toggleViewSalary()">
+                        <h1>View Teachers Salary</h1>
+                        <i class="fa-solid fa-indian-rupee-sign mt-[30px] text-3xl"></i>
+                    </div>
+                </div>
+
+                <div class="noticeBoard2 h-[345px] flex flex-col items-center ">
+                    <div class="w-full h-[300px] flex flex-col items-center  pt-10">
+                        <div class="w-[100%] h-[40px] bg-[#8a8af7] mt-[30px]  flex justify-center items-center  text-xl text-[#fff]">
+                            <h1>Notice Board</h1>
+                        </div>
+                        <div class="cutNoticeDive2 w-[60%] h-1/2 p-5 flex justify-between text-[#fff] bg-[#d54e4e] mt-8 rounded-md">
+                            <div id="noticeBoard12"> </div>
+                            <div class="cutNotice2 text-2xl cursor-pointer"><i class="fa-solid fa-xmark"></i></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="viewAllTeacher h-[320px] flex  justify-center mt-[30px] hidden">
+                    <div class="w-[90%] h-[300px] flex flex-col pt-5">
+                        <div class="w-[100%] h-[40px] bg-[#8a8af7] rounded-t-md  flex justify-center items-center  text-xl text-[#fff]">
+                            <h1>Teachers</h1>
+                        </div>
+                        <div class="teachersDetailsView h-auto w-full border-2 border-gray-300">
+                            <div class="h-[40px] flex justify-around  font-bold">
+                                <h1>Name</h1>
+                                <h1>Mobile</h1>
+                                <h1>Salary</h1>
+                                <h1>Joining Date</h1>
+                                <h1>Update</h1>
+                                <h1>Delete</h1>
+                            </div>
+                            <div class="ViewapproveORnot flex flex-col border-t-1 border-gray-300">
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="addTeacher h-[300px] w-full mt-[50px] flex justify-center hidden">
+                    <div class=" w-[90%] h-[90%]">
+                        <div class="h-[40px] w-full bg-gradient-to-r from-[#0c1b2c] via-[#1a1a79] to-[#00d4ff] flex justify-center items-center text-[#fff] text-sm">
+                            <h1>Hire New Teacher To Coding Age</h1>
+                        </div>
+                        <div class="hireDive border-2 border-[#b9b4b4] h-[270px] flex justify-center">
+                           <form action="#" id="directHireForm" class="teacherForm h-full w-full flex">
+                               <div class="allInputs w-[50%] flex flex-col justify-center items-center mt-[-70px]">
+                                  <input type="text" placeholder="Full Name" required class="directHireName inputs border-1 w-[70%] h-[35px] rounded-sm placeholder:pl-3">
+                                  <input type="email" placeholder="User Name" required class="inputs border-1 w-[70%] h-[35px] rounded-sm mt-5 placeholder:pl-3">
+                                  <input type="text" placeholder="Mobile" required class="directHireMobile inputs border-1 w-[70%] h-[35px] rounded-sm mt-5 placeholder:pl-3">
+                               </div>
+                               <div class="allInputs w-[50%] flex flex-col justify-center items-center">
+                                  <select id="batchSelect"  class="registerBatch w-[70%] h-[40px] mt-3 p-1 border rounded-lg" required>
+                                       <option value="" disabled selected>-- Experiance --</option>
+                                       <option value="K1">Yes</option>
+                                       <option value="K1">No</option>
+                                  </select>
+                                  <input type="password" placeholder="Password" required class="inputs border-1 w-[70%] h-[35px] rounded-sm mt-5 placeholder:pl-3">
+                                  <input type="number" placeholder="Salary" required class="directHireSalary inputs border-1 w-[70%] h-[35px] rounded-sm mt-5 placeholder:pl-3">
+                                  <button type="submit" class="text-[#fff] mt-[30px] cursor-pointer flex-row  h-[40px] w-[150px] bg-[blue] rounded-4xl flex justify-center items-center">Hire</button>
+                               </div>
+                           </form>
+                           <form action="#" class="forMobile teacherForm2 h-full w-full flex hidden">
+                               <div class="allInputs w-[50%] flex flex-col justify-center items-center mt-[-70px]">
+                                  <input type="text" placeholder="First Name" required class="inputs border-1 w-[70%] h-[35px] rounded-sm placeholder:pl-3">
+                                  <input type="text" placeholder="Last Name" required class="inputs border-1 w-[70%] h-[35px] rounded-sm mt-5 placeholder:pl-3">
+                                  <input type="text" placeholder="User Name" required class="inputs border-1 w-[70%] h-[35px] rounded-sm mt-5 placeholder:pl-3">
+                                  <input type="text" placeholder="Mobile" required class="inputs border-1 w-[70%] h-[35px] rounded-sm mt-5 placeholder:pl-3">
+                                  <input type="password" placeholder="Password" required class="inputs border-1 w-[70%] h-[35px] rounded-sm mt-5 placeholder:pl-3">
+                                  <input type="text" placeholder="Salary" required class="inputs border-1 w-[70%] h-[35px] rounded-sm mt-5 placeholder:pl-3">
+                                  <button type="submit" class="text-[#fff] mt-[30px] cursor-pointer flex-row  h-[40px] w-[150px] bg-[blue] rounded-4xl flex justify-center items-center">Hire</button>
+                               </div>
+                           </form>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="approveteacher h-[350px] flex flex-col items-center hidden">
+                    <div class="w-[90%] h-[320px] flex flex-col  pt-5  mt-[30px]">
+                        <div class="w-[100%] h-[40px] bg-[#8a8af7] rounded-t-md  flex justify-center items-center  text-xl text-[#fff]">
+                            <h1>Teachers</h1>
+                        </div>
+                        <div class="teachersDetails h-auto w-full border-2 border-gray-300">
+                            <div class="h-[40px] flex justify-around  font-bold">
+                                <h1>Name</h1>
+                                <h1>Mobile</h1>
+                                <h1>Salary</h1>
+                                <h1>Joining Date</h1>
+                                <h1>Approve</h1>
+                                <h1>Delete</h1>
+                            </div>
+                            <div class="approveORnot flex flex-col border-gray-300">
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="teacherSalary h-[350px] flex flex-col items-center hidden">
+                    <div class="w-[70%] h-[320px] flex flex-col  pt-5  mt-[30px]">
+                        <div class="w-[100%] h-[40px] bg-[#8a8af7] rounded-t-md  flex justify-center items-center  text-xl text-[#fff]">
+                            <h1>Teachers</h1>
+                        </div>
+                        <div class="teacherSalaryDetails h-auto w-full border-2 border-gray-300">
+                            <div class="h-[40px] flex justify-around  font-bold">
+                                <h1>Teacher Name</h1>
+                                <h1>Salary</h1>
+                            </div>
+                            <div class="approveSalaryORnot flex flex-col border-gray-300">
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <footer class="teacherFooter h-[150px] w-full bg-[#000] mt-[25px]">
+                   <div class="media flex justify-center gap-3 pt-5">
+                     <span class="cursor-pointer flex justify-center items-center text-[#fff]  h-[50px] w-[50px] bg-[#343486] rounded-full"><i class="fa-brands fa-facebook-f"></i></span>
+                     <span class="cursor-pointer flex justify-center items-center text-[#fff]  h-[50px] w-[50px] bg-[#61f761] rounded-full"><i class="fa-brands fa-whatsapp"></i></span>
+                     <span class="cursor-pointer flex justify-center items-center text-[#fff]  h-[50px] w-[50px] bg-[#2e2e52] rounded-full"><i class="fa-brands fa-instagram"></i></span>
+                     <span class="cursor-pointer flex justify-center items-center text-[#fff]  h-[50px] w-[50px] bg-[#20cbcb] rounded-full"><i class="fa-brands fa-twitter"></i></span>
+                   </div>
+                   <div class="mt-5">
+                     <h1 class="flex justify-center text-[#d4d4d8]">Made in india</h1>
+                     <h1 class="flex justify-center text-[#d4d4d8]">Copyright © 2025 Raviranjan Gupta</h1>
+                   </div>
+                </footer>
+            </div>
+            <!-- THIRD -->
+             <div class="mainContaint3 w-[82%] hidden">
+                <div class="allCards1 h-[156px] flex justify-around">
+                    <div class="addCard h-[150px] w-[270px] bg-[#6b6bf3] mt-[30px] rounded-md text-[#fff] p-7 text-xl" onclick="toggleViewAllStudent()">
+                        <h1>View All Student</h1>
+                        <i class="fa-solid fa-eye mt-[30px] text-3xl"></i>
+                    </div>
+                    <div class="addCard h-[150px] w-[270px] bg-[#79c579] mt-[30px] rounded-md text-[#fff] p-7 text-xl" onclick="toggleAddStudent()">
+                        <h1>Add Student</h1>
+                        <i class="fa-solid fa-circle-plus mt-[30px] text-3xl"></i>
+                    </div>
+                    <div class="addCard h-[150px] w-[270px] bg-[#ddd64d] mt-[30px] rounded-md text-[#fff] p-7 text-xl" onclick="toggleApproveStudent()">
+                        <h1>Approve Student</h1>
+                        <i class="fa-solid fa-circle-check mt-[30px] text-3xl"></i>
+                    </div>
+                    <div class="addCard h-[150px] w-[270px] bg-[#f36b96] mt-[30px] rounded-md text-[#fff] p-7 text-xl" onclick="toggleViewStudentFee()">
+                        <h1>View Student Fee</h1>
+                        <i class="fa-solid fa-indian-rupee-sign mt-[30px] text-3xl"></i>
+                    </div>
+                </div>
+
+                <div class="noticeBoard3 h-[345px] flex flex-col items-center ">
+                    <div class="w-full h-[300px] flex flex-col items-center  pt-10">
+                        <div class="w-[100%] h-[40px] bg-[#8a8af7] mt-[30px]  flex justify-center items-center  text-xl text-[#fff]">
+                            <h1>Notice Board</h1>
+                        </div>
+                        <div class="cutNoticeDive3 w-[60%] h-1/2 p-5 flex justify-between text-[#fff] bg-[#d54e4e] mt-8 rounded-md">
+                            <div id="noticeBoard123"> </div>
+                            <div class="cutNotice3 text-2xl cursor-pointer"><i class="fa-solid fa-xmark"></i></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="viewAllStudent h-[320px] flex  justify-center mt-[30px] hidden">
+                    <div class="w-[90%] h-[300px] flex flex-col pt-5">
+                        <div class="w-[100%] h-[40px] bg-[#8a8af7] rounded-t-md  flex justify-center items-center  text-xl text-[#fff]">
+                            <h1>Students</h1>
+                        </div>
+                        <div class="studentDetailsView h-auto w-full border-2 border-gray-300">
+                            <div class="h-[40px] flex justify-around  font-bold">
+                                <h1>Name</h1>
+                                <h1>Batch</h1>
+                                <h1>Mobile</h1>
+                                <h1>Fee</h1>
+                                <h1>Update</h1>
+                                <h1>Delete</h1>
+                            </div>
+                            <div class="ViewAddStudent flex flex-col border-t-1 border-gray-300">
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="addStudent h-[300px] w-full mt-[50px] flex justify-center hidden">
+                    <div class="w-[90%] h-[90%]">
+                        <div class="h-[40px] w-full bg-gradient-to-r from-[#0c1b2c] via-[#1a1a79] to-[#00d4ff] flex justify-center items-center text-[#fff] text-sm">
+                            <h1>New Admission Of Student In Coding Age</h1>
+                        </div>
+                        <div class="hireDive border-2 border-[#b9b4b4] h-[270px] flex justify-center">
+                           <form action="#" id="directAdmissionForm" class="studentForm h-full w-full flex">
+                               <div class="w-[50%] flex flex-col justify-center items-center mt-[-50px]">
+                                  <input type="text" placeholder="Full Name" required class="directAdmissionName border-1 w-[70%] h-[35px] rounded-sm placeholder:pl-3">
+                                  <input type="text" placeholder="User Name" required class="directAdmissionEmail border-1 w-[70%] h-[35px] rounded-sm mt-5 placeholder:pl-3">
+                                  <input type="text" maxlength="10" placeholder="Mobile" required class="directAdmissionMobile border-1 w-[70%] h-[35px] rounded-sm mt-5 placeholder:pl-3">
+                                  <input type="number" placeholder="Roll" required class="directAdmissionRoll border-1 w-[70%] h-[35px] rounded-sm mt-5 placeholder:pl-3">
+                               </div>
+                               <div class="w-[50%] flex flex-col justify-center items-center">
+                                 <select id="directAdmisionbatchSelect" class="sregisterBatch w-[70%] mt-3 p-1.5 border rounded-md" required>
+                                        <option value="">-- Select Batch --</option>
+                                        <option value="K1">K1</option>
+                                        <option value="K1">K2</option>
+                                        <option value="K1">K3</option>
+                                        <option value="K1">K4</option>
+                                        <option value="K1">K5</option>
+                                        <option value="K1">K6</option>
+                                        <option value="K1">K7</option>
+                                        <option value="K1">K8</option>
+                                        <option value="K1">K9</option>
+                                        <option value="K1">K10</option>
+                                  </select>
+                                  <input type="password" placeholder="Password" required class="directAdmissionPassword border-1 w-[70%] h-[35px] rounded-sm mt-5 placeholder:pl-3">
+                                  <input type="number" step="100" min="500" placeholder="Fee" required class="directAdmissionFee border-1 w-[70%] h-[35px] rounded-sm mt-5 placeholder:pl-3">
+                                  <button type="submit" class="text-[#fff] mt-[30px] cursor-pointer flex-row  h-[40px] w-[150px] bg-[blue] rounded-4xl flex justify-center items-center">Hire</button>
+                               </div>
+                           </form>
+                           <form action="#" class="studentForm2 h-full w-full flex hidden">
+                               <div class="allInputs w-[50%] flex flex-col justify-center items-center mt-[-70px]">
+                                  <input type="text" placeholder="First Name" required class="inputs border-1 w-[70%] h-[35px] rounded-sm placeholder:pl-3">
+                                  <input type="text" placeholder="Last Name" required class="inputs border-1 w-[70%] h-[35px] rounded-sm mt-5 placeholder:pl-3">
+                                  <input type="text" placeholder="User Name" required class="inputs border-1 w-[70%] h-[35px] rounded-sm mt-5 placeholder:pl-3">
+                                  <input type="text" placeholder="Mobile" required class="inputs border-1 w-[70%] h-[35px] rounded-sm mt-5 placeholder:pl-3">
+                                  <input type="password" placeholder="Password" required class="inputs border-1 w-[70%] h-[35px] rounded-sm mt-5 placeholder:pl-3">
+                                  <input type="text" placeholder="Salary" required class="inputs border-1 w-[70%] h-[35px] rounded-sm mt-5 placeholder:pl-3">
+                                  <button type="submit" class="text-[#fff] mt-[30px] cursor-pointer flex-row  h-[40px] w-[150px] bg-[blue] rounded-4xl flex justify-center items-center">Hire</button>
+                               </div>
+                           </form>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="approveStudent h-[350px] flex flex-col items-center hidden">
+                    <div class="w-[90%] h-[320px] flex flex-col  pt-5  mt-[30px]">
+                        <div class="w-[100%] h-[40px] bg-[#8a8af7] rounded-t-md  flex justify-center items-center  text-xl text-[#fff]">
+                            <h1>Students</h1>
+                        </div>
+                        <div class="studentsDetails h-auto w-full border-2 border-gray-300">
+                            <div class="h-[40px] flex justify-around  font-bold">
+                                <h1>Name</h1>
+                                <h1>Class</h1>
+                                <h1>Mobile</h1>
+                                <h1>Fee</h1>
+                                <h1>Approve</h1>
+                                <h1>Delete</h1>
+                            </div>
+                            <div class="approveStudentORnot flex flex-col border-gray-300">
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="studentFee h-[350px] flex flex-col items-center hidden">
+                    <div class="w-[70%] h-[320px] flex flex-col  pt-5  mt-[30px]">
+                        <div class="w-[100%] h-[40px] bg-[#8a8af7] rounded-t-md  flex justify-center items-center  text-xl text-[#fff]">
+                            <h1>Students</h1>
+                        </div>
+                        <div class="studentFeeDetails h-auto w-full border-2 border-gray-300">
+                            <div class="h-[40px] flex justify-around  font-bold">
+                                <h1>Student Name</h1>
+                                <h1>Fee</h1>
+                            </div>
+                            <div class="approveStudentFeeORnot flex flex-col border-gray-300">
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <footer class="teacherFooter h-[150px] w-full bg-[#000] mt-[25px]">
+                   <div class="media flex justify-center gap-3 pt-5">
+                     <span class="cursor-pointer flex justify-center items-center text-[#fff]  h-[50px] w-[50px] bg-[#343486] rounded-full"><i class="fa-brands fa-facebook-f"></i></span>
+                     <span class="cursor-pointer flex justify-center items-center text-[#fff]  h-[50px] w-[50px] bg-[#61f761] rounded-full"><i class="fa-brands fa-whatsapp"></i></span>
+                     <span class="cursor-pointer flex justify-center items-center text-[#fff]  h-[50px] w-[50px] bg-[#2e2e52] rounded-full"><i class="fa-brands fa-instagram"></i></span>
+                     <span class="cursor-pointer flex justify-center items-center text-[#fff]  h-[50px] w-[50px] bg-[#20cbcb] rounded-full"><i class="fa-brands fa-twitter"></i></span>
+                   </div>
+                   <div class="mt-5">
+                     <h1 class="flex justify-center text-[#d4d4d8]">Made in india</h1>
+                     <h1 class="flex justify-center text-[#d4d4d8]">Copyright © 2025 Raviranjan Gupta</h1>
+                   </div>
+                </footer>
+            </div>
+            <!-- FOUR -->
+            <div class="mainContaint4 w-[82%] flex flex-col justify-center items-center hidden">
+                <div class="w-[90%] h-[74.3%]  mt-5 overflow-auto">
+                    <div class="h-[40px] w-full bg-[blue] flex justify-center items-center text-xl text-[#fff] rounded-t-md">
+                        <h1>Attendance</h1>
+                    </div>
+                    <table class="table-auto border border-gray-400 w-full text-center">
+                        <tr class="bg-gray-200">
+                            <th class="border border-gray-400 px-4 py-2">Batch</th>
+                            <th class="border border-gray-400 px-4 py-2">Take Attendance</th>
+                            <th class="border border-gray-400 px-4 py-2">View Attendance</th>
+                        </tr>
+                        <tr class="text-2xl font-semibold">
+                            <td class="border border-gray-300 px-2 py-2">K1</td>
+                            <td class="border border-gray-300 px-2 py-2 text-[#4d4de0] cursor-pointer"><i class="fa-solid fa-square-plus"></i></td>
+                            <td class="border border-gray-300 px-2 py-2 text-[red] cursor-pointer"><i class="fa-solid fa-eye"></i></td>
+                        </tr>
+                        <tr class="text-2xl font-semibold">
+                            <td class="border border-gray-300 px-2 py-2">K2</td>
+                            <td class="border border-gray-300 px-2 py-2 text-[#4d4de0] cursor-pointer"><i class="fa-solid fa-square-plus"></i></td>
+                            <td class="border border-gray-300 px-2 py-2 text-[red] cursor-pointer"><i class="fa-solid fa-eye"></i></td>
+                        </tr>
+                        <tr class="text-2xl font-semibold">
+                            <td class="border border-gray-300 px-2 py-2">K3</td>
+                            <td class="border border-gray-300 px-2 py-2 text-[#4d4de0] cursor-pointer"><i class="fa-solid fa-square-plus"></i></td>
+                            <td class="border border-gray-300 px-2 py-2 text-[red] cursor-pointer"><i class="fa-solid fa-eye"></i></td>
+                        </tr>
+                        <tr class="text-2xl font-semibold">
+                            <td class="border border-gray-300 px-2 py-2">K4</td>
+                            <td class="border border-gray-300 px-2 py-2 text-[#4d4de0] cursor-pointer"><i class="fa-solid fa-square-plus"></i></td>
+                            <td class="border border-gray-300 px-2 py-2 text-[red] cursor-pointer"><i class="fa-solid fa-eye"></i></td>
+                        </tr>
+                        <tr class="text-2xl font-semibold">
+                            <td class="border border-gray-300 px-2 py-2">K5</td>
+                            <td class="border border-gray-300 px-2 py-2 text-[#4d4de0] cursor-pointer"><i class="fa-solid fa-square-plus"></i></td>
+                            <td class="border border-gray-300 px-2 py-2 text-[red] cursor-pointer"><i class="fa-solid fa-eye"></i></td>
+                        </tr>
+                        <tr class="text-2xl font-semibold">
+                            <td class="border border-gray-300 px-2 py-2">K6</td>
+                            <td class="border border-gray-300 px-2 py-2 text-[#4d4de0] cursor-pointer"><i class="fa-solid fa-square-plus"></i></td>
+                            <td class="border border-gray-300 px-2 py-2 text-[red] cursor-pointer"><i class="fa-solid fa-eye"></i></td>
+                        </tr>
+                        <tr class="text-2xl font-semibold">
+                            <td class="border border-gray-300 px-2 py-2">K7</td>
+                            <td class="border border-gray-300 px-2 py-2 text-[#4d4de0] cursor-pointer"><i class="fa-solid fa-square-plus"></i></td>
+                            <td class="border border-gray-300 px-2 py-2 text-[red] cursor-pointer"><i class="fa-solid fa-eye"></i></td>
+                        </tr>
+                        <tr class="text-2xl font-semibold">
+                            <td class="border border-gray-300 px-2 py-2">K8</td>
+                            <td class="border border-gray-300 px-2 py-2 text-[#4d4de0] cursor-pointer"><i class="fa-solid fa-square-plus"></i></td>
+                            <td class="border border-gray-300 px-2 py-2 text-[red] cursor-pointer"><i class="fa-solid fa-eye"></i></td>
+                        </tr>
+                        <tr class="text-2xl font-semibold">
+                            <td class="border border-gray-300 px-2 py-2">K9</td>
+                            <td class="border border-gray-300 px-2 py-2 text-[#4d4de0] cursor-pointer"><i class="fa-solid fa-square-plus"></i></td>
+                            <td class="border border-gray-300 px-2 py-2 text-[red] cursor-pointer"><i class="fa-solid fa-eye"></i></td>
+                        </tr>
+                        <tr class="text-2xl font-semibold">
+                            <td class="border border-gray-300 px-2 py-2">K10</td>
+                            <td class="border border-gray-300 px-2 py-2 text-[#4d4de0] cursor-pointer"><i class="fa-solid fa-square-plus"></i></td>
+                            <td class="border border-gray-300 px-2 py-2 text-[red] cursor-pointer"><i class="fa-solid fa-eye"></i></td>
+                        </tr>
+                    </table>
+                </div>
+               <footer class="h-[150px] w-full bg-[#000] mt-[25px]">
+                   <div class="media flex justify-center gap-3 pt-5">
+                     <span class="cursor-pointer flex justify-center items-center text-[#fff]  h-[50px] w-[50px] bg-[#343486] rounded-full"><i class="fa-brands fa-facebook-f"></i></span>
+                     <span class="cursor-pointer flex justify-center items-center text-[#fff]  h-[50px] w-[50px] bg-[#61f761] rounded-full"><i class="fa-brands fa-whatsapp"></i></span>
+                     <span class="cursor-pointer flex justify-center items-center text-[#fff]  h-[50px] w-[50px] bg-[#2e2e52] rounded-full"><i class="fa-brands fa-instagram"></i></span>
+                     <span class="cursor-pointer flex justify-center items-center text-[#fff]  h-[50px] w-[50px] bg-[#20cbcb] rounded-full"><i class="fa-brands fa-twitter"></i></span>
+                   </div>
+                   <div class="mt-5">
+                     <h1 class="flex justify-center text-[#d4d4d8]">Made in india</h1>
+                     <h1 class="flex justify-center text-[#d4d4d8]">Copyright © 2025 Raviranjan Gupta</h1>
+                   </div>
+                </footer>
+            </div>
+            <!-- FIFTH -->
+            <div class="mainContaint5 w-[82%] flex flex-col justify-center items-center hidden">
+                <div class="w-[90%] h-[74.3%]  mt-5 overflow-auto">
+                    <div class="h-[40px] w-full bg-[blue] flex justify-center items-center text-xl text-[#fff] rounded-t-md">
+                        <h1>Fee Of Students</h1>
+                    </div>
+                    <table class="table-auto border border-gray-400 w-full text-center">
+                        <tr class="bg-gray-200">
+                            <th class="border border-gray-400 px-4 py-2">Batch</th>
+                            <th class="border border-gray-400 px-4 py-2">View Dues</th>
+                        </tr>
+                        <tr class="text-2xl font-semibold">
+                            <td class="border border-gray-300 px-2 py-2">K1</td>
+                            <td class="border border-gray-300 px-2 py-2 text-[red] cursor-pointer"><i class="fa-solid fa-eye"></i></td>
+                        </tr>
+                        <tr class="text-2xl font-semibold">
+                            <td class="border border-gray-300 px-2 py-2">K2</td>
+                            <td class="border border-gray-300 px-2 py-2 text-[red] cursor-pointer"><i class="fa-solid fa-eye"></i></td>
+                        </tr>
+                        <tr class="text-2xl font-semibold">
+                            <td class="border border-gray-300 px-2 py-2">K3</td>
+                            <td class="border border-gray-300 px-2 py-2 text-[red] cursor-pointer"><i class="fa-solid fa-eye"></i></td>
+                        </tr>
+                        <tr class="text-2xl font-semibold">
+                            <td class="border border-gray-300 px-2 py-2">K4</td>
+                            <td class="border border-gray-300 px-2 py-2 text-[red] cursor-pointer"><i class="fa-solid fa-eye"></i></td>
+                        </tr>
+                        <tr class="text-2xl font-semibold">
+                            <td class="border border-gray-300 px-2 py-2">K5</td>
+                            <td class="border border-gray-300 px-2 py-2 text-[red] cursor-pointer"><i class="fa-solid fa-eye"></i></td>
+                        </tr>
+                        <tr class="text-2xl font-semibold">
+                            <td class="border border-gray-300 px-2 py-2">K6</td>
+                            <td class="border border-gray-300 px-2 py-2 text-[red] cursor-pointer"><i class="fa-solid fa-eye"></i></td>
+                        </tr>
+                        <tr class="text-2xl font-semibold">
+                            <td class="border border-gray-300 px-2 py-2">K7</td>
+                            <td class="border border-gray-300 px-2 py-2 text-[red] cursor-pointer"><i class="fa-solid fa-eye"></i></td>
+                        </tr>
+                        <tr class="text-2xl font-semibold">
+                            <td class="border border-gray-300 px-2 py-2">K8</td>
+                            <td class="border border-gray-300 px-2 py-2 text-[red] cursor-pointer"><i class="fa-solid fa-eye"></i></td>
+                        </tr>
+                        <tr class="text-2xl font-semibold">
+                            <td class="border border-gray-300 px-2 py-2">K9</td>
+                            <td class="border border-gray-300 px-2 py-2 text-[red] cursor-pointer"><i class="fa-solid fa-eye"></i></td>
+                        </tr>
+                        <tr class="text-2xl font-semibold">
+                            <td class="border border-gray-300 px-2 py-2">K10</td>
+                            <td class="border border-gray-300 px-2 py-2 text-[red] cursor-pointer"><i class="fa-solid fa-eye"></i></td>
+                        </tr>
+                    </table>
+                </div>
+               <footer class="h-[150px] w-full bg-[#000] mt-[25px]">
+                   <div class="media flex justify-center gap-3 pt-5">
+                     <span class="cursor-pointer flex justify-center items-center text-[#fff]  h-[50px] w-[50px] bg-[#343486] rounded-full"><i class="fa-brands fa-facebook-f"></i></span>
+                     <span class="cursor-pointer flex justify-center items-center text-[#fff]  h-[50px] w-[50px] bg-[#61f761] rounded-full"><i class="fa-brands fa-whatsapp"></i></span>
+                     <span class="cursor-pointer flex justify-center items-center text-[#fff]  h-[50px] w-[50px] bg-[#2e2e52] rounded-full"><i class="fa-brands fa-instagram"></i></span>
+                     <span class="cursor-pointer flex justify-center items-center text-[#fff]  h-[50px] w-[50px] bg-[#20cbcb] rounded-full"><i class="fa-brands fa-twitter"></i></span>
+                   </div>
+                   <div class="mt-5">
+                     <h1 class="flex justify-center text-[#d4d4d8]">Made in india</h1>
+                     <h1 class="flex justify-center text-[#d4d4d8]">Copyright © 2025 Raviranjan Gupta</h1>
+                   </div>
+                </footer>
+            </div>
+            <!-- SIXTH -->
+            <div class="mainContaint6 w-[82%] flex flex-col justify-center items-center hidden">
+                <div class="w-[90%] h-[74.3%]  mt-5 overflow-auto">
+                    <div class="h-[60px] w-full bg-gradient-to-r from-[#0c1b2c] via-[#1a1a79] to-[#00d4ff] flex justify-center items-center text-xl text-[#fff] ">
+                        <h1>Announce Something</h1>
+                    </div>
+                    <form action="#" id="messageForm" class="w-full h-[85%] border-1 flex flex-col justify-center items-center">
+                        <textarea name="message" placeholder="Write Your Message Here" rows="5" id="messageInput" class="noticeSMS placeholder:text-[#5a5858] mt-5 text-[#1f1e1e] w-[80%] h-[80%] p-3 border-4 border-gray-300 rounded-lg focus:outline-none focus:ring-4 focus:border-2 focus:ring-orange-500 animate__animated animate__fadeInUp animate__delay-1s" required=""></textarea>
+                        <button type="submit" class="mt-[10px] text-[#fff] cursor-pointer flex-row  h-[40px] w-[150px] bg-[blue] rounded-4xl flex justify-center items-center">Submit</button>
+                    </form>
+                </div>
+               <footer class="h-[150px] w-full bg-[#000] mt-[25px]">
+                   <div class="media flex justify-center gap-3 pt-5">
+                     <span class="cursor-pointer flex justify-center items-center text-[#fff]  h-[50px] w-[50px] bg-[#343486] rounded-full"><i class="fa-brands fa-facebook-f"></i></span>
+                     <span class="cursor-pointer flex justify-center items-center text-[#fff]  h-[50px] w-[50px] bg-[#61f761] rounded-full"><i class="fa-brands fa-whatsapp"></i></span>
+                     <span class="cursor-pointer flex justify-center items-center text-[#fff]  h-[50px] w-[50px] bg-[#2e2e52] rounded-full"><i class="fa-brands fa-instagram"></i></span>
+                     <span class="cursor-pointer flex justify-center items-center text-[#fff]  h-[50px] w-[50px] bg-[#20cbcb] rounded-full"><i class="fa-brands fa-twitter"></i></span>
+                   </div>
+                   <div class="mt-5">
+                     <h1 class="flex justify-center text-[#d4d4d8]">Made in india</h1>
+                     <h1 class="flex justify-center text-[#d4d4d8]">Copyright © 2025 Raviranjan Gupta</h1>
+                   </div>
+                </footer>
+            </div>
+        </div>
+    </header>
+</body>
+<script src="./app.js"></script>
+<script>
+
+//=========================================== Teacher =====================================
+
+    window.addEventListener('DOMContentLoaded', () => {
+        const approveORnot = document.querySelector('.approveORnot');
+        const approveSalaryORnot = document.querySelector('.approveSalaryORnot');
+        const viewApproveORnot = document.querySelector('.ViewapproveORnot');
+        const pendingTeacher = document.querySelector('.pendingTeacher');
+        const totalHiredTeacher = document.querySelector('.totalHiredTeacher');
+
+        let users2 = JSON.parse(localStorage.getItem('users2')) || [];
+        let approvedUsers = JSON.parse(localStorage.getItem('approvedUsers')) || [];
+
+        if (totalHiredTeacher) totalHiredTeacher.textContent = approvedUsers.length;
+        if (pendingTeacher) pendingTeacher.textContent = users2.length;
+        // Render unapproved users
+        if (approveORnot) {
+            users2.forEach((user, index) => {
+                if (!user.date) {
+                      user.date = new Date().toLocaleDateString();
+                }
+                const userCard = document.createElement('div');
+                userCard.classList.add('allAplyed', 'user-entry', 'mb-4', 'flex', 'border-t-1', 'border-gray-300');
+
+                userCard.innerHTML = `
+                    <h1 class="ml-16 w-[160px]">${user.name}</h1>
+                    <h1 class="w-[200px]">${user.mobile || 'Not Provided'}</h1>
+                    <h1 class="w-[180px]">${user.salary || 'Not Provided'}</h1>
+                    <h1 class="w-[230px]">${user.date || 'N/A'}</h1>
+                    <span class="approveBtn text-[green] cursor-pointer"><i class="fa-solid fa-circle-check"></i></span>
+                    <span class="approveDeleteBtn text-[red] ml-40 cursor-pointer"><i class="fa-solid fa-trash"></i></span>
+                `;
+
+                // Approve action
+                userCard.querySelector('.approveBtn').addEventListener('click', () => {
+                    approvedUsers.push(user);
+                    localStorage.setItem('approvedUsers', JSON.stringify(approvedUsers));
+
+                    users2 = users2.filter(u => u.email !== user.email);
+                    localStorage.setItem('users2', JSON.stringify(users2));
+
+                    userCard.remove();
+                    if (totalHiredTeacher) totalHiredTeacher.textContent = approvedUsers.length;
+                    if (pendingTeacher) pendingTeacher.textContent = users2.length;
+                    renderApprovedUser(user); 
+                
+                });
+
+                // Delete action
+                userCard.querySelector('.approveDeleteBtn').addEventListener('click', () => {
+                    if (confirm("Delete this user?")) {
+                        users2 = users2.filter(u => u.email !== user.email);
+                        localStorage.setItem('users2', JSON.stringify(users2));
+                        userCard.remove();
+  
+                        if (totalHiredTeacher) totalHiredTeacher.textContent = approvedUsers.length;
+                        if (pendingTeacher) pendingTeacher.textContent = users2.length;
+                    }
+                });
+            
+                approveORnot.appendChild(userCard);
+            });
+        }
+
+
+        function renderApprovedUser(user) {
+            if (!viewApproveORnot) return;
+            if (!user.date) {
+               user.date = new Date().toLocaleDateString();
+            }
+
+            const approvedCard = document.createElement('div');
+            approvedCard.classList.add('approved-entry', 'mb-4', 'flex', 'border-t-1', 'border-gray-300');
+
+            const approvedCard2 = document.createElement('div');
+            approvedCard2.classList.add('approvedSalary', 'mb-4', 'flex','justify-around', 'border-t-1', 'border-gray-300');
+
+            approvedCard.innerHTML = `
+                <h1 class="ml-16 w-[160px]">${user.name}</h1>
+                <h1 class="w-[200px]">${user.mobile || 'Not Provided'}</h1>
+                <h1 class="w-[180px]">${user.salary || 'Not Provided'}</h1>
+                <h1 class="w-[230px]">${user.date || 'N/A'}</h1>
+                <span class="approveBtn text-[green] cursor-pointer"><i class="fa-regular fa-pen-to-square"></i></span>
+                <span class="approvedTeacherDeleteBtn text-[red] ml-40 cursor-pointer"><i class="fa-solid fa-trash"></i></span>
+            `;
+            approvedCard2.innerHTML = `
+                <h1 class="pl-25 w-[350px] ">${user.name}</h1>
+                <h1 class="pl-10 w-[180px] ">${user.salary || 'Not Provided'}</h1>
+            `;
+            viewApproveORnot.appendChild(approvedCard);
+            approveSalaryORnot.appendChild(approvedCard2);
+
+            approvedCard.querySelector('.approvedTeacherDeleteBtn').addEventListener('click', () => {
+              if (confirm("Delete this approved teacher?")) {
+                   approvedUsers = approvedUsers.filter(u => u.email !== user.email);
+                   localStorage.setItem('approvedUsers', JSON.stringify(approvedUsers));
+
+                   approvedCard.remove();
+                   approvedCard2.remove();
+
+                  if (totalHiredTeacher) totalHiredTeacher.textContent = approvedUsers.length;
+                }
+            });
+        }
+
+        if (viewApproveORnot && approvedUsers.length > 0) {
+            approvedUsers.forEach(user => renderApprovedUser(user));
+        }
+
+        approvedCard.querySelector('.approvedTeacherDeleteBtn').addEventListener('click', () => {
+            if (confirm("Delete this user?")) {
+                users2 = users2.filter(u => u.email !== user.email);
+                localStorage.setItem('users2', JSON.stringify(users2));
+                userCard.remove();
+
+                if (totalHiredTeacher) totalHiredTeacher.textContent = approvedUsers.length;
+                if (pendingTeacher) pendingTeacher.textContent = users2.length;
+            }
+        });
+
+    
+    });
+
+
+    const directHireForm = document.getElementById('directHireForm');
+    const viewApproveORnot = document.querySelector('.ViewapproveORnot');
+
+    let approvedUsers = JSON.parse(localStorage.getItem('approvedUsers')) || [];
+
+    directHireForm.addEventListener('submit', (e) => {
+        e.preventDefault(); // prevent form from refreshing the page
+
+        const name = document.querySelector('.directHireName')?.value.trim();
+        const mobile = document.querySelector('.directHireMobile')?.value.trim();
+        const salary = document.querySelector('.directHireSalary')?.value.trim();
+        const experience = document.getElementById('batchSelect')?.value;
+        const date = new Date().toLocaleDateString();
+
+        if (!name || !mobile || !salary || !experience) {
+            alert("Please fill all required fields.");
+            return;
+        }
+
+        const newUser = { name, mobile, salary, experience, date };
+
+        // Save to localStorage
+        approvedUsers.push(newUser);
+        localStorage.setItem('approvedUsers', JSON.stringify(approvedUsers));
+
+        // Show on the DOM
+        const approvedCard = document.createElement('div');
+        approvedCard.classList.add('approved-entry', 'mb-4', 'flex', 'border-t-1', 'border-gray-300');
+
+        approvedCard.innerHTML = `
+            <h1 class="ml-16 w-[160px]">${name}</h1>
+            <h1 class="w-[200px]">${mobile}</h1>
+            <h1 class="w-[180px]">${salary}</h1>
+            <h1 class="w-[230px]">${date}</h1>
+            <span class="approveBtn text-[green] cursor-pointer"><i class="fa-regular fa-pen-to-square"></i></span>
+            <span class="approvedTeacherDeleteBtn text-[red] ml-40 cursor-pointer"><i class="fa-solid fa-trash"></i></span>
+        `;
+
+        viewApproveORnot.appendChild(approvedCard);
+
+        // Optionally clear the form
+        directHireForm.reset();
+    });
+
+
+    
+
+ //=========================================== Student =====================================
+
+    window.addEventListener('DOMContentLoaded', () => {
+       const approveORnot = document.querySelector('.approveStudentORnot');
+       const approveSalaryORnot = document.querySelector('.approveStudentFeeORnot');
+       const viewApproveORnot = document.querySelector('.ViewAddStudent');
+       const pendingStudent = document.querySelector('.pendingStudent');
+       const totalAddStudent = document.querySelector('.totalAddStudent');
+
+       let users3 = JSON.parse(localStorage.getItem('users3')) || [];
+       let approvedUsers2 = JSON.parse(localStorage.getItem('approvedUsers2')) || [];
+
+       if (totalAddStudent) totalAddStudent.textContent = approvedUsers2.length;
+       if (pendingStudent) pendingStudent.textContent = users3.length;
+
+       // Render pending users
+       if (approveORnot) {
+           users3.forEach((user) => {
+               const userCard = document.createElement('div');
+               userCard.classList.add('allSAplyed', 'user-entry', 'mb-4', 'flex', 'border-t-1', 'border-gray-300');
+ 
+               userCard.innerHTML = `
+                   <h1 class="ml-16 w-[193px]">${user.name}</h1>
+                   <h1 class="w-[170px]">${user.batch || 'Not Provided'}</h1>
+                   <h1 class="w-[200px]">${user.mobile || 'Not Provided'}</h1>
+                   <h1 class="w-[170px]">${user.fee || 'N/A'}</h1>
+                   <span class="approveBtnS text-[green] cursor-pointer"><i class="fa-solid fa-circle-check"></i></span>
+                  <span class="approveDeleteBtnS text-[red] ml-48 cursor-pointer"><i class="fa-solid fa-trash"></i></span>
+               `;
+
+                userCard.querySelector('.approveBtnS').addEventListener('click', () => {
+                   approvedUsers2.push(user);
+                   localStorage.setItem('approvedUsers2', JSON.stringify(approvedUsers2));
+
+                   users3 = users3.filter(u => u.email !== user.email);
+                  localStorage.setItem('users3', JSON.stringify(users3));
+
+                   userCard.remove();
+                   if (totalAddStudent) totalAddStudent.textContent = approvedUsers2.length;
+                   if (pendingStudent) pendingStudent.textContent = users3.length;
+                   renderApprovedUser(user);
+                });
+
+                userCard.querySelector('.approveDeleteBtnS').addEventListener('click', () => {
+                    if (confirm("Delete this user?")) {
+                        users3 = users3.filter(u => u.email !== user.email);
+                        localStorage.setItem('users3', JSON.stringify(users3));
+                        userCard.remove();
+                        if (pendingStudent) pendingStudent.textContent = users3.length;
+                    }
+                });
+
+                approveORnot.appendChild(userCard);
+            });
+        }
+
+        function renderApprovedUser(user) {
+            if (!viewApproveORnot) return;
+
+            const approvedCard = document.createElement('div');
+            approvedCard.classList.add('approved-entry', 'mb-4', 'flex', 'border-t-1', 'border-gray-300');
+
+            const approvedFee = document.createElement('div');
+            approvedFee.classList.add('approvedFee', 'mb-4', 'flex', 'justify-around', 'border-t-1', 'border-gray-300');
+
+            approvedCard.innerHTML = `
+                <h1 class="ml-16 w-[190px]">${user.name}</h1>
+                <h1 class="w-[185px]">${user.batch || 'Not Provided'}</h1>
+                <h1 class="w-[195px]">${user.mobile || 'Not Provided'}</h1>
+                <h1 class="w-[180px]">${user.fee || 'N/A'}</h1>
+                <span class="approveBtnS text-[green] cursor-pointer"><i class="fa-regular fa-pen-to-square"></i></span>
+                <span class="approvedStudentDeleteBtn text-[red] ml-43 cursor-pointer"><i class="fa-solid fa-trash"></i></span>
+            `;
+
+            approvedFee.innerHTML = `
+                <h1 class="pl-25 w-[350px] ">${user.name}</h1>
+                <h1 class="pl-10 w-[180px] ">${user.fee || 'Not Provided'}</h1>
+            `;
+
+            approvedCard.querySelector('.approvedStudentDeleteBtn').addEventListener('click', () => {
+                if (confirm("Delete this approved student?")) {
+                    approvedUsers2 = approvedUsers2.filter(u => u.email !== user.email);
+                    localStorage.setItem('approvedUsers2', JSON.stringify(approvedUsers2));
+                    approvedCard.remove();
+                    approvedFee.remove();
+                    if (totalAddStudent) totalAddStudent.textContent = approvedUsers2.length;
+                }
+            });
+
+            viewApproveORnot.appendChild(approvedCard);
+            approveSalaryORnot.appendChild(approvedFee);
+        } 
+
+        approvedUsers2.forEach(user => renderApprovedUser(user));
+    });
+
+
+    const directAdmissionForm = document.getElementById('directAdmissionForm');
+    let approvedUsers2 = JSON.parse(localStorage.getItem('approvedUsers2')) || [];
+
+ directAdmissionForm.addEventListener('submit', (e) => {
+    e.preventDefault(); // prevent form from refreshing the page
+
+    const name = document.querySelector('.directAdmissionName')?.value.trim();
+    const mobile = document.querySelector('.directAdmissionMobile')?.value.trim();
+    const fee = document.querySelector('.directAdmissionFee')?.value.trim();  // ✅ Use 'fee'
+    const batch = document.getElementById('directAdmisionbatchSelect')?.value;
+    const roll = document.querySelector('.directAdmissionRoll')?.value;
+    const date = new Date().toLocaleDateString();
+
+    if (!name || !mobile || !fee || !batch) {
+        alert("Please fill all required fields.");
+        return;
+    }
+
+    const newUser = { name, mobile, fee, batch, roll, date };  // ✅ store 'fee' instead of 'salary'
+
+    approvedUsers2.push(newUser);
+    localStorage.setItem('approvedUsers2', JSON.stringify(approvedUsers2));
+
+    // Show on the DOM
+    const approvedCard = document.createElement('div');
+    approvedCard.classList.add('approved-entry', 'mb-4', 'flex', 'border-t-1', 'border-gray-300');
+
+    approvedCard.innerHTML = `
+        <h1 class="ml-16 w-[160px]">${name}</h1>
+        <h1 class="w-[200px]">${mobile}</h1>
+        <h1 class="w-[180px]">${fee}</h1>
+        <h1 class="w-[230px]">${date}</h1>
+        <span class="approveBtn text-[green] cursor-pointer"><i class="fa-regular fa-pen-to-square"></i></span>
+        <span class="approvedStudentDeleteBtn text-[red] ml-40 cursor-pointer"><i class="fa-solid fa-trash"></i></span>
+    `;
+
+    approvedCard.querySelector('.approvedStudentDeleteBtn').addEventListener('click', () => {
+        if (confirm("Delete this approved student?")) {
+            approvedUsers2 = approvedUsers2.filter(u => u.mobile !== mobile);
+            localStorage.setItem('approvedUsers2', JSON.stringify(approvedUsers2));
+            approvedCard.remove();
+        }
+    });
+
+    viewApproveORnot.appendChild(approvedCard);
+
+    // Clear the form
+    directAdmissionForm.reset();
+ });
+
+
+</script>
+
+</html>

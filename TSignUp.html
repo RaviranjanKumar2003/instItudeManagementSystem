@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    <link rel="stylesheet" href="./output.css">
+    <link rel="stylesheet" href="./index.css">
+    <title>Student Management System</title>
+</head>
+<body>
+    <header>
+        <nav class="w-full h-[60px] bg-[#0c1b2c] flex justify-between  items-center fixed top-0 left-0 z-10">
+            
+            <div class="part1  text-xl text-[#fff] font-bold ml-5">
+                <!-- <img src="./img/logo.png" class="h-[50px]"> -->
+                <h1>CODING AGE</h1>
+            </div>
+            <ul class="part2 flex text-[#fff] gap-6 font-semibold text-lg cursor-pointer">
+                <a href="./index.html"><li class="text-[#d4d4d8]">Home</li></a>
+                <a href="./AdminLogin.html"><li class="text-[#d4d4d8]">Admin</li></a>
+                <a href="./TeacherLogin.html"><li class="text-[#d4d4d8]">Teacher</li></a>
+                <a href="./StudentLogin.html"><li class="text-[#d4d4d8]">Student</li></a>
+            </ul>
+            <ul class="part3 flex text-[#fff] gap-6 mr-6 font-semibold text-lg cursor-pointer">
+                <li class="text-[#d4d4d8]">About Us</li>
+                <a href="./contact.html"><li class="text-[#d4d4d8]">Contact Us</li></a>
+            </ul>
+            <div class="sidebarIcon text-white  text-2xl hidden" onclick="toggleMenu()">
+                <i class="fa-solid fa-bars-staggered"></i>
+           </div>
+        </nav>
+        <div class="mobileMenu LoginmobileMenu hidden">
+            <ul class=" text-[#000] font-semibold text-lg cursor-pointer">
+                <a href="./index.html"><li>Home</li></a>
+                <a href="./AdminLogin.html"><li class="mt-[10px]">Admin</li></a>
+                <a href="./TeacherLogin.html"><li class="mt-[10px]">Teacher</li></a>
+                <a href="./StudentLogin.html"><li class="mt-[10px]">Student</li></a>
+                <li class="mt-[10px]">About Us</li>
+                <a href="./contact.html"><li class="mt-[10px]">Contact Us</li></a>
+            </ul>
+        </div>
+        <!-- HERO -->
+        <div class="SignUpheroContainer w-full h-[700px] bg-[#f3f4f6] flex  justify-center items-center mt-[60px]">
+            <div class="heroCard  relative h-[90%] w-[50%] flex flex-col justify-center items-center rounded-lg bg-[#e7e7ee]">
+                <div class="h-[70px] w-full mt-[-35px] flex justify-center items-center font-semibold text-xl rounded-t-lg bg-gradient-to-r from-[#0c1b2c] via-[#1a1a79] to-[#00d4ff] text-white shadow-xl">
+                    <h1>Apply For Teacher Job</h1>
+                </div>
+                <form action="./TeacherLogin.html" class="flex flex-col justify-center items-center w-full">
+                    <input type="text" placeholder="Full Name" required class="tregisterUserName w-[80%] bg-[#fff] placeholder:text-[#5a5858] mt-5 text-[#1f1e1e]  p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500 animate__animated animate__fadeInUp animate__delay-0s">
+                    <input type="text" placeholder="Mobile +91" required class="tregisterMobile w-[80%] bg-[#fff] placeholder:text-[#5a5858] mt-5 text-[#1f1e1e] p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500 animate__animated animate__fadeInUp animate__delay-0s" maxlength="10"/>
+                    <input type="number" step="1000" min="5000" placeholder="Salary" required class="tregisterSalary w-[80%] bg-[#fff] placeholder:text-[#5a5858] mt-5 text-[#1f1e1e]  p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500 animate__animated animate__fadeInUp animate__delay-0s">
+                    <input type="file" required  accept="image/*" class="tregisterUserImg w-[80%] bg-[#fff] placeholder:text-[#5a5858] mt-5 text-[#1f1e1e]  p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500 animate__animated animate__fadeInUp animate__delay-0s">
+                    <input type="email" placeholder="Email Address" required class="tregisterEmail w-[80%] bg-[#fff] mt-5 placeholder:text-[#5a5858]  text-[#1f1e1e] p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500 animate__animated animate__fadeInUp animate__delay-0s"> 
+                    <input type="password" placeholder="Password" required class="tregisterPasword w-[80%] bg-[#fff] placeholder:text-[#5a5858] mt-5 text-[#1f1e1e]  p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500 animate__animated animate__fadeInUp animate__delay-0s">
+                    <button type="submit" onclick="teacherregisterUser()" class="cursor-pointer w-[80%] mt-5 bg-orange-400 text-white py-3 rounded-lg text-lg font-semibold shadow-md hover:bg-orange-500 transition-all duration-300">Apply</button>
+                </form>
+                <p class="mt-4 text-center text-[#000]">
+                    Already have an account?
+                    <a href="./TLogin.html" class="cursor-pointer text-orange-500 font-semibold hover:underline">Sign in</a>
+                </p>
+            </div>
+        </div>
+       <!-- FOOTER -->
+       <footer class="h-[150px] w-full bg-[#000]">
+            <div class="media flex justify-center gap-3 pt-5">
+                <span class="cursor-pointer flex justify-center items-center text-[#fff]  h-[50px] w-[50px] bg-[#343486] rounded-full"><i class="fa-brands fa-facebook-f"></i></span>
+                <span class="cursor-pointer flex justify-center items-center text-[#fff]  h-[50px] w-[50px] bg-[#61f761] rounded-full"><i class="fa-brands fa-whatsapp"></i></span>
+                <span class="cursor-pointer flex justify-center items-center text-[#fff]  h-[50px] w-[50px] bg-[#2e2e52] rounded-full"><i class="fa-brands fa-instagram"></i></span>
+                <span class="cursor-pointer flex justify-center items-center text-[#fff]  h-[50px] w-[50px] bg-[#20cbcb] rounded-full"><i class="fa-brands fa-twitter"></i></span>
+            </div>
+            <div class="mt-5">
+                <h1 class="flex justify-center text-[#d4d4d8]">Made in india</h1>
+                <h1 class="flex justify-center text-[#d4d4d8]">Copyright © 2025 Raviranjan Gupta</h1>
+            </div>
+       </footer>
+    </header>
+</body>
+<script src="./app.js"></script>
+</html>
