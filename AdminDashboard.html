@@ -123,22 +123,22 @@
                         <h1>Teachers Salary</h1>
                         <div class="flex justify-between mt-3 text-2xl font-semibold">
                             <i class="fa-solid fa-magnifying-glass-dollar"></i>
-                            <span>None</span>
+                            <span class="totalSalary">None</span>
                         </div>
                         <div class="flex justify-between mt-2 text-sm">
                             <h1 class="ml-[40px]">Pending Salary</h1>
-                            <span>None</span>
+                            <span class="totalPendingSalary">None</span>
                         </div>
                     </div>
                     <div class="addCard h-[150px] w-[270px] bg-[#6b6bf3] mt-[30px] rounded-md text-[#fff] p-7 text-xl">
                         <h1>Students Fee</h1>
                         <div class="flex justify-between mt-3 text-2xl font-semibold">
                             <i class="fa-solid fa-magnifying-glass-dollar"></i>
-                            <span>None</span>
+                            <span class="totalFee">None</span>
                         </div>
                         <div class="flex justify-between mt-2 text-sm">
                             <h1 class="ml-[40px]">Pending Duse</h1>
-                            <span>None</span>
+                            <span class="totalPendingFee">None</span>
                         </div>
                     </div>
                 </div>
@@ -347,10 +347,11 @@
                         <div class="w-[100%] h-[40px] bg-[#8a8af7] rounded-t-md  flex justify-center items-center  text-xl text-[#fff]">
                             <h1>Students</h1>
                         </div>
-                        <div class="studentDetailsView h-auto w-full border-2 border-gray-300">
+                        <div class="studentDetailsView h-auto w-full overflow-auto border-2 border-gray-300">
                             <div class="h-[40px] flex justify-around  font-bold">
                                 <h1>Name</h1>
                                 <h1>Batch</h1>
+                                <h1>Roll No</h1>
                                 <h1>Mobile</h1>
                                 <h1>Fee</h1>
                                 <h1>Update</h1>
@@ -380,15 +381,15 @@
                                  <select id="directAdmisionbatchSelect" class="sregisterBatch w-[70%] mt-3 p-1.5 border rounded-md" required>
                                         <option value="">-- Select Batch --</option>
                                         <option value="K1">K1</option>
-                                        <option value="K1">K2</option>
-                                        <option value="K1">K3</option>
-                                        <option value="K1">K4</option>
-                                        <option value="K1">K5</option>
-                                        <option value="K1">K6</option>
-                                        <option value="K1">K7</option>
-                                        <option value="K1">K8</option>
-                                        <option value="K1">K9</option>
-                                        <option value="K1">K10</option>
+                                        <option value="K2">K2</option>
+                                        <option value="K3">K3</option>
+                                        <option value="K4">K4</option>
+                                        <option value="K5">K5</option>
+                                        <option value="K6">K6</option>
+                                        <option value="K7">K7</option>
+                                        <option value="K8">K8</option>
+                                        <option value="K9">K9</option>
+                                        <option value="K10">K10</option>
                                   </select>
                                   <input type="password" placeholder="Password" required class="directAdmissionPassword border-1 w-[70%] h-[35px] rounded-sm mt-5 placeholder:pl-3">
                                   <input type="number" step="100" min="500" placeholder="Fee" required class="directAdmissionFee border-1 w-[70%] h-[35px] rounded-sm mt-5 placeholder:pl-3">
@@ -418,7 +419,8 @@
                         <div class="studentsDetails h-auto w-full border-2 border-gray-300">
                             <div class="h-[40px] flex justify-around  font-bold">
                                 <h1>Name</h1>
-                                <h1>Class</h1>
+                                <h1>Batch</h1>
+                                <h1>Roll No</h1>
                                 <h1>Mobile</h1>
                                 <h1>Fee</h1>
                                 <h1>Approve</h1>
@@ -464,10 +466,12 @@
             <!-- FOUR -->
             <div class="mainContaint4 w-[82%] flex flex-col justify-center items-center hidden">
                 <div class="w-[90%] h-[74.3%]  mt-5 overflow-auto">
-                    <div class="h-[40px] w-full bg-[blue] flex justify-center items-center text-xl text-[#fff] rounded-t-md">
-                        <h1>Attendance</h1>
+                    <div class="h-[40px] w-full bg-[blue] flex  justify-center items-center text-xl text-[#fff] rounded-t-md">
+                        <h1 class="at">Attendance</h1>
+                        <h1 class="dateAttentance hidden">Please Enter Date For Attendance Of <span class="switchBatch">K1</span></h1>
+                        <span class="attendanceCut ml-5 text-[red] hidden"><i class="fa-solid fa-rectangle-xmark"></i></span>
                     </div>
-                    <table class="table-auto border border-gray-400 w-full text-center">
+                    <table class="viewAttendance table-auto border border-gray-400 w-full text-center ">
                         <tr class="bg-gray-200">
                             <th class="border border-gray-400 px-4 py-2">Batch</th>
                             <th class="border border-gray-400 px-4 py-2">Take Attendance</th>
@@ -475,55 +479,355 @@
                         </tr>
                         <tr class="text-2xl font-semibold">
                             <td class="border border-gray-300 px-2 py-2">K1</td>
-                            <td class="border border-gray-300 px-2 py-2 text-[#4d4de0] cursor-pointer"><i class="fa-solid fa-square-plus"></i></td>
-                            <td class="border border-gray-300 px-2 py-2 text-[red] cursor-pointer"><i class="fa-solid fa-eye"></i></td>
+                            <td onclick="toggleShowBatch1()" class="border border-gray-300 px-2 py-2 text-[#4d4de0] cursor-pointer"><i class="fa-solid fa-square-plus"></i></td>
+                            <td onclick="toggleShowAttendanceBatch1()" class="border border-gray-300 px-2 py-2 text-[red] cursor-pointer"><i class="fa-solid fa-eye"></i></td>
                         </tr>
                         <tr class="text-2xl font-semibold">
                             <td class="border border-gray-300 px-2 py-2">K2</td>
-                            <td class="border border-gray-300 px-2 py-2 text-[#4d4de0] cursor-pointer"><i class="fa-solid fa-square-plus"></i></td>
-                            <td class="border border-gray-300 px-2 py-2 text-[red] cursor-pointer"><i class="fa-solid fa-eye"></i></td>
+                            <td onclick="toggleShowBatch2()" class="border border-gray-300 px-2 py-2 text-[#4d4de0] cursor-pointer"><i class="fa-solid fa-square-plus"></i></td>
+                            <td onclick="toggleShowAttendanceBatch2()" class="border border-gray-300 px-2 py-2 text-[red] cursor-pointer"><i class="fa-solid fa-eye"></i></td>
                         </tr>
                         <tr class="text-2xl font-semibold">
                             <td class="border border-gray-300 px-2 py-2">K3</td>
-                            <td class="border border-gray-300 px-2 py-2 text-[#4d4de0] cursor-pointer"><i class="fa-solid fa-square-plus"></i></td>
-                            <td class="border border-gray-300 px-2 py-2 text-[red] cursor-pointer"><i class="fa-solid fa-eye"></i></td>
+                            <td onclick="toggleShowBatch3()" class="border border-gray-300 px-2 py-2 text-[#4d4de0] cursor-pointer"><i class="fa-solid fa-square-plus"></i></td>
+                            <td onclick="toggleShowAttendanceBatch3()" class="border border-gray-300 px-2 py-2 text-[red] cursor-pointer"><i class="fa-solid fa-eye"></i></td>
                         </tr>
                         <tr class="text-2xl font-semibold">
                             <td class="border border-gray-300 px-2 py-2">K4</td>
-                            <td class="border border-gray-300 px-2 py-2 text-[#4d4de0] cursor-pointer"><i class="fa-solid fa-square-plus"></i></td>
-                            <td class="border border-gray-300 px-2 py-2 text-[red] cursor-pointer"><i class="fa-solid fa-eye"></i></td>
+                            <td onclick="toggleShowBatch4()" class="border border-gray-300 px-2 py-2 text-[#4d4de0] cursor-pointer"><i class="fa-solid fa-square-plus"></i></td>
+                            <td onclick="toggleShowAttendanceBatch4()" class="border border-gray-300 px-2 py-2 text-[red] cursor-pointer"><i class="fa-solid fa-eye"></i></td>
                         </tr>
                         <tr class="text-2xl font-semibold">
                             <td class="border border-gray-300 px-2 py-2">K5</td>
-                            <td class="border border-gray-300 px-2 py-2 text-[#4d4de0] cursor-pointer"><i class="fa-solid fa-square-plus"></i></td>
-                            <td class="border border-gray-300 px-2 py-2 text-[red] cursor-pointer"><i class="fa-solid fa-eye"></i></td>
+                            <td onclick="toggleShowBatch5()" class="border border-gray-300 px-2 py-2 text-[#4d4de0] cursor-pointer"><i class="fa-solid fa-square-plus"></i></td>
+                            <td onclick="toggleShowAttendanceBatch5()" class="border border-gray-300 px-2 py-2 text-[red] cursor-pointer"><i class="fa-solid fa-eye"></i></td>
                         </tr>
                         <tr class="text-2xl font-semibold">
                             <td class="border border-gray-300 px-2 py-2">K6</td>
-                            <td class="border border-gray-300 px-2 py-2 text-[#4d4de0] cursor-pointer"><i class="fa-solid fa-square-plus"></i></td>
-                            <td class="border border-gray-300 px-2 py-2 text-[red] cursor-pointer"><i class="fa-solid fa-eye"></i></td>
+                            <td onclick="toggleShowBatch6()" class="border border-gray-300 px-2 py-2 text-[#4d4de0] cursor-pointer"><i class="fa-solid fa-square-plus"></i></td>
+                            <td onclick="toggleShowAttendanceBatch6()" class="border border-gray-300 px-2 py-2 text-[red] cursor-pointer"><i class="fa-solid fa-eye"></i></td>
                         </tr>
                         <tr class="text-2xl font-semibold">
                             <td class="border border-gray-300 px-2 py-2">K7</td>
-                            <td class="border border-gray-300 px-2 py-2 text-[#4d4de0] cursor-pointer"><i class="fa-solid fa-square-plus"></i></td>
-                            <td class="border border-gray-300 px-2 py-2 text-[red] cursor-pointer"><i class="fa-solid fa-eye"></i></td>
+                            <td onclick="toggleShowBatch7()" class="border border-gray-300 px-2 py-2 text-[#4d4de0] cursor-pointer"><i class="fa-solid fa-square-plus"></i></td>
+                            <td onclick="toggleShowAttendanceBatch7()" class="border border-gray-300 px-2 py-2 text-[red] cursor-pointer"><i class="fa-solid fa-eye"></i></td>
                         </tr>
                         <tr class="text-2xl font-semibold">
                             <td class="border border-gray-300 px-2 py-2">K8</td>
-                            <td class="border border-gray-300 px-2 py-2 text-[#4d4de0] cursor-pointer"><i class="fa-solid fa-square-plus"></i></td>
-                            <td class="border border-gray-300 px-2 py-2 text-[red] cursor-pointer"><i class="fa-solid fa-eye"></i></td>
+                            <td onclick="toggleShowBatch8()" class="border border-gray-300 px-2 py-2 text-[#4d4de0] cursor-pointer"><i class="fa-solid fa-square-plus"></i></td>
+                            <td onclick="toggleShowAttendanceBatch8()" class="border border-gray-300 px-2 py-2 text-[red] cursor-pointer"><i class="fa-solid fa-eye"></i></td>
                         </tr>
                         <tr class="text-2xl font-semibold">
                             <td class="border border-gray-300 px-2 py-2">K9</td>
-                            <td class="border border-gray-300 px-2 py-2 text-[#4d4de0] cursor-pointer"><i class="fa-solid fa-square-plus"></i></td>
-                            <td class="border border-gray-300 px-2 py-2 text-[red] cursor-pointer"><i class="fa-solid fa-eye"></i></td>
+                            <td onclick="toggleShowBatch9()" class="border border-gray-300 px-2 py-2 text-[#4d4de0] cursor-pointer"><i class="fa-solid fa-square-plus"></i></td>
+                            <td onclick="toggleShowAttendanceBatch9()" class="border border-gray-300 px-2 py-2 text-[red] cursor-pointer"><i class="fa-solid fa-eye"></i></td>
                         </tr>
                         <tr class="text-2xl font-semibold">
                             <td class="border border-gray-300 px-2 py-2">K10</td>
-                            <td class="border border-gray-300 px-2 py-2 text-[#4d4de0] cursor-pointer"><i class="fa-solid fa-square-plus"></i></td>
-                            <td class="border border-gray-300 px-2 py-2 text-[red] cursor-pointer"><i class="fa-solid fa-eye"></i></td>
+                            <td onclick="toggleShowBatch10()" class="border border-gray-300 px-2 py-2 text-[#4d4de0] cursor-pointer"><i class="fa-solid fa-square-plus"></i></td>
+                            <td onclick="toggleShowAttendanceBatch10()" class="border border-gray-300 px-2 py-2 text-[red] cursor-pointer"><i class="fa-solid fa-eye"></i></td>
                         </tr>
                     </table>
+                    <!-- VIEWATTENDANCE -->
+                    <div class="viewAttendanceBatch1 w-full h-[300px] flex flex-col  items-center border border-gray-300  hidden">
+                        <form action="#" class="presentAbsentFormBatch1 flex  justify-center  h-[50px] w-full mt-5">
+                            <input type="date" placeholder="Enter Date" class="border-2 border-gray-400 rounded-md h-[40px] w-[30%]">
+                            <button type="submit" class="p-2 w-[100px] h-[40px] text-[#fff] bg-[blue] rounded-lg ml-5 cursor-pointer font-semibold">Submit</button>
+                        </form>
+                        <div class="h-[35px] w-[60%] border-2 flex justify-between items-center  font-bold">
+                            <h1 class="pl-5">Students Name</h1>
+                            <h1 class="pr-5">Roll No</h1>
+                            <h1 class="pr-5">Present/Absent</h1>
+                        </div>
+                        <div class="viewResultBatch1 w-[60%] h-auto border flex flex-col">
+
+                        </div>
+                    </div>
+
+                    <div class="viewAttendanceBatch2 w-full h-[300px] flex flex-col  items-center border border-gray-300  hidden">
+                        <form action="#" class="presentAbsentFormBatch2 flex  justify-center  h-[50px] w-full mt-5">
+                            <input type="date" placeholder="Enter Date" class="border-2 border-gray-400 rounded-md h-[40px] w-[30%]">
+                            <button type="submit" class="p-2 w-[100px] h-[40px] text-[#fff] bg-[blue] rounded-lg ml-5 cursor-pointer font-semibold">Submit</button>
+                        </form>
+                        <div class="h-[35px] w-[60%] border-2 flex justify-between items-center  font-bold">
+                            <h1 class="pl-5">Students Name</h1>
+                            <h1 class="pr-5">Roll No</h1>
+                            <h1 class="pr-5">Present/Absent</h1>
+                        </div>
+                        <div class="viewResultBatch2 w-[60%] h-auto border flex flex-col">
+
+                        </div>
+                    </div>
+
+                    <div class="viewAttendanceBatch3 w-full h-[300px] flex flex-col  items-center border border-gray-300  hidden">
+                        <form action="#" class="presentAbsentFormBatch3 flex  justify-center  h-[50px] w-full mt-5">
+                            <input type="date" placeholder="Enter Date" class="border-2 border-gray-400 rounded-md h-[40px] w-[30%]">
+                            <button type="submit" class="p-2 w-[100px] h-[40px] text-[#fff] bg-[blue] rounded-lg ml-5 cursor-pointer font-semibold">Submit</button>
+                        </form>
+                        <div class="h-[35px] w-[60%] border-2 flex justify-between items-center  font-bold">
+                            <h1 class="pl-5">Students Name</h1>
+                            <h1 class="pr-5">Roll No</h1>
+                            <h1 class="pr-5">Present/Absent</h1>
+                        </div>
+                        <div class="viewResultBatch3 w-[60%] h-auto border flex flex-col">
+
+                        </div>
+                    </div>
+
+                    <div class="viewAttendanceBatch4 w-full h-[300px] flex flex-col  items-center border border-gray-300  hidden">
+                        <form action="#" class="presentAbsentFormBatch4 flex  justify-center  h-[50px] w-full mt-5">
+                            <input type="date" placeholder="Enter Date" class="border-2 border-gray-400 rounded-md h-[40px] w-[30%]">
+                            <button type="submit" class="p-2 w-[100px] h-[40px] text-[#fff] bg-[blue] rounded-lg ml-5 cursor-pointer font-semibold">Submit</button>
+                        </form>
+                        <div class="h-[35px] w-[60%] border-2 flex justify-between items-center  font-bold">
+                            <h1 class="pl-5">Students Name</h1>
+                            <h1 class="pr-5">Roll No</h1>
+                            <h1 class="pr-5">Present/Absent</h1>
+                        </div>
+                        <div class="viewResultBatch4 w-[60%] h-auto border flex flex-col">
+
+                        </div>
+                    </div>
+
+                    <div class="viewAttendanceBatch5 w-full h-[300px] flex flex-col  items-center border border-gray-300  hidden">
+                        <form action="#" class="presentAbsentFormBatch5 flex  justify-center  h-[50px] w-full mt-5">
+                            <input type="date" placeholder="Enter Date" class="border-2 border-gray-400 rounded-md h-[40px] w-[30%]">
+                            <button type="submit" class="p-2 w-[100px] h-[40px] text-[#fff] bg-[blue] rounded-lg ml-5 cursor-pointer font-semibold">Submit</button>
+                        </form>
+                        <div class="h-[35px] w-[60%] border-2 flex justify-between items-center  font-bold">
+                            <h1 class="pl-5">Students Name</h1>
+                            <h1 class="pr-5">Roll No</h1>
+                            <h1 class="pr-5">Present/Absent</h1>
+                        </div>
+                        <div class="viewResultBatch5 w-[60%] h-auto border flex flex-col">
+
+                        </div>
+                    </div>
+
+                    <div class="viewAttendanceBatch6 w-full h-[300px] flex flex-col  items-center border border-gray-300  hidden">
+                        <form action="#" class="presentAbsentFormBatch6 flex  justify-center  h-[50px] w-full mt-5">
+                            <input type="date" placeholder="Enter Date" class="border-2 border-gray-400 rounded-md h-[40px] w-[30%]">
+                            <button type="submit" class="p-2 w-[100px] h-[40px] text-[#fff] bg-[blue] rounded-lg ml-5 cursor-pointer font-semibold">Submit</button>
+                        </form>
+                        <div class="h-[35px] w-[60%] border-2 flex justify-between items-center  font-bold">
+                            <h1 class="pl-5">Students Name</h1>
+                            <h1 class="pr-5">Roll No</h1>
+                            <h1 class="pr-5">Present/Absent</h1>
+                        </div>
+                        <div class="viewResultBatch6 w-[60%] h-auto border flex flex-col">
+
+                        </div>
+                    </div>
+
+                    <div class="viewAttendanceBatch7 w-full h-[300px] flex flex-col  items-center border border-gray-300  hidden">
+                        <form action="#" class="presentAbsentFormBatch7 flex  justify-center  h-[50px] w-full mt-5">
+                            <input type="date" placeholder="Enter Date" class="border-2 border-gray-400 rounded-md h-[40px] w-[30%]">
+                            <button type="submit" class="p-2 w-[100px] h-[40px] text-[#fff] bg-[blue] rounded-lg ml-5 cursor-pointer font-semibold">Submit</button>
+                        </form>
+                        <div class="h-[35px] w-[60%] border-2 flex justify-between items-center  font-bold">
+                            <h1 class="pl-5">Students Name</h1>
+                            <h1 class="pr-5">Roll No</h1>
+                            <h1 class="pr-5">Present/Absent</h1>
+                        </div>
+                        <div class="viewResultBatch7 w-[60%] h-auto border flex flex-col">
+
+                        </div>
+                    </div>
+
+                    <div class="viewAttendanceBatch8 w-full h-[300px] flex flex-col  items-center border border-gray-300  hidden">
+                        <form action="#" class="presentAbsentFormBatch8 flex  justify-center  h-[50px] w-full mt-5">
+                            <input type="date" placeholder="Enter Date" class="border-2 border-gray-400 rounded-md h-[40px] w-[30%]">
+                            <button type="submit" class="p-2 w-[100px] h-[40px] text-[#fff] bg-[blue] rounded-lg ml-5 cursor-pointer font-semibold">Submit</button>
+                        </form>
+                        <div class="h-[35px] w-[60%] border-2 flex justify-between items-center  font-bold">
+                            <h1 class="pl-5">Students Name</h1>
+                            <h1 class="pr-5">Roll No</h1>
+                            <h1 class="pr-5">Present/Absent</h1>
+                        </div>
+                        <div class="viewResultBatch8 w-[60%] h-auto border flex flex-col">
+
+                        </div>
+                    </div>
+
+                    <div class="viewAttendanceBatch9 w-full h-[300px] flex flex-col  items-center border border-gray-300  hidden">
+                        <form action="#" class="presentAbsentFormBatch9 flex  justify-center  h-[50px] w-full mt-5">
+                            <input type="date" placeholder="Enter Date" class="border-2 border-gray-400 rounded-md h-[40px] w-[30%]">
+                            <button type="submit" class="p-2 w-[100px] h-[40px] text-[#fff] bg-[blue] rounded-lg ml-5 cursor-pointer font-semibold">Submit</button>
+                        </form>
+                        <div class="h-[35px] w-[60%] border-2 flex justify-between items-center  font-bold">
+                            <h1 class="pl-5">Students Name</h1>
+                            <h1 class="pr-5">Roll No</h1>
+                            <h1 class="pr-5">Present/Absent</h1>
+                        </div>
+                        <div class="viewResultBatch9 w-[60%] h-auto border flex flex-col">
+
+                        </div>
+                    </div>
+
+                    <div class="viewAttendanceBatch10 w-full h-[300px] flex flex-col  items-center border border-gray-300  hidden">
+                        <form action="#" class="presentAbsentFormBatch10 flex  justify-center  h-[50px] w-full mt-5">
+                            <input type="date" placeholder="Enter Date" class="border-2 border-gray-400 rounded-md h-[40px] w-[30%]">
+                            <button type="submit" class="p-2 w-[100px] h-[40px] text-[#fff] bg-[blue] rounded-lg ml-5 cursor-pointer font-semibold">Submit</button>
+                        </form>
+                        <div class="h-[35px] w-[60%] border-2 flex justify-between items-center  font-bold">
+                            <h1 class="pl-5">Students Name</h1>
+                            <h1 class="pr-5">Roll No</h1>
+                            <h1 class="pr-5">Present/Absent</h1>
+                        </div>
+                        <div class="viewResultBatch10 w-[60%] h-auto border flex flex-col">
+
+                        </div>
+                    </div>
+                    <!-- TAKEATTENDANCE -->
+                    <div class="batch1 h-auto w-full border-2 flex flex-col justify-center items-center border-gray-300 hidden">
+                        <div class="attMob h-[40px] w-1/2 flex justify-between  font-bold">
+                            <h1>Students Name</h1>
+                            <h1>Roll No</h1>
+                            <h1>Present/Absent</h1>
+                        </div>
+                        <div class="attMob studentBatch1 flex flex-col justify-between w-1/2 pb-5  gap-3  border-gray-300">
+
+                        </div>
+                        <form action="#" class="takeAttendanceFormBatch1 flex flex-col justify-center items-center h-full w-full pb-5 border-t-4 border-gray-300 pt-5">
+                            <input type="date" placeholder="Enter Date" class="border-2 border-gray-400 rounded-md h-[40px] w-[50%]">
+                            <button type="submit" class="p-2 w-[100px] text-[#fff] bg-[blue] rounded-lg mt-5 cursor-pointer font-semibold">Submit</button>
+                        </form>
+                    </div>
+
+                    <div class="batch2 h-auto w-full border-2 flex flex-col justify-center items-center border-gray-300 hidden">
+                        <div class="h-[40px] w-1/2 flex justify-between  font-bold">
+                            <h1>Students Name</h1>
+                            <h1>Roll No</h1>
+                            <h1>Present/Absent</h1>
+                        </div>
+                        <div class="studentBatch2 flex flex-col justify-between w-1/2 pb-5  gap-3  border-gray-300">
+
+                        </div>
+                        <form action="#" class="takeAttendanceFormBatch2 flex flex-col justify-center items-center h-full w-full pb-5 border-t-4 border-gray-300 pt-5">
+                            <input type="date" placeholder="Enter Date" class="border-2 border-gray-400 rounded-md h-[40px] w-[50%]">
+                            <button type="submit" class="p-2 w-[100px] text-[#fff] bg-[blue] rounded-lg mt-5 cursor-pointer font-semibold">Submit</button>
+                        </form>
+                    </div>
+
+                    <div class="batch3 h-auto w-full border-2 flex flex-col justify-center items-center border-gray-300 hidden">
+                        <div class="h-[40px] w-1/2 flex justify-between  font-bold">
+                            <h1>Students Name</h1>
+                            <h1>Roll No</h1>
+                            <h1>Present/Absent</h1>
+                        </div>
+                        <div class="studentBatch3 flex flex-col justify-between w-1/2 pb-5  gap-3  border-gray-300">
+
+                        </div>
+                        <form action="#" class="takeAttendanceFormBatch3 flex flex-col justify-center items-center h-full w-full pb-5 border-t-4 border-gray-300 pt-5">
+                            <input type="date" placeholder="Enter Date" class="border-2 border-gray-400 rounded-md h-[40px] w-[50%]">
+                            <button type="submit" class="p-2 w-[100px] text-[#fff] bg-[blue] rounded-lg mt-5 cursor-pointer font-semibold">Submit</button>
+                        </form>
+                    </div>
+
+                    <div class="batch4 h-auto w-full border-2 flex flex-col justify-center items-center border-gray-300 hidden">
+                        <div class="h-[40px] w-1/2 flex justify-between  font-bold">
+                            <h1>Students Name</h1>
+                            <h1>Roll No</h1>
+                            <h1>Present/Absent</h1>
+                        </div>
+                        <div class="studentBatch4 flex flex-col justify-between w-1/2 pb-5  gap-3  border-gray-300">
+
+                        </div>
+                        <form action="#" class="takeAttendanceFormBatch4 flex flex-col justify-center items-center h-full w-full pb-5 border-t-4 border-gray-300 pt-5">
+                            <input type="date" placeholder="Enter Date" class="border-2 border-gray-400 rounded-md h-[40px] w-[50%]">
+                            <button type="submit" class="p-2 w-[100px] text-[#fff] bg-[blue] rounded-lg mt-5 cursor-pointer font-semibold">Submit</button>
+                        </form>
+                    </div>
+
+                    <div class="batch5 h-auto w-full border-2 flex flex-col justify-center items-center border-gray-300 hidden">
+                        <div class="h-[40px] w-1/2 flex justify-between  font-bold">
+                            <h1>Students Name</h1>
+                            <h1>Roll No</h1>
+                            <h1>Present/Absent</h1>
+                        </div>
+                        <div class="studentBatch5 flex flex-col justify-between w-1/2 pb-5  gap-3  border-gray-300">
+
+                        </div>
+                        <form action="#" class="takeAttendanceFormBatch5 flex flex-col justify-center items-center h-full w-full pb-5 border-t-4 border-gray-300 pt-5">
+                            <input type="date" placeholder="Enter Date" class="border-2 border-gray-400 rounded-md h-[40px] w-[50%]">
+                            <button type="submit" class="p-2 w-[100px] text-[#fff] bg-[blue] rounded-lg mt-5 cursor-pointer font-semibold">Submit</button>
+                        </form>
+                    </div>
+
+                    <div class="batch6 h-auto w-full border-2 flex flex-col justify-center items-center border-gray-300 hidden">
+                        <div class="h-[40px] w-1/2 flex justify-between  font-bold">
+                            <h1>Students Name</h1>
+                            <h1>Roll No</h1>
+                            <h1>Present/Absent</h1>
+                        </div>
+                        <div class="studentBatch6 flex flex-col justify-between w-1/2 pb-5  gap-3  border-gray-300">
+
+                        </div>
+                        <form action="#" class="takeAttendanceFormBatch6 flex flex-col justify-center items-center h-full w-full pb-5 border-t-4 border-gray-300 pt-5">
+                            <input type="date" placeholder="Enter Date" class="border-2 border-gray-400 rounded-md h-[40px] w-[50%]">
+                            <button type="submit" class="p-2 w-[100px] text-[#fff] bg-[blue] rounded-lg mt-5 cursor-pointer font-semibold">Submit</button>
+                        </form>
+                    </div>
+
+                    <div class="batch7 h-auto w-full border-2 flex flex-col justify-center items-center border-gray-300 hidden">
+                        <div class="h-[40px] w-1/2 flex justify-between  font-bold">
+                            <h1>Students Name</h1>
+                            <h1>Roll No</h1>
+                            <h1>Present/Absent</h1>
+                        </div>
+                        <div class="studentBatch7 flex flex-col justify-between w-1/2 pb-5  gap-3  border-gray-300">
+
+                        </div>
+                        <form action="#" class="takeAttendanceFormBatch7 flex flex-col justify-center items-center h-full w-full pb-5 border-t-4 border-gray-300 pt-5">
+                            <input type="date" placeholder="Enter Date" class="border-2 border-gray-400 rounded-md h-[40px] w-[50%]">
+                            <button type="submit" class="p-2 w-[100px] text-[#fff] bg-[blue] rounded-lg mt-5 cursor-pointer font-semibold">Submit</button>
+                        </form>
+                    </div>
+
+                    <div class="batch8 h-auto w-full border-2 flex flex-col justify-center items-center border-gray-300 hidden">
+                        <div class="h-[40px] w-1/2 flex justify-between  font-bold">
+                            <h1>Students Name</h1>
+                            <h1>Roll No</h1>
+                            <h1>Present/Absent</h1>
+                        </div>
+                        <div class="studentBatch8 flex flex-col justify-between w-1/2 pb-5  gap-3  border-gray-300">
+
+                        </div>
+                        <form action="#" class="takeAttendanceFormBatch8 flex flex-col justify-center items-center h-full w-full pb-5 border-t-4 border-gray-300 pt-5">
+                            <input type="date" placeholder="Enter Date" class="border-2 border-gray-400 rounded-md h-[40px] w-[50%]">
+                            <button type="submit" class="p-2 w-[100px] text-[#fff] bg-[blue] rounded-lg mt-5 cursor-pointer font-semibold">Submit</button>
+                        </form>
+                    </div>
+
+                    <div class="batch9 h-auto w-full border-2 flex flex-col justify-center items-center border-gray-300 hidden">
+                        <div class="h-[40px] w-1/2 flex justify-between  font-bold">
+                            <h1>Students Name</h1>
+                            <h1>Roll No</h1>
+                            <h1>Present/Absent</h1>
+                        </div>
+                        <div class="studentBatch9 flex flex-col justify-between w-1/2 pb-5  gap-3  border-gray-300">
+
+                        </div>
+                        <form action="#" class="takeAttendanceFormBatch9 flex flex-col justify-center items-center h-full w-full pb-5 border-t-4 border-gray-300 pt-5">
+                            <input type="date" placeholder="Enter Date" class="border-2 border-gray-400 rounded-md h-[40px] w-[50%]">
+                            <button type="submit" class="p-2 w-[100px] text-[#fff] bg-[blue] rounded-lg mt-5 cursor-pointer font-semibold">Submit</button>
+                        </form>
+                    </div>
+
+                    <div class="batch10 h-auto w-full border-2 flex flex-col justify-center items-center border-gray-300 hidden">
+                        <div class="h-[40px] w-1/2 flex justify-between  font-bold">
+                            <h1>Students Name</h1>
+                            <h1>Roll No</h1>
+                            <h1>Present/Absent</h1>
+                        </div>
+                        <div class="studentBatch10 flex flex-col justify-between w-1/2 pb-5  gap-3  border-gray-300">
+
+                        </div>
+                        <form action="#" class="takeAttendanceFormBatch10 flex flex-col justify-center items-center h-full w-full pb-5 border-t-4 border-gray-300 pt-5">
+                            <input type="date" placeholder="Enter Date" class="border-2 border-gray-400 rounded-md h-[40px] w-[50%]">
+                            <button type="submit" class="p-2 w-[100px] text-[#fff] bg-[blue] rounded-lg mt-5 cursor-pointer font-semibold">Submit</button>
+                        </form>
+                    </div>
                 </div>
                <footer class="h-[150px] w-full bg-[#000] mt-[25px]">
                    <div class="media flex justify-center gap-3 pt-5">
@@ -637,155 +941,138 @@
 //=========================================== Teacher =====================================
 
     window.addEventListener('DOMContentLoaded', () => {
-        const approveORnot = document.querySelector('.approveORnot');
-        const approveSalaryORnot = document.querySelector('.approveSalaryORnot');
-        const viewApproveORnot = document.querySelector('.ViewapproveORnot');
-        const pendingTeacher = document.querySelector('.pendingTeacher');
-        const totalHiredTeacher = document.querySelector('.totalHiredTeacher');
+    const approveORnot = document.querySelector('.approveORnot');
+    const approveSalaryORnot = document.querySelector('.approveSalaryORnot');
+    const viewApproveORnot = document.querySelector('.ViewapproveORnot');
+    const pendingTeacher = document.querySelector('.pendingTeacher');
+    const totalHiredTeacher = document.querySelector('.totalHiredTeacher');
 
-        let users2 = JSON.parse(localStorage.getItem('users2')) || [];
-        let approvedUsers = JSON.parse(localStorage.getItem('approvedUsers')) || [];
+    const totalSalary = document.querySelector('.totalSalary');
+    const totalPendingSalary = document.querySelector('.totalPendingSalary');
+    const totalFee = document.querySelector('.totalFee');
+    const totalPendingFee = document.querySelector('.totalPendingFee');
 
-        if (totalHiredTeacher) totalHiredTeacher.textContent = approvedUsers.length;
-        if (pendingTeacher) pendingTeacher.textContent = users2.length;
-        // Render unapproved users
-        if (approveORnot) {
-            users2.forEach((user, index) => {
-                if (!user.date) {
-                      user.date = new Date().toLocaleDateString();
-                }
-                const userCard = document.createElement('div');
-                userCard.classList.add('allAplyed', 'user-entry', 'mb-4', 'flex', 'border-t-1', 'border-gray-300');
+    let users2 = JSON.parse(localStorage.getItem('users2')) || [];
+    let approvedUsers = JSON.parse(localStorage.getItem('approvedUsers')) || [];
 
-                userCard.innerHTML = `
-                    <h1 class="ml-16 w-[160px]">${user.name}</h1>
-                    <h1 class="w-[200px]">${user.mobile || 'Not Provided'}</h1>
-                    <h1 class="w-[180px]">${user.salary || 'Not Provided'}</h1>
-                    <h1 class="w-[230px]">${user.date || 'N/A'}</h1>
-                    <span class="approveBtn text-[green] cursor-pointer"><i class="fa-solid fa-circle-check"></i></span>
-                    <span class="approveDeleteBtn text-[red] ml-40 cursor-pointer"><i class="fa-solid fa-trash"></i></span>
-                `;
+    if (totalHiredTeacher) totalHiredTeacher.textContent = approvedUsers.length;
+    if (pendingTeacher) pendingTeacher.textContent = users2.length;
 
-                // Approve action
-                userCard.querySelector('.approveBtn').addEventListener('click', () => {
-                    approvedUsers.push(user);
-                    localStorage.setItem('approvedUsers', JSON.stringify(approvedUsers));
+    // Render unapproved users
+    if (approveORnot) {
+        users2.forEach((user) => {
+            if (!user.date) user.date = new Date().toLocaleDateString();
 
-                    users2 = users2.filter(u => u.email !== user.email);
-                    localStorage.setItem('users2', JSON.stringify(users2));
-
-                    userCard.remove();
-                    if (totalHiredTeacher) totalHiredTeacher.textContent = approvedUsers.length;
-                    if (pendingTeacher) pendingTeacher.textContent = users2.length;
-                    renderApprovedUser(user); 
-                
-                });
-
-                // Delete action
-                userCard.querySelector('.approveDeleteBtn').addEventListener('click', () => {
-                    if (confirm("Delete this user?")) {
-                        users2 = users2.filter(u => u.email !== user.email);
-                        localStorage.setItem('users2', JSON.stringify(users2));
-                        userCard.remove();
-  
-                        if (totalHiredTeacher) totalHiredTeacher.textContent = approvedUsers.length;
-                        if (pendingTeacher) pendingTeacher.textContent = users2.length;
-                    }
-                });
-            
-                approveORnot.appendChild(userCard);
-            });
-        }
-
-
-        function renderApprovedUser(user) {
-            if (!viewApproveORnot) return;
-            if (!user.date) {
-               user.date = new Date().toLocaleDateString();
-            }
-
-            const approvedCard = document.createElement('div');
-            approvedCard.classList.add('approved-entry', 'mb-4', 'flex', 'border-t-1', 'border-gray-300');
-
-            const approvedCard2 = document.createElement('div');
-            approvedCard2.classList.add('approvedSalary', 'mb-4', 'flex','justify-around', 'border-t-1', 'border-gray-300');
-
-            approvedCard.innerHTML = `
+            const userCard = document.createElement('div');
+            userCard.classList.add('allAplyed', 'user-entry', 'mb-4', 'flex', 'border-t-1', 'border-gray-300');
+            userCard.innerHTML = `
                 <h1 class="ml-16 w-[160px]">${user.name}</h1>
                 <h1 class="w-[200px]">${user.mobile || 'Not Provided'}</h1>
                 <h1 class="w-[180px]">${user.salary || 'Not Provided'}</h1>
-                <h1 class="w-[230px]">${user.date || 'N/A'}</h1>
-                <span class="approveBtn text-[green] cursor-pointer"><i class="fa-regular fa-pen-to-square"></i></span>
-                <span class="approvedTeacherDeleteBtn text-[red] ml-40 cursor-pointer"><i class="fa-solid fa-trash"></i></span>
+                <h1 class="w-[230px]">${user.date}</h1>
+                <span class="approveBtn text-[green] cursor-pointer"><i class="fa-solid fa-circle-check"></i></span>
+                <span class="approveDeleteBtn text-[red] ml-40 cursor-pointer"><i class="fa-solid fa-trash"></i></span>
             `;
-            approvedCard2.innerHTML = `
-                <h1 class="pl-25 w-[350px] ">${user.name}</h1>
-                <h1 class="pl-10 w-[180px] ">${user.salary || 'Not Provided'}</h1>
-            `;
-            viewApproveORnot.appendChild(approvedCard);
-            approveSalaryORnot.appendChild(approvedCard2);
 
-            approvedCard.querySelector('.approvedTeacherDeleteBtn').addEventListener('click', () => {
-              if (confirm("Delete this approved teacher?")) {
-                   approvedUsers = approvedUsers.filter(u => u.email !== user.email);
-                   localStorage.setItem('approvedUsers', JSON.stringify(approvedUsers));
+            userCard.querySelector('.approveBtn').addEventListener('click', () => {
+                approvedUsers.push(user);
+                localStorage.setItem('approvedUsers', JSON.stringify(approvedUsers));
 
-                   approvedCard.remove();
-                   approvedCard2.remove();
-
-                  if (totalHiredTeacher) totalHiredTeacher.textContent = approvedUsers.length;
-                }
-            });
-        }
-
-        if (viewApproveORnot && approvedUsers.length > 0) {
-            approvedUsers.forEach(user => renderApprovedUser(user));
-        }
-
-        approvedCard.querySelector('.approvedTeacherDeleteBtn').addEventListener('click', () => {
-            if (confirm("Delete this user?")) {
                 users2 = users2.filter(u => u.email !== user.email);
                 localStorage.setItem('users2', JSON.stringify(users2));
-                userCard.remove();
 
+                userCard.remove();
                 if (totalHiredTeacher) totalHiredTeacher.textContent = approvedUsers.length;
                 if (pendingTeacher) pendingTeacher.textContent = users2.length;
-            }
+                renderApprovedUser(user);
+            });
+
+            userCard.querySelector('.approveDeleteBtn').addEventListener('click', () => {
+                if (confirm("Delete this user?")) {
+                    users2 = users2.filter(u => u.email !== user.email);
+                    localStorage.setItem('users2', JSON.stringify(users2));
+                    userCard.remove();
+                    if (pendingTeacher) pendingTeacher.textContent = users2.length;
+                }
+            });
+
+            approveORnot.appendChild(userCard);
         });
+    }
 
-    
-    });
+    // Render approved users
+    function renderApprovedUser(user) {
+        if (!user.date) user.date = new Date().toLocaleDateString();
 
-
-    const directHireForm = document.getElementById('directHireForm');
-    const viewApproveORnot = document.querySelector('.ViewapproveORnot');
-
-    let approvedUsers = JSON.parse(localStorage.getItem('approvedUsers')) || [];
-
-    directHireForm.addEventListener('submit', (e) => {
-        e.preventDefault(); // prevent form from refreshing the page
-
-        const name = document.querySelector('.directHireName')?.value.trim();
-        const mobile = document.querySelector('.directHireMobile')?.value.trim();
-        const salary = document.querySelector('.directHireSalary')?.value.trim();
-        const experience = document.getElementById('batchSelect')?.value;
-        const date = new Date().toLocaleDateString();
-
-        if (!name || !mobile || !salary || !experience) {
-            alert("Please fill all required fields.");
-            return;
-        }
-
-        const newUser = { name, mobile, salary, experience, date };
-
-        // Save to localStorage
-        approvedUsers.push(newUser);
-        localStorage.setItem('approvedUsers', JSON.stringify(approvedUsers));
-
-        // Show on the DOM
         const approvedCard = document.createElement('div');
         approvedCard.classList.add('approved-entry', 'mb-4', 'flex', 'border-t-1', 'border-gray-300');
 
+        const approvedCard2 = document.createElement('div');
+        approvedCard2.classList.add('approvedSalary', 'mb-4', 'flex', 'justify-around', 'border-t-1', 'border-gray-300');
+
+        approvedCard.innerHTML = `
+            <h1 class="ml-16 w-[160px]">${user.name}</h1>
+            <h1 class="w-[200px]">${user.mobile || 'Not Provided'}</h1>
+            <h1 class="w-[180px]">${user.salary || 'Not Provided'}</h1>
+            <h1 class="w-[230px]">${user.date}</h1>
+            <span class="approveBtn text-[green] cursor-pointer"><i class="fa-regular fa-pen-to-square"></i></span>
+            <span class="approvedTeacherDeleteBtn text-[red] ml-40 cursor-pointer"><i class="fa-solid fa-trash"></i></span>
+        `;
+
+        approvedCard2.innerHTML = `
+            <h1 class="pl-25 w-[350px]">${user.name}</h1>
+            <h1 class="pl-10 w-[180px]">${user.salary || 'Not Provided'}</h1>
+        `;
+
+        if (viewApproveORnot) viewApproveORnot.appendChild(approvedCard);
+        if (approveSalaryORnot) approveSalaryORnot.appendChild(approvedCard2);
+
+        approvedCard.querySelector('.approvedTeacherDeleteBtn').addEventListener('click', () => {
+            if (confirm("Delete this approved teacher?")) {
+                approvedUsers = approvedUsers.filter(u => u.email !== user.email);
+                localStorage.setItem('approvedUsers', JSON.stringify(approvedUsers));
+
+                approvedCard.remove();
+                approvedCard2.remove();
+
+                if (totalHiredTeacher) totalHiredTeacher.textContent = approvedUsers.length;
+                updateTotals();
+            }
+        });
+    }
+
+    // Initial render
+    approvedUsers.forEach(user => renderApprovedUser(user));
+    updateTotals();
+});
+
+// Direct Hire
+const directHireForm = document.getElementById('directHireForm');
+const viewApproveORnot = document.querySelector('.ViewapproveORnot');
+
+directHireForm?.addEventListener('submit', (e) => {
+    e.preventDefault();
+
+    const name = document.querySelector('.directHireName')?.value.trim();
+    const mobile = document.querySelector('.directHireMobile')?.value.trim();
+    const salary = document.querySelector('.directHireSalary')?.value.trim();
+    const experience = document.getElementById('batchSelect')?.value;
+    const date = new Date().toLocaleDateString();
+
+    if (!name || !mobile || !salary || !experience) {
+        alert("Please fill all required fields.");
+        return;
+    }
+
+    const newUser = { name, mobile, salary, experience, date };
+
+    let approvedUsers = JSON.parse(localStorage.getItem('approvedUsers')) || [];
+    approvedUsers.push(newUser);
+    localStorage.setItem('approvedUsers', JSON.stringify(approvedUsers));
+
+    if (viewApproveORnot) {
+        const approvedCard = document.createElement('div');
+        approvedCard.classList.add('approved-entry', 'mb-4', 'flex', 'border-t-1', 'border-gray-300');
         approvedCard.innerHTML = `
             <h1 class="ml-16 w-[160px]">${name}</h1>
             <h1 class="w-[200px]">${mobile}</h1>
@@ -794,20 +1081,20 @@
             <span class="approveBtn text-[green] cursor-pointer"><i class="fa-regular fa-pen-to-square"></i></span>
             <span class="approvedTeacherDeleteBtn text-[red] ml-40 cursor-pointer"><i class="fa-solid fa-trash"></i></span>
         `;
-
         viewApproveORnot.appendChild(approvedCard);
+    }
 
-        // Optionally clear the form
-        directHireForm.reset();
-    });
+    updateTotals();
+    directHireForm.reset();
+});
 
 
-    
 
  //=========================================== Student =====================================
 
     window.addEventListener('DOMContentLoaded', () => {
        const approveORnot = document.querySelector('.approveStudentORnot');
+       const batch = document.getElementById('directAdmisionbatchSelect')?.value;
        const approveSalaryORnot = document.querySelector('.approveStudentFeeORnot');
        const viewApproveORnot = document.querySelector('.ViewAddStudent');
        const pendingStudent = document.querySelector('.pendingStudent');
@@ -826,12 +1113,13 @@
                userCard.classList.add('allSAplyed', 'user-entry', 'mb-4', 'flex', 'border-t-1', 'border-gray-300');
  
                userCard.innerHTML = `
-                   <h1 class="ml-16 w-[193px]">${user.name}</h1>
-                   <h1 class="w-[170px]">${user.batch || 'Not Provided'}</h1>
-                   <h1 class="w-[200px]">${user.mobile || 'Not Provided'}</h1>
-                   <h1 class="w-[170px]">${user.fee || 'N/A'}</h1>
-                   <span class="approveBtnS text-[green] cursor-pointer"><i class="fa-solid fa-circle-check"></i></span>
-                  <span class="approveDeleteBtnS text-[red] ml-48 cursor-pointer"><i class="fa-solid fa-trash"></i></span>
+                   <h1 class="ml-10 w-[180px]">${user.name}</h1>
+                   <h1 class="w-[150px]">${user.batch || 'Not Provided'}</h1>
+                   <h1 class="w-[160px]">${user.roll || 'Not Provided'}</h1>
+                   <h1 class="w-[160px]">${user.mobile || 'Not Provided'}</h1>
+                   <h1 class="w-[160px]">${user.fee || 'N/A'}</h1>
+                   <span class="approveBtnS text-[green] w-[160px] cursor-pointer"><i class="fa-solid fa-circle-check"></i></span>
+                  <span class="approveDeleteBtnS text-[red] ml-38 cursor-pointer"><i class="fa-solid fa-trash"></i></span>
                `;
 
                 userCard.querySelector('.approveBtnS').addEventListener('click', () => {
@@ -870,12 +1158,13 @@
             approvedFee.classList.add('approvedFee', 'mb-4', 'flex', 'justify-around', 'border-t-1', 'border-gray-300');
 
             approvedCard.innerHTML = `
-                <h1 class="ml-16 w-[190px]">${user.name}</h1>
-                <h1 class="w-[185px]">${user.batch || 'Not Provided'}</h1>
-                <h1 class="w-[195px]">${user.mobile || 'Not Provided'}</h1>
-                <h1 class="w-[180px]">${user.fee || 'N/A'}</h1>
-                <span class="approveBtnS text-[green] cursor-pointer"><i class="fa-regular fa-pen-to-square"></i></span>
-                <span class="approvedStudentDeleteBtn text-[red] ml-43 cursor-pointer"><i class="fa-solid fa-trash"></i></span>
+                <h1 class="ml-10 w-[180px]">${user.name}</h1>
+                <h1 class="w-[170px]">${user.batch || 'Not Provided'}</h1>
+                <h1 class="w-[140px]">${user.roll || 'Not Provided'}</h1>
+                <h1 class="w-[170px]">${user.mobile || 'Not Provided'}</h1>
+                <h1 class="w-[160px]">${user.fee || 'N/A'}</h1>
+                <span class="approveBtnS text-[green] w-[170px] cursor-pointer"><i class="fa-regular fa-pen-to-square"></i></span>
+                <span class="approvedStudentDeleteBtn text-[red]  cursor-pointer"><i class="fa-solid fa-trash"></i></span>
             `;
 
             approvedFee.innerHTML = `
@@ -889,7 +1178,9 @@
                     localStorage.setItem('approvedUsers2', JSON.stringify(approvedUsers2));
                     approvedCard.remove();
                     approvedFee.remove();
+
                     if (totalAddStudent) totalAddStudent.textContent = approvedUsers2.length;
+                    updateTotals();
                 }
             });
 
@@ -898,13 +1189,78 @@
         } 
 
         approvedUsers2.forEach(user => renderApprovedUser(user));
+        updateTotals();
+
+
+            const studentCards = viewApproveORnot.querySelectorAll('.approved-entry');
+
+            // Batch containers
+            const batchToClassMap = {
+            "K1": document.querySelector('.studentBatch1'),
+            "K2": document.querySelector('.studentBatch2'),
+            "K3": document.querySelector('.studentBatch3'),
+            "K4": document.querySelector('.studentBatch4'),
+            "K5": document.querySelector('.studentBatch5'),
+            "K6": document.querySelector('.studentBatch6'),
+            "K7": document.querySelector('.studentBatch7'),
+            "K8": document.querySelector('.studentBatch8'),
+            "K9": document.querySelector('.studentBatch9'),
+            "K10": document.querySelector('.studentBatch10')
+        };
+
+        // Counters for numbering in each batch
+        const batchCounters = {
+           "K1": 1, "K2": 1, "K3": 1, "K4": 1, "K5": 1,
+           "K6": 1, "K7": 1, "K8": 1, "K9": 1, "K10": 1
+        };
+
+         // Step 1: Collect student data from DOM
+        let studentData = [];
+
+        studentCards.forEach(card => {
+            const name = card.children[0]?.textContent.trim();
+            const batch = card.children[1]?.textContent.trim();
+            const roll = card.children[2]?.textContent.trim();
+
+           studentData.push({ name, batch, roll });
+        });
+
+        // Step 2: Sort by roll number (numeric)
+        studentData.sort((a, b) => Number(a.roll) - Number(b.roll));
+
+       // Step 3: Render into batches with numbering
+       studentData.forEach(({ name, batch, roll }) => {
+            const cleanBatch = batch?.toUpperCase().trim();
+            const container = batchToClassMap[cleanBatch];
+
+        if (container) {
+            const count = batchCounters[cleanBatch]++;
+            const entry = document.createElement('div');
+            entry.classList.add('student-entry', 'w-full', 'h-full', 'gap-10', 'flex', 'border-t-1', 'border-gray-300', 'pt-5');
+
+            entry.innerHTML = `
+                <h1 class="student-name w-[230px]">${count}. ${name}</h1>
+                <h1 class="student-roll w-[170px]">${roll}</h1>
+                <select class="attendance-select border-2 border-gray-300">
+                    <option value="Present">Present</option>
+                    <option value="Absent">Absent</option>
+                </select>
+            `;
+             container.appendChild(entry);
+            } else {
+            console.warn("No container found for batch:", cleanBatch);
+        }
+    });
+
+
+
     });
 
 
     const directAdmissionForm = document.getElementById('directAdmissionForm');
     let approvedUsers2 = JSON.parse(localStorage.getItem('approvedUsers2')) || [];
 
- directAdmissionForm.addEventListener('submit', (e) => {
+  directAdmissionForm.addEventListener('submit', (e) => {
     e.preventDefault(); // prevent form from refreshing the page
 
     const name = document.querySelector('.directAdmissionName')?.value.trim();
@@ -947,9 +1303,234 @@
 
     viewApproveORnot.appendChild(approvedCard);
 
+    updateTotals();
     // Clear the form
     directAdmissionForm.reset();
  });
+
+
+ function updateTotals() {
+    const totalSalary = document.querySelector('.totalSalary');
+    const totalPendingSalary = document.querySelector('.totalPendingSalary');
+    const totalFee = document.querySelector('.totalFee');
+    const totalPendingFee = document.querySelector('.totalPendingFee');
+
+    const users2 = JSON.parse(localStorage.getItem('users2')) || []; // pending teachers
+    const approvedUsers = JSON.parse(localStorage.getItem('approvedUsers')) || []; // approved teachers
+    const users3 = JSON.parse(localStorage.getItem('users3')) || []; // pending students
+    const approvedUsers2 = JSON.parse(localStorage.getItem('approvedUsers2')) || []; // approved students
+
+    let totalSalaryAmount = 0;
+    let totalPendingSalaryAmount = 0;
+    let totalFeeAmount = 0;
+    let totalPendingFeeAmount = 0;
+
+    // ✅ Total approved teacher salaries
+    approvedUsers.forEach(user => {
+        const salary = parseFloat(user.salary) || 0;
+        totalSalaryAmount += salary;
+
+        
+    });
+
+    // ✅ Pending teacher salaries (not yet approved)
+    users2.forEach(user => {
+        const salary = parseFloat(user.salary) || 0;
+        totalPendingSalaryAmount += salary;
+    });
+
+    // ✅ Total approved student fees
+    approvedUsers2.forEach(user => {
+        const fee = parseFloat(user.fee) || 0;
+        totalFeeAmount += fee;
+    });
+
+    // ✅ Pending student fees (not yet approved)
+    users3.forEach(user => {
+        const fee = parseFloat(user.fee) || 0;
+        totalPendingFeeAmount += fee;
+    });
+
+    if (totalSalary) totalSalary.textContent = totalSalaryAmount;
+    if (totalPendingSalary) totalPendingSalary.textContent = totalPendingSalaryAmount;
+    if (totalFee) totalFee.textContent = totalFeeAmount;
+    if (totalPendingFee) totalPendingFee.textContent = totalPendingFeeAmount;
+}
+
+
+
+//============================= SUBMIT Attendance for K1
+
+const batch1 = document.querySelector('.batch1');
+const takeAttendanceFormBatch1 = batch1?.querySelector('.takeAttendanceFormBatch1');
+
+takeAttendanceFormBatch1?.addEventListener('submit', function (e) {
+    e.preventDefault();
+
+    const dateInput = takeAttendanceFormBatch1.querySelector('input[type="date"]');
+    const rawDate = dateInput?.value;
+    const date = new Date(rawDate).toISOString().split('T')[0];  // normalized
+
+    if (!date) {
+        alert("Please select a date.");
+        return;
+    }
+
+    const studentContainer1 = batch1.querySelector('.studentBatch1');
+    const studentEntries1 = studentContainer1.querySelectorAll('.student-entry');
+
+    const attendanceData = Array.from(studentEntries1).map(entry => {
+        const name = entry.querySelector('.student-name')?.textContent.trim();
+        const status = entry.querySelector('.attendance-select')?.value;
+        const roll = entry.querySelector('.student-roll')?.textContent.trim();
+
+        return { name, status, date, roll };
+    });
+
+    const oldData = JSON.parse(localStorage.getItem('batch1Attendance')) || [];
+
+    // 🛡️ Remove entries with the same date before adding new ones
+    const filteredOldData = oldData.filter(entry => entry.date !== date);
+    const combinedData1 = [...filteredOldData, ...attendanceData];
+
+    localStorage.setItem('batch1Attendance', JSON.stringify(combinedData1));
+    // localStorage.removeItem('batch2Attendance');
+    alert("Attendance for K1 saved!");
+});
+
+//============= VIEW Attendance for K1
+
+const viewBatch1 = document.querySelector('.viewAttendanceBatch1');
+const presentAbsentForm1 = viewBatch1?.querySelector('.presentAbsentFormBatch1');
+const resultBox1 = viewBatch1?.querySelector('.viewResultBatch1');
+
+presentAbsentForm1?.addEventListener('submit', function (e) {
+    e.preventDefault();
+
+    const rawDate = presentAbsentForm1.querySelector('input[type="date"]')?.value;
+    const date = new Date(rawDate).toISOString().split('T')[0];
+
+    if (!date) {
+        alert("Please select a date.");
+        return;
+    }
+
+    const storedData = JSON.parse(localStorage.getItem('batch1Attendance')) || [];
+    const filtered = storedData.filter(entry => entry.date === date);
+
+    resultBox1.innerHTML = ''; // clear previous
+
+    if (filtered.length === 0) {
+        resultBox1.innerHTML = `<p class="text-red-500 font-semibold text-center py-2">No attendance for this date.</p>`;
+        return;
+    }
+
+    filtered.forEach((entry, index) => {
+        const div = document.createElement('div');
+        div.classList.add('flex', 'w-full','gap-32', 'mb-1', 'text-sm', 'font-medium', 'text-[#000]', 'border-t', 'border-gray-300', 'px-5', 'py-1');
+        div.innerHTML = `
+            <span class="w-[200px]">${entry.name}</span>
+            <span class="w-[180px] flex justify-center">${entry.roll}</span>
+            <span class="w-[200px] flex justify-end">${entry.status}</span>
+        `;
+        resultBox1.appendChild(div);
+    });
+});
+
+
+//================================ Batch k5, k6, k7, k8, k9, k10
+const batchIds = [2,3,4,5, 6, 7, 8, 9, 10];
+
+batchIds.forEach(batchNum => {
+    const batch = document.querySelector(`.batch${batchNum}`);
+    const takeAttendanceForm = batch?.querySelector(`.takeAttendanceFormBatch${batchNum}`);
+
+    takeAttendanceForm?.addEventListener('submit', function (e) {
+        e.preventDefault();
+
+        const dateInput = takeAttendanceForm.querySelector('input[type="date"]');
+        const rawDate = dateInput?.value;
+        const date = new Date(rawDate).toISOString().split('T')[0];
+
+        if (!date) {
+            alert("Please select a date.");
+            return;
+        }
+
+        const studentContainer = batch.querySelector(`.studentBatch${batchNum}`);
+        const studentEntries = studentContainer.querySelectorAll('.student-entry');
+
+        const attendanceData = Array.from(studentEntries).map(entry => {
+            const name = entry.querySelector('.student-name')?.textContent.trim();
+            const status = entry.querySelector('.attendance-select')?.value;
+            const roll = entry.querySelector('.student-roll')?.textContent.trim();
+            return { name, status, date, roll };
+        });
+
+        const oldData = JSON.parse(localStorage.getItem(`batch${batchNum}Attendance`)) || [];
+        const filteredOldData = oldData.filter(entry => entry.date !== date);
+        const combinedData = [...filteredOldData, ...attendanceData];
+
+        localStorage.setItem(`batch${batchNum}Attendance`, JSON.stringify(combinedData));
+        // localStorage.removeItem('batch2Attendance');
+        alert(`Attendance for K${batchNum} saved!`);
+    });
+
+    // === View Attendance ===
+    const viewBatch = document.querySelector(`.viewAttendanceBatch${batchNum}`);
+    const presentAbsentForm = viewBatch?.querySelector(`.presentAbsentFormBatch${batchNum}`);
+    const resultBox = viewBatch?.querySelector(`.viewResultBatch${batchNum}`);
+
+    presentAbsentForm?.addEventListener('submit', function (e) {
+        e.preventDefault();
+
+        const rawDate = presentAbsentForm.querySelector('input[type="date"]')?.value;
+        const date = new Date(rawDate).toISOString().split('T')[0];
+
+        if (!date) {
+            alert("Please select a date.");
+            return;
+        }
+
+        const storedData = JSON.parse(localStorage.getItem(`batch${batchNum}Attendance`)) || [];
+        const filtered = storedData.filter(entry => entry.date === date);
+
+        resultBox.innerHTML = '';
+
+        if (filtered.length === 0) {
+            resultBox.innerHTML = `<p class="text-red-500 font-semibold text-center py-2">No attendance for this date.</p>`;
+            return;
+        }
+
+        filtered.forEach((entry) => {
+            const div = document.createElement('div');
+            div.classList.add('flex', 'gap-32', 'w-full', 'mb-1', 'text-sm', 'font-medium', 'text-[#000]', 'border-t', 'border-gray-300', 'px-5', 'py-1');
+            div.innerHTML = `
+                <span class="w-[200px]">${entry.name}</span>
+                <span class="w-[180px] flex justify-center">${entry.roll}</span>
+                <span class="w-[200px] flex justify-end">${entry.status}</span>
+            `;
+            resultBox.appendChild(div);
+        });
+    });
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   
+
+   
 
 
 </script>

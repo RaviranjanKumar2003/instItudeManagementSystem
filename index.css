@@ -71,7 +71,7 @@
     display: none;
   }
   .mobileDashboard{
-    height: 600px;
+    height: 630px;
   }
   .mainContaint1,
   .mainContaint2,
@@ -112,6 +112,10 @@
   .cutNoticeDive2,
   .cutNoticeDive3{
     width: 90%;
+  }
+
+  .attMob{
+    width: 100%;
   }
 
   

@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    <link rel="stylesheet" href="./output.css">
+    <link rel="stylesheet" href="./index.css">
+    <title>Student Management System</title>
+</head>
+<body>
+    <header>
+        <nav class="w-full h-[60px] bg-[#000] flex justify-between  items-center fixed top-0 left-0">
+            <div class="part1  text-xl text-[#fff] font-bold ml-5">
+                <!-- <img src="./img/logo.png" class="h-[50px]"> -->
+                <h1>CODING AGE</h1>
+            </div>
+            <ul class="part3 flex text-[#fff] gap-6 mr-6 font-semibold text-lg cursor-pointer">
+                <a href="./index.html"><li class="exitLogin text-[#d4d4d8]">Logout</li></a>
+            </ul>
+            <div class="sidebarIcon text-white  text-2xl mr-5 hidden" onclick="toggleDashBoard()">
+                <i class="fa-solid fa-bars-staggered"></i>
+           </div>
+        </nav>
+        <div class="mobileDashboard hidden">
+            <div class=" w-full mt-[55px] h-full bg-[rgb(12,27,44)]">
+                <div class="profil flex flex-col justify-center items-center">
+                    <div class="loginImg profileImg h-[150px] w-[150px] rounded-full mt-[10px]">
+                        <img src="./img/use.jpeg" class=" rounded-full">
+                    </div>
+                    <h1 class="profileName text-[#d4d4d8] text-xl mt-[10px]">Admin</h1>
+                    <a href="./index.html"><div class="exitLogin2 text-[#d4d4d8] h-[40px] w-[100px] border-1 rounded-md flex justify-center items-center mt-3">Logout</div></a>
+                </div>
+                <div class="sidebarContainer text-lg">
+                    <a href="#" class="dashboard1 dasActive flex text-[#fff] ml-10 mt-15 hover:text-[red]" onclick="toggleDashboard()">
+                        <i class="fa-solid fa-table-columns"></i>
+                        <h1 class="ml-5 mt-[-5px]">Dashboard</h1>
+                    </a>
+                    <a href="#" class="attendance1 flex text-[#d4d4d8] ml-10 mt-8 hover:text-[red]" onclick="toggleAttendance()">
+                        <i class="fa-solid fa-clipboard-user"></i>
+                        <h1 class="ml-5 mt-[-5px]">Attendance</h1>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="hero h-[680px] w-full mt-[60px] flex">
+            <div class="sidebar w-[18%] h-full bg-[rgb(12,27,44)]">
+                <div class="profil flex flex-col justify-center items-center">
+                    <div class="loginImg2 profileImg h-[150px] w-[150px] rounded-full mt-[10px]">
+                        <img src="./img/use.jpeg" class="rounded-full">
+                    </div>
+                    <h1 class="profileName2 text-[#d4d4d8] text-xl mt-[10px]">Admin</h1>
+                </div>
+                <div class="sidebarContainer text-lg">
+                    <a href="#" class="dashboard dasActive flex text-[#fff] ml-10 mt-15 hover:text-[red]" onclick="toggleDashboard()">
+                        <i class="fa-solid fa-table-columns"></i>
+                        <h1 class="ml-5 mt-[-5px]">Dashboard</h1>
+                    </a>
+                    <a href="#" class="attendance flex text-[#d4d4d8] ml-10 mt-8 hover:text-[red]" onclick="toggleAttendance()">
+                        <i class="fa-solid fa-clipboard-user"></i>
+                        <h1 class="ml-5 mt-[-5px]">Attendance</h1>
+                    </a>
+                </div>
+            </div>
+            <!-- FIRST -->
+            <div class="mainContaint1 w-[82%] ">
+                <div class="allCards1 h-[156px] flex justify-around">
+                    <div class="addCard h-[150px] w-[270px] bg-[#6b6bf3] mt-[30px] rounded-md text-[#fff] p-7 text-xl">
+                        <h1>Name</h1>
+                        <div class="flex justify-between mt-3 text-2xl font-semibold">
+                            <i class="fa-solid fa-user"></i>
+                            <span class="totalHiredTeacher">Raj</span>
+                        </div>
+                    </div>
+                    <div class="addCard h-[150px] w-[270px] bg-[#61f761] mt-[30px] rounded-md text-[#fff] p-7 text-xl">
+                        <h1>Mobile</h1>
+                        <div class="flex justify-between mt-3 text-2xl font-semibold">
+                            <i class="fa-solid fa-mobile-screen-button"></i>
+                            <span class="totalAddStudent">Mobile</span>
+                        </div>
+                    </div>
+                    <div class="addCard h-[150px] w-[270px] bg-[#2e2e52] mt-[30px] rounded-md text-[#fff] p-7 text-xl">
+                        <h1>Roll</h1>
+                        <div class="flex justify-between mt-3 text-2xl font-semibold">
+                            <i class="fa-solid fa-list-ol"></i>
+                            <span class="totalSalary">None</span>
+                        </div>
+                    </div>
+                    <div class="addCard h-[150px] w-[270px] bg-[#6b6bf3] mt-[30px] rounded-md text-[#fff] p-7 text-xl">
+                        <h1>Fee</h1>
+                        <div class="flex justify-between mt-3 text-2xl font-semibold">
+                            <i class="fa-solid fa-indian-rupee-sign"></i>
+                            <span class="totalFee">0</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="noticeBoard h-[370px] flex flex-col items-center ">
+                    <div class="w-full h-[300px] flex flex-col items-center  pt-10">
+                        <div class="w-[100%] h-[40px] bg-[#8a8af7] mt-[30px]  flex justify-center items-center  text-xl text-[#fff]">
+                            <h1>Notice Board</h1>
+                        </div>
+                        <div class="cutNoticeDive1 w-[60%] h-1/2 p-5 flex justify-between text-[#fff] bg-[#d54e4e] mt-8 rounded-md">
+                            <div id="noticeBoard1"> </div>
+                            <div class="cutNotice1 text-2xl cursor-pointer"><i class="fa-solid fa-xmark"></i></div>
+                        </div>
+                    </div>
+                </div>
+                <footer class="h-[150px] w-full bg-[#000]">
+                   <div class="media flex justify-center gap-3 pt-5">
+                     <span class="cursor-pointer flex justify-center items-center text-[#fff]  h-[50px] w-[50px] bg-[#343486] rounded-full"><i class="fa-brands fa-facebook-f"></i></span>
+                     <span class="cursor-pointer flex justify-center items-center text-[#fff]  h-[50px] w-[50px] bg-[#61f761] rounded-full"><i class="fa-brands fa-whatsapp"></i></span>
+                     <span class="cursor-pointer flex justify-center items-center text-[#fff]  h-[50px] w-[50px] bg-[#2e2e52] rounded-full"><i class="fa-brands fa-instagram"></i></span>
+                     <span class="cursor-pointer flex justify-center items-center text-[#fff]  h-[50px] w-[50px] bg-[#20cbcb] rounded-full"><i class="fa-brands fa-twitter"></i></span>
+                   </div>
+                   <div class="mt-5">
+                     <h1 class="flex justify-center text-[#d4d4d8]">Made in india</h1>
+                     <h1 class="flex justify-center text-[#d4d4d8]">Copyright © 2025 Raviranjan Gupta</h1>
+                   </div>
+                </footer>
+            </div>
+            <div class="mainContaint4 w-[82%] flex flex-col justify-center items-center hidden">
+                <div class="w-[90%] h-[74.3%]  mt-5 overflow-auto">
+                    <div class="h-[40px] w-full bg-[blue] flex justify-center items-center text-xl text-[#fff] rounded-t-md">
+                        <h1>Attendance</h1>
+                    </div>
+                </div>
+               <footer class="h-[150px] w-full bg-[#000] mt-[25px]">
+                   <div class="media flex justify-center gap-3 pt-5">
+                     <span class="cursor-pointer flex justify-center items-center text-[#fff]  h-[50px] w-[50px] bg-[#343486] rounded-full"><i class="fa-brands fa-facebook-f"></i></span>
+                     <span class="cursor-pointer flex justify-center items-center text-[#fff]  h-[50px] w-[50px] bg-[#61f761] rounded-full"><i class="fa-brands fa-whatsapp"></i></span>
+                     <span class="cursor-pointer flex justify-center items-center text-[#fff]  h-[50px] w-[50px] bg-[#2e2e52] rounded-full"><i class="fa-brands fa-instagram"></i></span>
+                     <span class="cursor-pointer flex justify-center items-center text-[#fff]  h-[50px] w-[50px] bg-[#20cbcb] rounded-full"><i class="fa-brands fa-twitter"></i></span>
+                   </div>
+                   <div class="mt-5">
+                     <h1 class="flex justify-center text-[#d4d4d8]">Made in india</h1>
+                     <h1 class="flex justify-center text-[#d4d4d8]">Copyright © 2025 Raviranjan Gupta</h1>
+                   </div>
+                </footer>
+            </div>
+        </div>
+    </header>
+</body>
+<script src="./app.js"></script>
+
+</html>

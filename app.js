@@ -764,7 +764,7 @@ function studentregisterUser() {
     const registerUserImg = document.querySelector('.sregisterUserImg');
     const mobile = document.querySelector('.sregisterMobile')?.value.trim();
     const fee = document.querySelector('.sregisterFee')?.value.trim();
-    const batch = document.querySelector('.sregisterBatch')?.value.trim();
+    const batch = document.querySelector('.sregisterBatch')?.value.trim().toLowerCase();
     const roll=document.querySelector('.sregisterRoll')?.value.trim();
     const file = registerUserImg?.files[0];
 
@@ -779,6 +779,17 @@ function studentregisterUser() {
         alert("Email already registered.");
         return;
     }
+    const approvedUsers2 = JSON.parse(localStorage.getItem('approvedUsers2')) || [];
+
+    const duplicateRoll = [...users3, ...approvedUsers2].find(
+        user => user.batch === batch && user.roll === roll
+    );
+
+    // const duplicateRoll = users3.find(user => user.batch === batch && user.roll === roll);
+    if (duplicateRoll) {
+        alert(`Roll number "${roll}" is already taken in batch "${batch}".`);
+        return;
+    }
 
     const reader = new FileReader();
     reader.onload = function (e) {
@@ -791,7 +802,7 @@ function studentregisterUser() {
             image: base64Img,
             mobile,
             fee,
-            batch,
+            batch: batch.toLowerCase(),
             roll
         };
 
@@ -889,5 +900,327 @@ function logoutUser() {
     localStorage.removeItem('isLoggedIn');
     localStorage.removeItem('currentUser');
     window.location.href = "./StudentLogin.html";
+}
+
+
+
+
+
+
+//================================================================ ATTENDANCE =====================================
+
+function toggleShowBatch1(){
+    const viewAttendance=document.querySelector('.viewAttendance');
+    const batch1=document.querySelector('.batch1');
+
+    const viewAttendanceBatch1=document.querySelector('.viewAttendanceBatch1');
+    viewAttendanceBatch1.classList.add('hidden');
+
+    const attendanceCut=document.querySelector('.attendanceCut');
+    attendanceCut.classList.remove('hidden');
+
+    batch1.classList.remove('hidden');
+    viewAttendance.classList.add('hidden');
+    
+}
+function toggleShowBatch2(){
+    const viewAttendance=document.querySelector('.viewAttendance');
+    const batch2=document.querySelector('.batch2');
+
+    const attendanceCut=document.querySelector('.attendanceCut');
+    attendanceCut.classList.remove('hidden');
+
+    const viewAttendanceBatch1=document.querySelector('.viewAttendanceBatch1');
+    viewAttendanceBatch1.classList.add('hidden');
+
+    batch2.classList.remove('hidden');
+    viewAttendance.classList.add('hidden');
+    
+}
+function toggleShowBatch3(){
+    const viewAttendance=document.querySelector('.viewAttendance');
+    const batch3=document.querySelector('.batch3');
+
+    const attendanceCut=document.querySelector('.attendanceCut');
+    attendanceCut.classList.remove('hidden');
+
+    const viewAttendanceBatch1=document.querySelector('.viewAttendanceBatch1');
+    viewAttendanceBatch1.classList.add('hidden');
+
+    batch3.classList.remove('hidden');
+    viewAttendance.classList.add('hidden');
+    
+}
+function toggleShowBatch4(){
+    const viewAttendance=document.querySelector('.viewAttendance');
+    const batch4=document.querySelector('.batch4');
+
+    const attendanceCut=document.querySelector('.attendanceCut');
+    attendanceCut.classList.remove('hidden');
+    const viewAttendanceBatch1=document.querySelector('.viewAttendanceBatch1');
+    viewAttendanceBatch1.classList.add('hidden');
+
+    batch4.classList.remove('hidden');
+    viewAttendance.classList.add('hidden');
+    
+}
+function toggleShowBatch5(){
+    const viewAttendance=document.querySelector('.viewAttendance');
+    const batch5=document.querySelector('.batch5');
+
+    const attendanceCut=document.querySelector('.attendanceCut');
+    attendanceCut.classList.remove('hidden');
+    const viewAttendanceBatch1=document.querySelector('.viewAttendanceBatch1');
+    viewAttendanceBatch1.classList.add('hidden');
+
+    batch5.classList.remove('hidden');
+    viewAttendance.classList.add('hidden');
+    
+}
+function toggleShowBatch6(){
+    const viewAttendance=document.querySelector('.viewAttendance');
+    const batch6=document.querySelector('.batch6');
+
+    const attendanceCut=document.querySelector('.attendanceCut');
+    attendanceCut.classList.remove('hidden');
+    const viewAttendanceBatch1=document.querySelector('.viewAttendanceBatch1');
+    viewAttendanceBatch1.classList.add('hidden');
+
+    batch6.classList.remove('hidden');
+    viewAttendance.classList.add('hidden');
+    
+}
+function toggleShowBatch7(){
+    const viewAttendance=document.querySelector('.viewAttendance');
+    const batch7=document.querySelector('.batch7');
+
+    const attendanceCut=document.querySelector('.attendanceCut');
+    attendanceCut.classList.remove('hidden');
+    const viewAttendanceBatch1=document.querySelector('.viewAttendanceBatch1');
+    viewAttendanceBatch1.classList.add('hidden');
+
+    batch7.classList.remove('hidden');
+    viewAttendance.classList.add('hidden');
+    
+}
+function toggleShowBatch8(){
+    const viewAttendance=document.querySelector('.viewAttendance');
+    const batch8=document.querySelector('.batch8');
+
+    const attendanceCut=document.querySelector('.attendanceCut');
+    attendanceCut.classList.remove('hidden');
+    const viewAttendanceBatch1=document.querySelector('.viewAttendanceBatch1');
+    viewAttendanceBatch1.classList.add('hidden');
+
+    batch8.classList.remove('hidden');
+
+    viewAttendance.classList.add('hidden');
+    
+}
+function toggleShowBatch9(){
+    const viewAttendance=document.querySelector('.viewAttendance');
+    const batch9=document.querySelector('.batch9');
+   
+
+    const attendanceCut=document.querySelector('.attendanceCut');
+    attendanceCut.classList.remove('hidden');
+    const viewAttendanceBatch1=document.querySelector('.viewAttendanceBatch1');
+    viewAttendanceBatch1.classList.add('hidden');
+
+    batch9.classList.remove('hidden');
+
+    viewAttendance.classList.add('hidden');
+    
+}
+function toggleShowBatch10(){
+    const viewAttendance=document.querySelector('.viewAttendance');
+    const batch10=document.querySelector('.batch10');
+
+    const attendanceCut=document.querySelector('.attendanceCut');
+    attendanceCut.classList.remove('hidden');
+    const viewAttendanceBatch1=document.querySelector('.viewAttendanceBatch1');
+    viewAttendanceBatch1.classList.add('hidden');
+
+    batch10.classList.remove('hidden');
+    viewAttendance.classList.add('hidden');
+    
+}
+document.querySelector('.attendanceCut').addEventListener('click', (e) => {
+    const viewAttendance = document.querySelector('.viewAttendance');
+    const at=document.querySelector('.at');
+    const batches = [
+        '.batch1', '.batch2', '.batch3', '.batch4', '.batch5',
+        '.batch6', '.batch7', '.batch8', '.batch9', '.batch10','.attendanceCut','.dateAttentance','.viewAttendanceBatch1',
+        '.viewAttendanceBatch2','.viewAttendanceBatch3','.viewAttendanceBatch4','.viewAttendanceBatch5','.viewAttendanceBatch6',
+        '.viewAttendanceBatch7','.viewAttendanceBatch8','.viewAttendanceBatch9','.viewAttendanceBatch10'
+    ];
+
+    batches.forEach(batchSelector => {
+        const batch = document.querySelector(batchSelector);
+        if (batch) batch.classList.add('hidden');
+    });
+
+    if (viewAttendance) viewAttendance.classList.remove('hidden');
+    if (at) at.classList.remove('hidden');
+});
+
+//=================== View Attentance
+
+function toggleShowAttendanceBatch1(){
+    const viewAttendanceBatch1=document.querySelector('.viewAttendanceBatch1');
+    const viewAttendance=document.querySelector('.viewAttendance');
+    const attendanceCut=document.querySelector('.attendanceCut');
+    const dateAttentance=document.querySelector('.dateAttentance');
+    const at=document.querySelector('.at');
+
+    viewAttendanceBatch1.classList.remove('hidden');
+    viewAttendance.classList.add('hidden');
+    attendanceCut.classList.remove('hidden');
+    dateAttentance.classList.remove('hidden');
+    at.classList.add('hidden');
+}
+function toggleShowAttendanceBatch2(){
+    const viewAttendanceBatch2=document.querySelector('.viewAttendanceBatch2');
+    const viewAttendance=document.querySelector('.viewAttendance');
+    const attendanceCut=document.querySelector('.attendanceCut');
+    const dateAttentance=document.querySelector('.dateAttentance');
+    const switchBatch=document.querySelector('.switchBatch');
+    const at=document.querySelector('.at');
+
+    switchBatch.textContent="K2";
+
+    viewAttendanceBatch2.classList.remove('hidden');
+    viewAttendance.classList.add('hidden');
+    attendanceCut.classList.remove('hidden');
+    dateAttentance.classList.remove('hidden');
+    at.classList.add('hidden');
+}
+function toggleShowAttendanceBatch3(){
+    const viewAttendanceBatch3=document.querySelector('.viewAttendanceBatch3');
+    const viewAttendance=document.querySelector('.viewAttendance');
+    const attendanceCut=document.querySelector('.attendanceCut');
+    const dateAttentance=document.querySelector('.dateAttentance');
+    const switchBatch=document.querySelector('.switchBatch');
+    const at=document.querySelector('.at');
+
+    switchBatch.textContent="K3";
+
+    viewAttendanceBatch3.classList.remove('hidden');
+    viewAttendance.classList.add('hidden');
+    attendanceCut.classList.remove('hidden');
+    dateAttentance.classList.remove('hidden');
+    at.classList.add('hidden');
+}
+function toggleShowAttendanceBatch4(){
+    const viewAttendanceBatch4=document.querySelector('.viewAttendanceBatch4');
+    const viewAttendance=document.querySelector('.viewAttendance');
+    const attendanceCut=document.querySelector('.attendanceCut');
+    const dateAttentance=document.querySelector('.dateAttentance');
+    const switchBatch=document.querySelector('.switchBatch');
+    const at=document.querySelector('.at');
+
+    switchBatch.textContent="K4";
+
+    viewAttendanceBatch4.classList.remove('hidden');
+    viewAttendance.classList.add('hidden');
+    attendanceCut.classList.remove('hidden');
+    dateAttentance.classList.remove('hidden');
+    at.classList.add('hidden');
+}
+function toggleShowAttendanceBatch5(){
+    const viewAttendanceBatch5=document.querySelector('.viewAttendanceBatch5');
+    const viewAttendance=document.querySelector('.viewAttendance');
+    const attendanceCut=document.querySelector('.attendanceCut');
+    const dateAttentance=document.querySelector('.dateAttentance');
+    const switchBatch=document.querySelector('.switchBatch');
+    const at=document.querySelector('.at');
+
+    switchBatch.textContent="K5";
+
+    viewAttendanceBatch5.classList.remove('hidden');
+    viewAttendance.classList.add('hidden');
+    attendanceCut.classList.remove('hidden');
+    dateAttentance.classList.remove('hidden');
+    at.classList.add('hidden');
+}
+function toggleShowAttendanceBatch6(){
+    const viewAttendanceBatch6=document.querySelector('.viewAttendanceBatch6');
+    const viewAttendance=document.querySelector('.viewAttendance');
+    const attendanceCut=document.querySelector('.attendanceCut');
+    const dateAttentance=document.querySelector('.dateAttentance');
+    const switchBatch=document.querySelector('.switchBatch');
+    const at=document.querySelector('.at');
+
+    switchBatch.textContent="K6";
+
+    viewAttendanceBatch6.classList.remove('hidden');
+    viewAttendance.classList.add('hidden');
+    attendanceCut.classList.remove('hidden');
+    dateAttentance.classList.remove('hidden');
+    at.classList.add('hidden');
+}
+function toggleShowAttendanceBatch7(){
+    const viewAttendanceBatch7=document.querySelector('.viewAttendanceBatch7');
+    const viewAttendance=document.querySelector('.viewAttendance');
+    const attendanceCut=document.querySelector('.attendanceCut');
+    const dateAttentance=document.querySelector('.dateAttentance');
+    const switchBatch=document.querySelector('.switchBatch');
+    const at=document.querySelector('.at');
+
+    switchBatch.textContent="K7";
+
+    viewAttendanceBatch7.classList.remove('hidden');
+    viewAttendance.classList.add('hidden');
+    attendanceCut.classList.remove('hidden');
+    dateAttentance.classList.remove('hidden');
+    at.classList.add('hidden');
+}
+function toggleShowAttendanceBatch8(){
+    const viewAttendanceBatch8=document.querySelector('.viewAttendanceBatch8');
+    const viewAttendance=document.querySelector('.viewAttendance');
+    const attendanceCut=document.querySelector('.attendanceCut');
+    const dateAttentance=document.querySelector('.dateAttentance');
+    const switchBatch=document.querySelector('.switchBatch');
+    const at=document.querySelector('.at');
+
+    switchBatch.textContent="K8";
+
+    viewAttendanceBatch8.classList.remove('hidden');
+    viewAttendance.classList.add('hidden');
+    attendanceCut.classList.remove('hidden');
+    dateAttentance.classList.remove('hidden');
+    at.classList.add('hidden');
+}
+function toggleShowAttendanceBatch9(){
+    const viewAttendanceBatch9=document.querySelector('.viewAttendanceBatch9');
+    const viewAttendance=document.querySelector('.viewAttendance');
+    const attendanceCut=document.querySelector('.attendanceCut');
+    const dateAttentance=document.querySelector('.dateAttentance');
+    const switchBatch=document.querySelector('.switchBatch');
+    const at=document.querySelector('.at');
+
+    switchBatch.textContent="K9";
+
+    viewAttendanceBatch9.classList.remove('hidden');
+    viewAttendance.classList.add('hidden');
+    attendanceCut.classList.remove('hidden');
+    dateAttentance.classList.remove('hidden');
+    at.classList.add('hidden');
+}
+function toggleShowAttendanceBatch10(){
+    const viewAttendanceBatch10=document.querySelector('.viewAttendanceBatch10');
+    const viewAttendance=document.querySelector('.viewAttendance');
+    const attendanceCut=document.querySelector('.attendanceCut');
+    const dateAttentance=document.querySelector('.dateAttentance');
+    const switchBatch=document.querySelector('.switchBatch');
+    const at=document.querySelector('.at');
+
+    switchBatch.textContent="K10";
+
+    viewAttendanceBatch10.classList.remove('hidden');
+    viewAttendance.classList.add('hidden');
+    attendanceCut.classList.remove('hidden');
+    dateAttentance.classList.remove('hidden');
+    at.classList.add('hidden');
 }
 
