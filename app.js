@@ -643,12 +643,11 @@ function logoutUser() {
     const email = document.querySelector('.tregisterEmail')?.value.trim();
     const password = document.querySelector('.tregisterPasword')?.value;
     const name = document.querySelector('.tregisterUserName')?.value.trim();
-    const registerUserImg = document.querySelector('.tregisterUserImg');
     const mobile = document.querySelector('.tregisterMobile')?.value.trim();
     const salary = document.querySelector('.tregisterSalary')?.value.trim();
+    const registerUserImg = document.querySelector('.tregisterUserImg');
     const file = registerUserImg?.files[0];
 
-    
     if (!email || !password || !name || !file || !salary) {
         alert("Please fill out all fields.");
         return;
@@ -664,28 +663,14 @@ function logoutUser() {
     const reader = new FileReader();
     reader.onload = function (e) {
         const base64Img = e.target.result;
-
-        const newUser = {
-            email,
-            password,
-            name,
-            image: base64Img,
-            mobile,
-            salary
-        };
+        const newUser = { email, password, name, image: base64Img, mobile, salary };
 
         users2.push(newUser);
         localStorage.setItem('users2', JSON.stringify(users2));
-
-        //  Store recent user separately
         localStorage.setItem('trecentRegisteredUser', JSON.stringify(newUser));
 
         alert("Registration successful!");
-
-        //  Delay so user sees alert
-        setTimeout(() => {
-            window.location.href = "./TeacherLogin.html";
-        }, 1000);
+        setTimeout(() => window.location.href = "./TeacherLogin.html", 0);
     };
 
     reader.readAsDataURL(file);
@@ -694,34 +679,35 @@ function logoutUser() {
 
 // Login Function
 function teacherloginFun() {
-    const userEmail = document.querySelector('.tuserEmail')?.value.trim();
+    const userEmail = document.querySelector('.tuserEmail')?.value.trim().toLowerCase();
     const userPassword = document.querySelector('.tuserPassword')?.value;
 
     if (!userEmail || !userPassword) {
-        alert("Please enter both email and password.");
+        alert("❗ Please enter both email and password.");
         return;
     }
 
-    const users = JSON.parse(localStorage.getItem('users')) || [];
-    const user = users.find(u => u.email === userEmail && u.password === userPassword);
+    const approvedUsers = JSON.parse(localStorage.getItem('approvedUsers')) || [];
+
+    const user = approvedUsers.find(u =>
+        u.email?.toLowerCase() === userEmail && u.password === userPassword
+    );
 
     if (user) {
-        alert("Login successful!");
-
-        // Save current logged-in user
-        localStorage.setItem('isLoggedIn', 'true');
-        localStorage.setItem('currentUser', JSON.stringify(user));
-
-        setTimeout(() => {
-            window.location.href = "#";
-        }, 1000);
+        alert("✅ Login successful!");
+        localStorage.setItem('isLoggedInTeach', 'true');
+        localStorage.setItem('currentUserTech', JSON.stringify(user));
+        setTimeout(() => window.location.href = "./TeacherDashboard.html", 0);
     } else {
-        alert("Invalid email or password.");
+        alert("❌ Invalid email or password.");
     }
 }
+
+
 window.addEventListener('DOMContentLoaded', () => {
 
-    const recentUser = JSON.parse(localStorage.getItem('recentRegisteredUser'));
+    const recentUser = JSON.parse(localStorage.getItem('trecentRegisteredUser'));
+
     const adPart1 = document.querySelector('.Adpart1');
     const adPart2 = document.querySelector('.Adpart2');
 
@@ -733,51 +719,62 @@ window.addEventListener('DOMContentLoaded', () => {
             <p class="mt-3">Soon You Will Be Hired To Our Insitute</p>
         `;
         adPart2.innerHTML=`
-        <div class="">
-            <a href="#" class="p-2 border text-[#000] rounded-md ml-5">Check Later</a>
-            <a href="#" class="exitLogin2 p-2 bg-[blue] text-[#fff] rounded-md transform transition duration-300 hover:scale-110">Logout For Now</a>
+        <div>
+            <a href="#" class="exitLoginCheckT p-2 border-1 hover:border-2 hover:border-gray-300 text-[#000] rounded-md transform transition duration-300 hover:scale-110">Check Later</a>
+            <a href="./SLogin.html" class="p-2 bg-[blue] text-[#fff] rounded-md ml-5">Login</a>
         </div>
         
         `;
 
-        localStorage.removeItem('recentRegisteredUser');
+        localStorage.removeItem('trecentRegisteredUser');
     }
 
-    const isLoggedIn = localStorage.getItem('isLoggedIn');
-    const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+       const isLoggedInTeach = localStorage.getItem('isLoggedInTeach');
+       const currentUserTech = JSON.parse(localStorage.getItem('currentUserTech'));
+       const teacherProfileName = document.querySelector('.teacherProfileName');
+       const teacherProfileName2 = document.querySelector('.teacherProfileName2');
+       const teacherProfileName3 = document.querySelector('.teacherProfileName3');
+       const teacherexitLogin = document.querySelector('.teacherexitLogin');
+       const teacherexitLogin2 = document.querySelector('.teacherexitLogin2');
+       const exitLoginCheckT= document.querySelector('.exitLoginCheckT');
+       const teacherloginImg = document.querySelector('.teacherloginImg');
+       const teacherloginImg2 = document.querySelector('.teacherloginImg2');
 
-    const profileName = document.querySelector('.profileName');
-    const profileName2 = document.querySelector('.profileName2');
-    const exitLogin = document.querySelector('.exitLogin');
-    const exitLogin2 = document.querySelector('.exitLogin2');
-    const loginImg = document.querySelector('.loginImg');
-    const loginImg2 = document.querySelector('.loginImg2');
+    if (isLoggedInTeach === 'true' && currentUserTech) {
+        if (teacherProfileName) teacherProfileName.textContent = currentUserTech.name;
+        if (teacherProfileName2) teacherProfileName2.textContent = currentUserTech.name;
+        if (teacherProfileName3) teacherProfileName3.textContent = currentUserTech.name;
 
-    if (isLoggedIn === 'true' && currentUser) {
-        if (profileName) profileName.textContent = currentUser.name;
-        if (profileName2) profileName2.textContent = currentUser.name;
+        if (document.querySelector('.teacherProfileName')) document.querySelector('.teacherProfileName').textContent = currentUserTech.name;
+        if (document.querySelector('.teacherProfileName2')) document.querySelector('.teacherProfileName2').textContent = currentUserTech.name;
+        if (document.querySelector('.teacherProfileName3')) document.querySelector('.teacherProfileName3').textContent = currentUserTech.name;
 
-        if (exitLogin) exitLogin.innerHTML = "Logout";
-        if (exitLogin2) exitLogin2.innerHTML = "Logout";
+        if (document.querySelector('.teacherProfileName3')) document.querySelector('.teacherProfileName3').textContent = currentUserTech.name;
+        if (document.querySelector('.teacherMobile')) document.querySelector('.teacherMobile').textContent = currentUserTech.mobile || 'N/A';
+        if (document.querySelector('.teacherJoiningDate')) document.querySelector('.teacherJoiningDate').textContent = currentUserTech.roll || 'N/A';
+        if (document.querySelector('.teacherSal')) document.querySelector('.teacherSal').textContent = currentUserTech.salary || '0';
+        if(document.querySelector('.teacherJoiningDate')) document.querySelector('.teacherJoiningDate').textContent=currentUserTech.date || 'N/A';
 
-        if (loginImg) loginImg.innerHTML = `<img src="${currentUser.image}" alt="User Image" class="h-full w-full rounded-full" />`;
-        if (loginImg2) loginImg2.innerHTML = `<img src="${currentUser.image}" alt="User Image" class="h-full w-full rounded-full" />`;
+        if (teacherloginImg) teacherloginImg.innerHTML = `<img src="${currentUserTech.image}" alt="User Image" class="h-full w-full rounded-full" />`;
+        if (teacherloginImg2) teacherloginImg2.innerHTML = `<img src="${currentUserTech.image}" alt="User Image" class="h-full w-full rounded-full" />`;
 
-        if (exitLogin) {
-            exitLogin.addEventListener("click", logoutUser);
+        if (teacherexitLogin) {
+            teacherexitLogin.addEventListener("click", logoutUser);
         }
-        if (exitLogin2) {
-            exitLogin2.addEventListener("click", logoutUser);
+        if (teacherexitLogin2) {
+            teacherexitLogin2.addEventListener("click", logoutUser);
+        }
+        if(exitLoginCheckT){
+            exitLoginCheckT.addEventListener("click", logoutUser);
         }
     }
-
 
 });
 
 function logoutUser() {
-    localStorage.removeItem('isLoggedIn');
-    localStorage.removeItem('currentUser');
-    window.location.href = "./login.html";
+    localStorage.removeItem('isLoggedInTeach');
+    localStorage.removeItem('currentUserTech');
+    window.location.href = "./TeacherLogin.html";
 }
 
 
@@ -863,10 +860,6 @@ function studentloginFun() {
 
     const approvedUsers2 = JSON.parse(localStorage.getItem('approvedUsers2')) || [];
 
-    console.log("Email Entered:", userEmail);
-    console.log("Password Entered:", userPassword);
-    console.log("Approved Users:", approvedUsers2);
-
    
        const user = approvedUsers2.find(
           u => u.email && u.password && 
@@ -905,7 +898,7 @@ window.addEventListener('DOMContentLoaded', () => {
     `;
     studentAdpart2.innerHTML = `
         <div>
-            <a href="#" class="exitLogin p-2 border-1 hover:border-2 hover:border-gray-300 text-[#000] rounded-md transform transition duration-300 hover:scale-110">Check Later</a>
+            <a href="#" class="exitLoginCheck p-2 border-1 hover:border-2 hover:border-gray-300 text-[#000] rounded-md transform transition duration-300 hover:scale-110">Check Later</a>
             <a href="./SLogin.html" class="p-2 bg-[blue] text-[#fff] rounded-md ml-5">Login</a>
         </div>
     `;
@@ -928,6 +921,7 @@ window.addEventListener('DOMContentLoaded', () => {
     const StuProfileName3 = document.querySelector('.StuProfileName3');
     const stuexitLogin = document.querySelector('.stuexitLogin');
     const stuexitLogin2 = document.querySelector('.stuexitLogin2');
+    const exitLoginCheck=document.querySelector('.exitLoginCheck');
     const StuloginImg = document.querySelector('.StuloginImg');
     const StuloginImg2 = document.querySelector('.StuloginImg2');
 
@@ -949,6 +943,7 @@ window.addEventListener('DOMContentLoaded', () => {
 
         if (stuexitLogin) stuexitLogin.addEventListener("click", logoutStu);
         if (stuexitLogin2) stuexitLogin2.addEventListener("click", logoutStu);
+        if(exitLoginCheck) exitLoginCheck.addEventListener("click", logoutStu);
     }
 });
 

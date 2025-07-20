@@ -6,7 +6,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
     <link rel="stylesheet" href="./output.css">
     <link rel="stylesheet" href="./index.css">
-    <title>Admin Login Page</title>
+    <title>Admin Dashboard</title>
 </head>
 <body>
     <header>
@@ -200,7 +200,7 @@
                 </div>
 
                 <div class="viewAllTeacher h-[320px] flex  justify-center mt-[30px] hidden">
-                    <div class="w-[90%] h-[300px] flex flex-col pt-5">
+                    <div class="increaseHeightTeach w-[90%] h-[300px] flex flex-col pt-5">
                         <div class="w-[100%] h-[40px] bg-[#8a8af7] rounded-t-md  flex justify-center items-center  text-xl text-[#fff]">
                             <h1>Teachers</h1>
                         </div>
@@ -217,6 +217,9 @@
                                 
                             </div>
                         </div>
+                        <div class="viewAllTechInMobile hidden">
+
+                        </div>
                     </div>
                 </div>
 
@@ -226,31 +229,32 @@
                             <h1>Hire New Teacher To Coding Age</h1>
                         </div>
                         <div class="hireDive border-2 border-[#b9b4b4] h-[270px] flex justify-center">
-                           <form action="#" id="directHireForm" class="teacherForm h-full w-full flex">
+                           <form action="#" id="directHireForm" class="teacherForm h-full w-full flex mt-5">
                                <div class="allInputs w-[50%] flex flex-col justify-center items-center mt-[-70px]">
                                   <input type="text" placeholder="Full Name" required class="directHireName inputs border-1 w-[70%] h-[35px] rounded-sm placeholder:pl-3">
-                                  <input type="email" placeholder="User Name" required class="inputs border-1 w-[70%] h-[35px] rounded-sm mt-5 placeholder:pl-3">
+                                  <input type="email" placeholder="User Name" required class="directHireEmail inputs border-1 w-[70%] h-[35px] rounded-sm mt-5 placeholder:pl-3">
                                   <input type="text" placeholder="Mobile" required class="directHireMobile inputs border-1 w-[70%] h-[35px] rounded-sm mt-5 placeholder:pl-3">
+                                  <input type="file" placeholder="img" required class="directHireImg inputs border-1 w-[70%] h-[35px] rounded-sm mt-5 placeholder:pl-3">
                                </div>
-                               <div class="allInputs w-[50%] flex flex-col justify-center items-center">
+                               <div class="allInputs w-[50%] flex flex-col justify-center items-center mt-[-70px]">
                                   <select id="batchSelect"  class="registerBatch w-[70%] h-[40px] mt-3 p-1 border rounded-lg" required>
                                        <option value="" disabled selected>-- Experiance --</option>
                                        <option value="K1">Yes</option>
                                        <option value="K1">No</option>
                                   </select>
-                                  <input type="password" placeholder="Password" required class="inputs border-1 w-[70%] h-[35px] rounded-sm mt-5 placeholder:pl-3">
-                                  <input type="number" placeholder="Salary" required class="directHireSalary inputs border-1 w-[70%] h-[35px] rounded-sm mt-5 placeholder:pl-3">
+                                  <input type="password" placeholder="Password" required class="directHirePassward inputs border-1 w-[70%] h-[35px] rounded-sm mt-5 placeholder:pl-3">
+                                  <input type="number" step="1000" min="5000" placeholder="Salary" required class="directHireSalary inputs border-1 w-[70%] h-[35px] rounded-sm mt-5 placeholder:pl-3">
                                   <button type="submit" class="text-[#fff] mt-[30px] cursor-pointer flex-row  h-[40px] w-[150px] bg-[blue] rounded-4xl flex justify-center items-center">Hire</button>
                                </div>
                            </form>
-                           <form action="#" class="forMobile teacherForm2 h-full w-full flex hidden">
+                           <form action="#" id="directHireForm2" class="forMobile teacherForm2 h-full w-full flex hidden">
                                <div class="allInputs w-[50%] flex flex-col justify-center items-center mt-[-70px]">
-                                  <input type="text" placeholder="First Name" required class="inputs border-1 w-[70%] h-[35px] rounded-sm placeholder:pl-3">
-                                  <input type="text" placeholder="Last Name" required class="inputs border-1 w-[70%] h-[35px] rounded-sm mt-5 placeholder:pl-3">
-                                  <input type="text" placeholder="User Name" required class="inputs border-1 w-[70%] h-[35px] rounded-sm mt-5 placeholder:pl-3">
-                                  <input type="text" placeholder="Mobile" required class="inputs border-1 w-[70%] h-[35px] rounded-sm mt-5 placeholder:pl-3">
-                                  <input type="password" placeholder="Password" required class="inputs border-1 w-[70%] h-[35px] rounded-sm mt-5 placeholder:pl-3">
-                                  <input type="text" placeholder="Salary" required class="inputs border-1 w-[70%] h-[35px] rounded-sm mt-5 placeholder:pl-3">
+                                  <input type="text" placeholder="Full Name" required class="directHireName2 inputs border-1 w-[70%] h-[35px] rounded-sm placeholder:pl-3">
+                                  <input type="email" placeholder="User Name" required class="directHireEmail2 inputs border-1 w-[70%] h-[35px] rounded-sm mt-5 placeholder:pl-3">
+                                  <input type="text" max="10" placeholder="Mobile" required class="directHireMobile2 inputs border-1 w-[70%] h-[35px] rounded-sm mt-5 placeholder:pl-3">
+                                  <input type="file" placeholder="img" required class="directHireImg2 inputs border-1 w-[70%] h-[35px] rounded-sm mt-5 placeholder:pl-3">
+                                  <input type="password" placeholder="Password" required class="directHirePassward2 inputs border-1 w-[70%] h-[35px] rounded-sm mt-5 placeholder:pl-3">
+                                  <input type="number" step="1000" min="5000" placeholder="Salary" required class="directHireSalary2 inputs border-1 w-[70%] h-[35px] rounded-sm mt-5 placeholder:pl-3">
                                   <button type="submit" class="text-[#fff] mt-[30px] cursor-pointer flex-row  h-[40px] w-[150px] bg-[blue] rounded-4xl flex justify-center items-center">Hire</button>
                                </div>
                            </form>
@@ -360,6 +364,9 @@
                             <div class="ViewAddStudent flex flex-col border-t-1 border-gray-300">
                                 
                             </div>
+                        </div>
+                        <div class="viewAllStuInMobile hidden">
+
                         </div>
                     </div>
                 </div>
@@ -943,7 +950,10 @@
     window.addEventListener('DOMContentLoaded', () => {
     const approveORnot = document.querySelector('.approveORnot');
     const approveSalaryORnot = document.querySelector('.approveSalaryORnot');
+
     const viewApproveORnot = document.querySelector('.ViewapproveORnot');
+    const viewAllTechInMobile=document.querySelector('.viewAllTechInMobile');
+
     const pendingTeacher = document.querySelector('.pendingTeacher');
     const totalHiredTeacher = document.querySelector('.totalHiredTeacher');
 
@@ -1006,10 +1016,6 @@
 
         const approvedCard = document.createElement('div');
         approvedCard.classList.add('approved-entry', 'mb-4', 'flex', 'border-t-1', 'border-gray-300');
-
-        const approvedCard2 = document.createElement('div');
-        approvedCard2.classList.add('approvedSalary', 'mb-4', 'flex', 'justify-around', 'border-t-1', 'border-gray-300');
-
         approvedCard.innerHTML = `
             <h1 class="ml-16 w-[160px]">${user.name}</h1>
             <h1 class="w-[200px]">${user.mobile || 'Not Provided'}</h1>
@@ -1018,14 +1024,36 @@
             <span class="approveBtn text-[green] cursor-pointer"><i class="fa-regular fa-pen-to-square"></i></span>
             <span class="approvedTeacherDeleteBtn text-[red] ml-40 cursor-pointer"><i class="fa-solid fa-trash"></i></span>
         `;
+         if (viewApproveORnot) viewApproveORnot.appendChild(approvedCard);
 
+        const approvedCardMob = document.createElement('div');
+        approvedCardMob.classList.add('approvedEntryMob','flex', 'flex-col','justify-center','gap-3','pl-10','text-xl', 'mb-4', 'border-t-1', 'border-gray-300');
+        approvedCardMob.innerHTML = `
+            <span class="w-[200px] text-xl font-black text-center">${1}</span>
+            <h1 class="">Name :  ${user.name}</h1>
+            <h1 class="">Mobile :  ${user.mobile || 'Not Provided'}</h1>
+            <h1 class="">Salary :  ${user.salary || 'Not Provided'}</h1>
+            <h1 class="">Joining Date :  ${user.date}</h1>
+            <div class="flex mt-5 gap-5">
+                <div class="approveBtn w-[100px] h-[40px] bg-[green] flex justify-center items-center rounded-md text-[#fff] cursor-pointer">Update</div>
+                <div class="approvedTeacherDeleteBtn flex w-[100px] h-[40px] bg-[red] justify-center items-center rounded-md text-[#fff] cursor-pointer">Delete</div>
+            </div>
+        `; 
+         if (viewAllTechInMobile) viewAllTechInMobile.appendChild(approvedCardMob);
+
+
+
+
+        const approvedCard2 = document.createElement('div');
+        approvedCard2.classList.add('approvedSalary', 'mb-4', 'flex', 'justify-around', 'border-t-1', 'border-gray-300');
         approvedCard2.innerHTML = `
             <h1 class="pl-25 w-[350px]">${user.name}</h1>
             <h1 class="pl-10 w-[180px]">${user.salary || 'Not Provided'}</h1>
         `;
-
-        if (viewApproveORnot) viewApproveORnot.appendChild(approvedCard);
         if (approveSalaryORnot) approveSalaryORnot.appendChild(approvedCard2);
+
+
+
 
         approvedCard.querySelector('.approvedTeacherDeleteBtn').addEventListener('click', () => {
             if (confirm("Delete this approved teacher?")) {
@@ -1048,6 +1076,7 @@
 
 // Direct Hire
 const directHireForm = document.getElementById('directHireForm');
+const directHireForm2 = document.getElementById('directHireForm2');
 const viewApproveORnot = document.querySelector('.ViewapproveORnot');
 
 directHireForm?.addEventListener('submit', (e) => {
@@ -1056,37 +1085,114 @@ directHireForm?.addEventListener('submit', (e) => {
     const name = document.querySelector('.directHireName')?.value.trim();
     const mobile = document.querySelector('.directHireMobile')?.value.trim();
     const salary = document.querySelector('.directHireSalary')?.value.trim();
-    const experience = document.getElementById('batchSelect')?.value;
-    const date = new Date().toLocaleDateString();
+    const email = document.querySelector('.directHireEmail')?.value.trim();
+    const password = document.querySelector('.directHirePassward')?.value.trim();
+    const directHireImg = document.querySelector('.directHireImg')?.files[0]; // ✅ Get the selected file
+    const joiningDate = new Date().toLocaleDateString();
 
-    if (!name || !mobile || !salary || !experience) {
+    if (!name || !mobile || !salary || !email || !password || !directHireImg) {
         alert("Please fill all required fields.");
         return;
     }
 
-    const newUser = { name, mobile, salary, experience, date };
+    const reader = new FileReader();
+    reader.onload = function () {
+        const base64Image = reader.result; // ✅ base64 string of image
 
-    let approvedUsers = JSON.parse(localStorage.getItem('approvedUsers')) || [];
-    approvedUsers.push(newUser);
-    localStorage.setItem('approvedUsers', JSON.stringify(approvedUsers));
+        const newUser = {
+            name,
+            mobile,
+            salary,
+            joiningDate,
+            email,
+            password,
+            image: base64Image // ✅ Save image as string
+        };
 
-    if (viewApproveORnot) {
-        const approvedCard = document.createElement('div');
-        approvedCard.classList.add('approved-entry', 'mb-4', 'flex', 'border-t-1', 'border-gray-300');
-        approvedCard.innerHTML = `
-            <h1 class="ml-16 w-[160px]">${name}</h1>
-            <h1 class="w-[200px]">${mobile}</h1>
-            <h1 class="w-[180px]">${salary}</h1>
-            <h1 class="w-[230px]">${date}</h1>
-            <span class="approveBtn text-[green] cursor-pointer"><i class="fa-regular fa-pen-to-square"></i></span>
-            <span class="approvedTeacherDeleteBtn text-[red] ml-40 cursor-pointer"><i class="fa-solid fa-trash"></i></span>
-        `;
-        viewApproveORnot.appendChild(approvedCard);
+        let approvedUsers = JSON.parse(localStorage.getItem('approvedUsers')) || [];
+        approvedUsers.push(newUser);
+        localStorage.setItem('approvedUsers', JSON.stringify(approvedUsers));
+
+        if (viewApproveORnot) {
+            const approvedCard = document.createElement('div');
+            approvedCard.classList.add('approved-entry', 'mb-4', 'flex', 'border-t-1', 'border-gray-300');
+            approvedCard.innerHTML = `
+                <img src="${base64Image}" alt="User Image" class="w-[50px] h-[50px] rounded-full mr-4" />
+                <h1 class="ml-4 w-[160px]">${name}</h1>
+                <h1 class="w-[200px]">${mobile}</h1>
+                <h1 class="w-[180px]">${salary}</h1>
+                <h1 class="w-[230px]">${joiningDate}</h1>
+                <span class="approveBtn text-[green] cursor-pointer"><i class="fa-regular fa-pen-to-square"></i></span>
+                <span class="approvedTeacherDeleteBtn text-[red] ml-40 cursor-pointer"><i class="fa-solid fa-trash"></i></span>
+            `;
+            viewApproveORnot.appendChild(approvedCard);
+        }
+
+        updateTotals();
+        directHireForm.reset();
+    };
+
+    reader.readAsDataURL(directHireImg); // ✅ Convert image to base64
+});
+
+
+directHireForm2?.addEventListener('submit', (e) => {
+    e.preventDefault();
+
+    const name2 = document.querySelector('.directHireName2')?.value.trim();
+    const mobile2 = document.querySelector('.directHireMobile2')?.value.trim();
+    const salary2 = document.querySelector('.directHireSalary2')?.value.trim();
+    const email2 = document.querySelector('.directHireEmail2')?.value.trim();
+    const password2 = document.querySelector('.directHirePassward2')?.value.trim();
+    const directHireImg2 = document.querySelector('.directHireImg2')?.files[0]; // ✅ access the file
+    const joiningDate = new Date().toLocaleDateString();
+
+    if (!name2 || !mobile2 || !salary2 || !email2 || !password2 || !directHireImg2) {
+        alert("Please fill all required fields.");
+        return;
     }
 
-    updateTotals();
-    directHireForm.reset();
+    const reader = new FileReader();
+
+    reader.onload = function () {
+        const base64Image = reader.result; // ✅ image converted to base64 string
+
+        const newUser = {
+            name: name2,
+            mobile: mobile2,
+            salary: salary2,
+            joiningDate,
+            email: email2,
+            password: password2,
+            image: base64Image // ✅ save base64 string
+        };
+
+        let approvedUsers = JSON.parse(localStorage.getItem('approvedUsers')) || [];
+        approvedUsers.push(newUser);
+        localStorage.setItem('approvedUsers', JSON.stringify(approvedUsers));
+
+        if (viewApproveORnot) {
+            const approvedCard = document.createElement('div');
+            approvedCard.classList.add('approved-entry', 'mb-4', 'flex', 'border-t-1', 'border-gray-300');
+            approvedCard.innerHTML = `
+                <img src="${base64Image}" alt="User Image" class="w-[50px] h-[50px] rounded-full mr-4" />
+                <h1 class="ml-4 w-[160px]">${name2}</h1>
+                <h1 class="w-[200px]">${mobile2}</h1>
+                <h1 class="w-[180px]">${salary2}</h1>
+                <h1 class="w-[230px]">${joiningDate}</h1>
+                <span class="approveBtn text-[green] cursor-pointer"><i class="fa-regular fa-pen-to-square"></i></span>
+                <span class="approvedTeacherDeleteBtn text-[red] ml-40 cursor-pointer"><i class="fa-solid fa-trash"></i></span>
+            `;
+            viewApproveORnot.appendChild(approvedCard);
+        }
+
+        updateTotals();
+        directHireForm2.reset();
+    };
+
+    reader.readAsDataURL(directHireImg2); // ✅ start reading file and converting to base64
 });
+
 
 
 
