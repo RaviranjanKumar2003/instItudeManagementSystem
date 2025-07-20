@@ -442,52 +442,54 @@ function toggleNotice(){
 
 //=============================================== NOTICE ========================
 
-document.getElementById("messageForm").addEventListener("submit", function (e) {
+document.getElementById("messageForm")?.addEventListener("submit", function (e) {
     e.preventDefault();
-    const message = document.getElementById("messageInput").value;
-    
+    const message = document.getElementById("messageInput")?.value.trim();
+    if (!message) return alert("Please enter a message.");
+
     // Save to localStorage
     localStorage.setItem("savedMessage", message);
-    
-    // Update all notice boards
+
+    // Update boards
     updateNoticeBoards(message);
 
-    alert("Your Notice Updeted");
+    alert("Your Notice Updated");
     this.reset();
-  });
+});
 
-  // Function to update all 3 boards
-  function updateNoticeBoards(message) {
-    document.getElementById("noticeBoard1").textContent = message;
-    document.getElementById("noticeBoard12").textContent = message;
-    document.getElementById("noticeBoard123").textContent = message;
-    document.querySelector('.cutNoticeDive1').classList.remove('hidden');
-    document.querySelector('.cutNoticeDive2').classList.remove('hidden');
-    document.querySelector('.cutNoticeDive3').classList.remove('hidden');
-  }
+function updateNoticeBoards(message) {
+    const boardIds = ["noticeBoard1", "noticeBoard12", "noticeBoard123", "StuNoticeBoard1"];
+    const containerClasses = [".cutNoticeDive1", ".cutNoticeDive2", ".cutNoticeDive3", ".StucutNoticeDive1"];
 
-  function hideNoticeDive1() {
-    document.querySelector('.cutNoticeDive1').classList.add('hidden');
-}
-function hideNoticeDive2() {
-    document.querySelector('.cutNoticeDive2').classList.add('hidden');
-}
-function hideNoticeDive3() {
-    document.querySelector('.cutNoticeDive3').classList.add('hidden');
+    boardIds.forEach(id => {
+        const board = document.getElementById(id);
+        if (board) board.textContent = message;
+    });
+
+    containerClasses.forEach(cls => {
+        document.querySelector(cls)?.classList.remove('hidden');
+    });
 }
 
+function hideNotice(cls) {
+    document.querySelector(cls)?.classList.add('hidden');
+}
 
-  // On page load, show saved message
-  window.addEventListener("DOMContentLoaded", () => {
+window.addEventListener("DOMContentLoaded", () => {
     const saved = localStorage.getItem("savedMessage");
-    if (saved) {
-      updateNoticeBoards(saved);
-    }
+    if (saved) updateNoticeBoards(saved);
 
-     document.querySelector('.cutNotice1').addEventListener("click", hideNoticeDive1);
-     document.querySelector('.cutNotice2').addEventListener("click", hideNoticeDive2);
-     document.querySelector('.cutNotice3').addEventListener("click", hideNoticeDive3);
-  });
+    const buttons = [
+        { btn: '.cutNotice1', container: '.cutNoticeDive1' },
+        { btn: '.cutNotice2', container: '.cutNoticeDive2' },
+        { btn: '.cutNotice3', container: '.cutNoticeDive3' },
+        { btn: '.StucutNotice1', container: '.StucutNoticeDive1' }
+    ];
+
+    buttons.forEach(({ btn, container }) => {
+        document.querySelector(btn)?.addEventListener("click", () => hideNotice(container));
+    });
+});
 
 
 
@@ -538,7 +540,6 @@ function hideNoticeDive3() {
 }
 
 
-// Login Function
 function loginFun() {
     const userEmail = document.querySelector('.userEmail')?.value.trim();
     const userPassword = document.querySelector('.userPassword')?.value;
@@ -549,21 +550,49 @@ function loginFun() {
     }
 
     const users = JSON.parse(localStorage.getItem('users')) || [];
-    const user = users.find(u => u.email === userEmail && u.password === userPassword);
 
-    if (user) {
+    // Check if the email and password match a registered user
+    const registeredUser = users.find(u => u.email === userEmail && u.password === userPassword);
+
+    // Hardcoded admin credentials
+    const adminCredentials = {
+        "umashankar1234@gmail.com": "Uma@1234",
+        "raviranjankumarnd2003@gmail.com": "Ravi@1234"
+    };
+
+    // Case 1: If user is registered
+    if (registeredUser) {
         alert("Login successful!");
-
-        // Save current logged-in user
         localStorage.setItem('isLoggedIn', 'true');
-        localStorage.setItem('currentUser', JSON.stringify(user));
-
+        localStorage.setItem('currentUser', JSON.stringify(registeredUser));
         setTimeout(() => {
             window.location.href = "./AdminDashboard.html";
-        }, 1000);
-    } else {
-        alert("Invalid email or password.");
+        },0);
+        return;
     }
+
+    // Case 2: If hardcoded admin credentials match, check if also registered for image and name
+    if (adminCredentials[userEmail] === userPassword) {
+        // Try to fetch image and name from registered users
+        const fromStorage = users.find(u => u.email === userEmail);
+
+        const user = {
+            email: userEmail,
+            name: fromStorage ? fromStorage.name : (userEmail === "umashankar1234@gmail.com" ? "Umashankar" : "Raviranjan"),
+            image: fromStorage ? fromStorage.image : "" // use blank or default image if not found
+        };
+
+        alert("Login successful!");
+        localStorage.setItem('isLoggedIn', 'true');
+        localStorage.setItem('currentUser', JSON.stringify(user));
+        setTimeout(() => {
+            window.location.href = "./AdminDashboard.html";
+        },0);
+        return;
+    }
+
+    // Case 3: Invalid
+    alert("Invalid email or password.");
 }
 
 window.addEventListener('DOMContentLoaded', () => {
@@ -597,8 +626,9 @@ window.addEventListener('DOMContentLoaded', () => {
 });
 
 function logoutUser() {
-    localStorage.removeItem('isLoggedIn');
-    localStorage.removeItem('currentUser');
+    localStorage.clear();
+    // localStorage.removeItem('isLoggedIn');
+    // localStorage.removeItem('currentUser');
     window.location.href = "./login.html";
 }
 
@@ -758,7 +788,7 @@ function logoutUser() {
 
 //Register
 function studentregisterUser() {
-    const email = document.querySelector('.sregisterEmail')?.value.trim();
+    const email = document.querySelector('.sregisterEmail')?.value.trim().toLowerCase();
     const password = document.querySelector('.sregisterPasword')?.value;
     const name = document.querySelector('.sregisterUserName')?.value.trim();
     const registerUserImg = document.querySelector('.sregisterUserImg');
@@ -823,7 +853,7 @@ function studentregisterUser() {
 
 // Login Student
 function studentloginFun() {
-    const userEmail = document.querySelector('.suserEmail')?.value.trim();
+    const userEmail = document.querySelector('.suserEmail')?.value.trim().toLowerCase();
     const userPassword = document.querySelector('.suserPassword')?.value;
 
     if (!userEmail || !userPassword) {
@@ -831,21 +861,34 @@ function studentloginFun() {
         return;
     }
 
-    const users = JSON.parse(localStorage.getItem('users3')) || [];
-    const user = users.find(u => u.email === userEmail && u.password === userPassword);
+    const approvedUsers2 = JSON.parse(localStorage.getItem('approvedUsers2')) || [];
+
+    console.log("Email Entered:", userEmail);
+    console.log("Password Entered:", userPassword);
+    console.log("Approved Users:", approvedUsers2);
+
+   
+       const user = approvedUsers2.find(
+          u => u.email && u.password && 
+          u.email.toLowerCase() === userEmail && 
+          u.password === userPassword
+       );
+
 
     if (user) {
         alert("Login successful!");
-        localStorage.setItem('isLoggedIn', 'true');
-        localStorage.setItem('currentUser', JSON.stringify(user));
+        localStorage.setItem('isLoggedInStu', 'true');
+        localStorage.setItem('currentUserStu', JSON.stringify(user));
 
         setTimeout(() => {
             window.location.href = "./StudentDashboard.html";
-        }, 1000);
+        },0);
     } else {
-        alert("Invalid email or password.");
+        alert("Invalid email or password, or your account is not yet approved.");
     }
 }
+
+
 
 // Handle DOM on Page Load
 window.addEventListener('DOMContentLoaded', () => {
@@ -854,51 +897,65 @@ window.addEventListener('DOMContentLoaded', () => {
     const studentAdpart2 = document.querySelector('.studentAdpart2');
 
     if (recentUser2 && studentAdpart1 && studentAdpart2) {
-        studentAdpart1.innerHTML = `
-            <h1 class="text-4xl font-semibold">Hello, ${recentUser2.name}</h1>
-            <p class="mt-3">Your Account is Not Approved Till Now</p>
-            <p class="mt-3">Our Team Is Checking Your Profile</p>
-            <p class="mt-3">Soon You Will Be Hired To Our Institute</p>
-        `;
-        studentAdpart2.innerHTML = `
-            <div>
-                <a href="#" class="p-2 border text-[#000] rounded-md ml-5">Check Later</a>
-                <a href="#" class="exitLogin2 p-2 bg-[blue] text-[#fff] rounded-md transform transition duration-300 hover:scale-110">Logout For Now</a>
-            </div>
-        `;
+    studentAdpart1.innerHTML = `
+        <h1 class="text-4xl font-semibold">Hello, ${recentUser2.name}</h1>
+        <p class="mt-3">Your Account is Not Approved Till Now</p>
+        <p class="mt-3">Our Team Is Checking Your Profile</p>
+        <p class="mt-3">Soon Your Admission Will Confirmed!!</p>
+    `;
+    studentAdpart2.innerHTML = `
+        <div>
+            <a href="#" class="exitLogin p-2 border-1 hover:border-2 hover:border-gray-300 text-[#000] rounded-md transform transition duration-300 hover:scale-110">Check Later</a>
+            <a href="./SLogin.html" class="p-2 bg-[blue] text-[#fff] rounded-md ml-5">Login</a>
+        </div>
+    `;
 
-        localStorage.removeItem('recentRegisteredUser2');
+    // Now select the dynamically inserted logout button
+    const newExitLogin = document.querySelector('.stuexitLogin');
+    if (newExitLogin) {
+        newExitLogin.addEventListener("click", logoutUser);
     }
 
-    const isLoggedIn = localStorage.getItem('isLoggedIn');
-    const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+    localStorage.removeItem('recentRegisteredUser2');
+}
 
-    const profileName = document.querySelector('.profileName');
-    const profileName2 = document.querySelector('.profileName2');
-    const exitLogin = document.querySelector('.exitLogin');
-    const exitLogin2 = document.querySelector('.exitLogin2');
-    const loginImg = document.querySelector('.loginImg');
-    const loginImg2 = document.querySelector('.loginImg2');
 
-    if (isLoggedIn === 'true' && currentUser) {
-        if (profileName) profileName.textContent = currentUser.name;
-        if (profileName2) profileName2.textContent = currentUser.name;
+    const isLoggedInStu = localStorage.getItem('isLoggedInStu');
+    const currentUserStu = JSON.parse(localStorage.getItem('currentUserStu'));
 
-        if (exitLogin) exitLogin.textContent = "Logout";
-        if (exitLogin2) exitLogin2.textContent = "Logout";
+    const StuProfileName = document.querySelector('.StuProfileName');
+    const StuProfileName2 = document.querySelector('.StuProfileName2');
+    const StuProfileName3 = document.querySelector('.StuProfileName3');
+    const stuexitLogin = document.querySelector('.stuexitLogin');
+    const stuexitLogin2 = document.querySelector('.stuexitLogin2');
+    const StuloginImg = document.querySelector('.StuloginImg');
+    const StuloginImg2 = document.querySelector('.StuloginImg2');
 
-        if (loginImg) loginImg.innerHTML = `<img src="${currentUser.image}" alt="User Image" class="h-full w-full rounded-full" />`;
-        if (loginImg2) loginImg2.innerHTML = `<img src="${currentUser.image}" alt="User Image" class="h-full w-full rounded-full" />`;
+    if (isLoggedInStu === 'true' && currentUserStu) {
+        if (StuProfileName) StuProfileName.textContent = currentUserStu.name;
+        if (StuProfileName2) StuProfileName2.textContent = currentUserStu.name;
 
-        if (exitLogin) exitLogin.addEventListener("click", logoutUser);
-        if (exitLogin2) exitLogin2.addEventListener("click", logoutUser);
+        if (document.querySelector('.StuProfileName')) document.querySelector('.StuProfileName').textContent = currentUserStu.name;
+        if (document.querySelector('.StuProfileName2')) document.querySelector('.StuProfileName2').textContent = currentUserStu.name;
+        if (document.querySelector('.StuProfileName3')) document.querySelector('.StuProfileName3').textContent = currentUserStu.name;
+
+        if (document.querySelector('.StuprofileName3')) document.querySelector('.StuprofileName3').textContent = currentUserStu.name;
+        if (document.querySelector('.StuMobile')) document.querySelector('.StuMobile').textContent = currentUserStu.mobile || 'N/A';
+        if (document.querySelector('.StuRoll')) document.querySelector('.StuRoll').textContent = currentUserStu.roll || 'N/A';
+        if (document.querySelector('.StuFee')) document.querySelector('.StuFee').textContent = currentUserStu.fee || '0';
+
+        if (StuloginImg) StuloginImg.innerHTML = `<img src="${currentUserStu.image}" alt="User Image" class="h-full w-full rounded-full" />`;
+        if (StuloginImg2) StuloginImg2.innerHTML = `<img src="${currentUserStu.image}" alt="User Image" class="h-full w-full rounded-full" />`;
+
+        if (stuexitLogin) stuexitLogin.addEventListener("click", logoutStu);
+        if (stuexitLogin2) stuexitLogin2.addEventListener("click", logoutStu);
     }
 });
 
 // Logout Function
-function logoutUser() {
-    localStorage.removeItem('isLoggedIn');
-    localStorage.removeItem('currentUser');
+function logoutStu() {
+    localStorage.removeItem('isLoggedInStu');
+    localStorage.removeItem('currentUserStu');
     window.location.href = "./StudentLogin.html";
 }
 

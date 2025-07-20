@@ -6,7 +6,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
     <link rel="stylesheet" href="./output.css">
     <link rel="stylesheet" href="./index.css">
-    <title>Student Login Page</title>
+    <title>Teacher Dashboard</title>
 </head>
 <body>
     <header>
@@ -25,10 +25,10 @@
         <div class="mobileDashboard stuMobileDashboard hidden">
             <div class=" w-full mt-[55px] h-full bg-[rgb(12,27,44)]">
                 <div class="profil flex flex-col justify-center items-center">
-                    <div class="StuloginImg profileImg h-[150px] w-[150px] rounded-full mt-[10px]">
+                    <div class="teacherloginImg2 profileImg h-[150px] w-[150px] rounded-full mt-[10px]">
                         <img src="./img/use.jpeg" class=" rounded-full">
                     </div>
-                    <h1 class="StuprofileName text-[#d4d4d8] text-xl mt-[10px]">Student</h1>
+                    <h1 class="teacherProfileName2 text-[#d4d4d8] text-xl mt-[10px]">Teacher</h1>
                     <a href="./index.html"><div class="stuexitLogin2 text-[#d4d4d8] h-[40px] w-[100px] border-1 rounded-md flex justify-center items-center mt-3">Logout</div></a>
                 </div>
                 <div class="sidebarContainer text-lg">
@@ -40,16 +40,20 @@
                         <i class="fa-solid fa-clipboard-user"></i>
                         <h1 class="ml-5 mt-[-5px]">Attendance</h1>
                     </a>
+                    <a href="#" class="notice1 stuNitice1 flex text-[#d4d4d8] ml-10 mt-8 hover:text-[red]" onclick="toggleStuNotice()">
+                        <i class="fa-solid fa-headset"></i>
+                        <h1 class="ml-5 mt-[-5px]">Notice</h1>
+                    </a>
                 </div>
             </div>
         </div>
         <div class="hero h-[680px] w-full mt-[60px] flex">
             <div class="sidebar w-[18%] h-full bg-[rgb(12,27,44)]">
                 <div class="profil flex flex-col justify-center items-center">
-                    <div class="StuloginImg2 profileImg h-[150px] w-[150px] rounded-full mt-[10px]">
+                    <div class="teacherloginImg2 profileImg h-[150px] w-[150px] rounded-full mt-[10px]">
                         <img src="./img/use.jpeg" class="rounded-full">
                     </div>
-                    <h1 class="StuProfileName2 text-[#d4d4d8] text-xl mt-[10px]">Student</h1>
+                    <h1 class="teacherProfileName2 text-[#d4d4d8] text-xl mt-[10px]">Teacher</h1>
                 </div>
                 <div class="sidebarContainer text-lg">
                     <a href="#" class="dashboard stuDash dasActive flex text-[#fff] ml-10 mt-15 hover:text-[red]" onclick="toggleStuDashboard()">
@@ -60,37 +64,41 @@
                         <i class="fa-solid fa-clipboard-user"></i>
                         <h1 class="ml-5 mt-[-5px]">Attendance</h1>
                     </a>
+                    <a href="#" class="notice1 flex text-[#d4d4d8] ml-10 mt-8 hover:text-[red]" onclick="toggleStuNotice()">
+                        <i class="fa-solid fa-headset"></i>
+                        <h1 class="ml-5 mt-[-5px]">Notice</h1>
+                    </a>
                 </div>
             </div>
             <!-- FIRST -->
-            <div class="mainContaint1 stuMainContainer w-[82%] ">
+            <div class="mainContaint1 teacherMainContainer w-[82%] ">
                 <div class="allCards1 h-[156px] flex justify-around">
                     <div class="addCard h-[150px] w-[270px] bg-[#6b6bf3] mt-[30px] rounded-md text-[#fff] p-7 text-xl">
                         <h1 class="font-bold">Name</h1>
                         <div class="flex justify-between mt-5 text-xl font-semibold">
                             <i class="fa-solid fa-user"></i>
-                            <span class="totalHiredTeacher StuprofileName3 ml-5 mt-[-5px]">Ravi</span>
+                            <span class="totalHiredTeacher teacherProfileName3 ml-5 mt-[-5px]">Teacher</span>
                         </div>
                     </div>
                     <div class="addCard h-[150px] w-[270px] bg-[#61f761] mt-[30px] rounded-md text-[#fff] p-7 text-xl">
                         <h1 class="font-bold">Mobile</h1>
                         <div class="flex justify-between mt-5 text-xl font-semibold">
                             <i class="fa-solid fa-mobile-screen-button"></i>
-                            <span class="StuMobile">Mobile</span>
+                            <span class="teacherMobile">Mobile</span>
                         </div>
                     </div>
                     <div class="addCard h-[150px] w-[270px] bg-[#2e2e52] mt-[30px] rounded-md text-[#fff] p-7 text-xl">
-                        <h1 class="font-bold">Roll No</h1>
+                        <h1 class="font-bold">Joining Date</h1>
                         <div class="flex justify-between mt-5 text-xl font-semibold">
-                            <i class="fa-solid fa-list-ol"></i>
-                            <span class="StuRoll">None</span>
+                            <i class="fa-solid fa-calendar-days"></i>
+                            <span class="teacherJoiningDate">None</span>
                         </div>
                     </div>
                     <div class="addCard h-[150px] w-[270px] bg-[#6b6bf3] mt-[30px] rounded-md text-[#fff] p-7 text-xl">
-                        <h1 class="font-bold">Fee</h1>
+                        <h1 class="font-bold">Salary</h1>
                         <div class="flex justify-between mt-5 text-xl font-semibold">
                             <i class="fa-solid fa-indian-rupee-sign"></i>
-                            <span class="StuFee">0</span>
+                            <span class="teacherSal">0</span>
                         </div>
                     </div>
                 </div>
@@ -194,65 +202,3 @@
 
 
     //=========================================================
-
-    document.addEventListener('DOMContentLoaded', () => {
-    const form = document.querySelector('.stuAtForm');
-    const dateInput = document.querySelector('.stuAtFormInput');
-    const attendanceDisplay = document.querySelector('.stuAtJs');
-
-    const currentUserStu = JSON.parse(localStorage.getItem('currentUserStu'));
-    if (!currentUserStu) return;
-
-    form.addEventListener('submit', (e) => {
-        e.preventDefault();
-
-        const selectedDate = dateInput.value;
-        if (!selectedDate) {
-            alert('Please select a date');
-            return;
-        }
-
-        const normalizedDate = new Date(selectedDate).toISOString().split('T')[0];
-
-        const batchNumber = currentUserStu.batch?.toLowerCase().replace('k', '');
-        const roll = currentUserStu.roll?.trim().toLowerCase();
-        const attendanceKey = `batch${batchNumber}Attendance`;
-
-        if (!batchNumber || !roll) {
-            attendanceDisplay.innerHTML = `<div class="text-red-500 font-semibold">Batch or Roll number missing.</div>`;
-            return;
-        }
-
-        const attendanceData = JSON.parse(localStorage.getItem(attendanceKey)) || [];
-        console.log("Attendance data from localStorage:", attendanceData);
-
-        const match = attendanceData.find(entry =>
-            entry.roll?.trim().toLowerCase() === roll &&
-            entry.date === normalizedDate
-        );
-
-        if (match) {
-            attendanceDisplay.innerHTML = `
-                <div class="h-[40px] flex  items-center px-4 border-b">
-                    <span class="w-[260px]">${match.name}</span>
-                    <span class="w-[270px]">${match.roll}</span>
-                    <span class="${match.status === 'Present' ? 'text-green-600' : 'text-red-500'} font-semibold">${match.status}</span>
-                </div>
-            `;
-        } else {
-            attendanceDisplay.innerHTML = `
-                <div class="h-[40px] flex justify-center items-center text-red-500 font-semibold">
-                    No attendance record found for selected date.
-                </div>
-            `;
-        }
-    });
-});
-
-
-
-
-   
-</script>
-
-</html>

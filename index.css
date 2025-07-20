@@ -73,6 +73,9 @@
   .mobileDashboard{
     height: 630px;
   }
+  .stuMobileDashboard{
+    height: 450px;
+  }
   .mainContaint1,
   .mainContaint2,
   .mainContaint3,
@@ -110,7 +113,8 @@
   }
   .cutNoticeDive1,
   .cutNoticeDive2,
-  .cutNoticeDive3{
+  .cutNoticeDive3,
+  .StucutNoticeDive1{
     width: 90%;
   }
 
@@ -118,5 +122,57 @@
     width: 100%;
   }
 
+  .stuAtFormInput,
+  .adFormInput{
+    width: 80%;
+    margin-left: 5px;
+  }
+  .stuAtFormBtn{
+    margin-right: 5px;
+  }
+  .stuPreAb,
+  .stuAtJs,
+  .adPreAb,
+  .adAttjs{
+    width: 98%;
+  }
+  .stuAtMain,
+  .AdView{
+    height: auto;
+  }
+  .stuAttFooter{
+    margin-top: -120px;
+  }
+  .dateAttentance{
+    font-size: 16px;
+  }
+
+
+
+  .user-entry {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .user-entry h1,
+  .user-entry span {
+    flex: none;
+    width: 100%;
+    text-align: left;
+    font-size: 15px;
+    margin: 2px 0;
+  }
+
+  .user-entry .approveBtnS,
+  .user-entry .approveDeleteBtnS {
+    font-size: 16px;
+    width: auto;
+    margin-top: 5px;
+  }
+  .vasn{
+    margin-left: 0px;
+    width: 200px;
+  }
   
+
 }
