@@ -263,7 +263,7 @@
                 </div>
 
                 <div class="approveteacher h-[350px] flex flex-col items-center hidden">
-                    <div class="w-[90%] h-[320px] flex flex-col  pt-5  mt-[30px]">
+                    <div class="w-[90%] increaseHeightTeach h-[320px] flex flex-col  pt-5  mt-[30px]">
                         <div class="w-[100%] h-[40px] bg-[#8a8af7] rounded-t-md  flex justify-center items-center  text-xl text-[#fff]">
                             <h1>Teachers</h1>
                         </div>
@@ -279,6 +279,9 @@
                             <div class="approveORnot flex flex-col border-gray-300">
                                 
                             </div>
+                        </div>
+                        <div class="pendingTeacherInMob hidden">
+
                         </div>
                     </div>
                 </div>
@@ -347,7 +350,7 @@
                 </div>
 
                 <div class="viewAllStudent h-[320px] flex  justify-center mt-[30px] hidden">
-                    <div class="w-[90%] h-[300px] flex flex-col pt-5">
+                    <div class="increaseHeightTeach w-[90%] h-[300px] flex flex-col pt-5">
                         <div class="w-[100%] h-[40px] bg-[#8a8af7] rounded-t-md  flex justify-center items-center  text-xl text-[#fff]">
                             <h1>Students</h1>
                         </div>
@@ -419,7 +422,7 @@
                 </div>
 
                 <div class="approveStudent h-[350px] flex flex-col items-center hidden">
-                    <div class="w-[90%] h-[320px] flex flex-col  pt-5  mt-[30px]">
+                    <div class="increaseHeightTeach w-[90%] h-[320px] flex flex-col  pt-5  mt-[30px]">
                         <div class="w-[100%] h-[40px] bg-[#8a8af7] rounded-t-md  flex justify-center items-center  text-xl text-[#fff]">
                             <h1>Students</h1>
                         </div>
@@ -436,6 +439,9 @@
                             <div class="approveStudentORnot flex flex-col border-gray-300">
                                 
                             </div>
+                        </div>
+                        <div class="pendingStudentInMob hidden">
+
                         </div>
                     </div>
                 </div>
@@ -953,6 +959,7 @@
 
     const viewApproveORnot = document.querySelector('.ViewapproveORnot');
     const viewAllTechInMobile=document.querySelector('.viewAllTechInMobile');
+    const pendingTeacherInMob=document.querySelector('.pendingTeacherInMob');
 
     const pendingTeacher = document.querySelector('.pendingTeacher');
     const totalHiredTeacher = document.querySelector('.totalHiredTeacher');
@@ -970,7 +977,7 @@
 
     // Render unapproved users
     if (approveORnot) {
-        users2.forEach((user) => {
+        users2.forEach((user, index) => {
             if (!user.date) user.date = new Date().toLocaleDateString();
 
             const userCard = document.createElement('div');
@@ -1007,11 +1014,54 @@
             });
 
             approveORnot.appendChild(userCard);
+
+            //==============ForMobile
+            const userCardMob = document.createElement('div');
+            userCardMob.classList.add('allAplyed', 'user-entry','flex', 'flex-col','justify-center','pl-10','gap-3', 'mb-4', 'border-t-1', 'border-gray-300');
+            userCardMob.innerHTML = `
+                <span class="w-[200px] text-xl font-semibold text-center">${index + 1}</span>
+                <h1 class=" text-xl"><span class="font-semibold">Name :</span> ${user.name}</h1>
+                <h1 class="text-xl"><span class="font-semibold">Mobile :</span> ${user.mobile || 'Not Provided'}</h1>
+                <h1 class="text-xl"><span class="font-semibold">Salary :</span>  ${user.salary || 'Not Provided'}</h1>
+                <h1 class="text-xl"><span class="font-semibold">Joining Date :</span> ${user.date}</h1>
+                <div class="flex mt-5">
+                    <div class="approveBtn w-[100px] h-[40px] bg-[green] flex justify-center items-center rounded-md text-[#fff] cursor-pointer">
+                        <span>Approve</span>
+                    </div>
+                    <div class="approveDeleteBtn w-[100px] h-[40px] bg-[red] ml-5 flex justify-center items-center rounded-md text-[#fff] cursor-pointer">
+                        <span>Delete</span>
+                    </div>
+                </div>
+            `;
+
+            userCardMob.querySelector('.approveBtn').addEventListener('click', () => {
+                approvedUsers.push(user);
+                localStorage.setItem('approvedUsers', JSON.stringify(approvedUsers));
+
+                users2 = users2.filter(u => u.email !== user.email);
+                localStorage.setItem('users2', JSON.stringify(users2));
+
+                userCardMob.remove();
+                if (totalHiredTeacher) totalHiredTeacher.textContent = approvedUsers.length;
+                if (pendingTeacher) pendingTeacher.textContent = users2.length;
+                renderApprovedUser(user);
+            });
+
+            userCardMob.querySelector('.approveDeleteBtn').addEventListener('click', () => {
+                if (confirm("Delete this user?")) {
+                    users2 = users2.filter(u => u.email !== user.email);
+                    localStorage.setItem('users2', JSON.stringify(users2));
+                    userCardMob.remove();
+                    if (pendingTeacher) pendingTeacher.textContent = users2.length;
+                }
+            });
+
+            pendingTeacherInMob.appendChild(userCardMob);
         });
     }
 
     // Render approved users
-    function renderApprovedUser(user) {
+    function renderApprovedUser(user, index) {
         if (!user.date) user.date = new Date().toLocaleDateString();
 
         const approvedCard = document.createElement('div');
@@ -1027,21 +1077,19 @@
          if (viewApproveORnot) viewApproveORnot.appendChild(approvedCard);
 
         const approvedCardMob = document.createElement('div');
-        approvedCardMob.classList.add('approvedEntryMob','flex', 'flex-col','justify-center','gap-3','pl-10','text-xl', 'mb-4', 'border-t-1', 'border-gray-300');
+        approvedCardMob.classList.add('approvedEntryMob','flex', 'flex-col','justify-center','gap-3','pl-10','text-xl', 'mb-4', 'border-t-2', 'border-gray-300');
         approvedCardMob.innerHTML = `
-            <span class="w-[200px] text-xl font-black text-center">${1}</span>
-            <h1 class="">Name :  ${user.name}</h1>
-            <h1 class="">Mobile :  ${user.mobile || 'Not Provided'}</h1>
-            <h1 class="">Salary :  ${user.salary || 'Not Provided'}</h1>
-            <h1 class="">Joining Date :  ${user.date}</h1>
+            <span class="w-[200px] text-xl font-semibold text-center">${index + 1}</span>
+            <h1 class=""><span class="font-semibold">Name :</span>  ${user.name}</h1>
+            <h1 class=""><span class="font-semibold">Mobile :</span>  ${user.mobile || 'Not Provided'}</h1>
+            <h1 class=""><span class="font-semibold">Salary :</span>  ${user.salary || 'Not Provided'}</h1>
+            <h1 class=""><span class="font-semibold">Joining Date :</span>  ${user.date}</h1>
             <div class="flex mt-5 gap-5">
                 <div class="approveBtn w-[100px] h-[40px] bg-[green] flex justify-center items-center rounded-md text-[#fff] cursor-pointer">Update</div>
                 <div class="approvedTeacherDeleteBtn flex w-[100px] h-[40px] bg-[red] justify-center items-center rounded-md text-[#fff] cursor-pointer">Delete</div>
             </div>
         `; 
          if (viewAllTechInMobile) viewAllTechInMobile.appendChild(approvedCardMob);
-
-
 
 
         const approvedCard2 = document.createElement('div');
@@ -1070,7 +1118,7 @@
     }
 
     // Initial render
-    approvedUsers.forEach(user => renderApprovedUser(user));
+    approvedUsers.forEach((user, index) => renderApprovedUser(user, index));
     updateTotals();
 });
 
@@ -1205,6 +1253,8 @@ directHireForm2?.addEventListener('submit', (e) => {
        const viewApproveORnot = document.querySelector('.ViewAddStudent');
        const pendingStudent = document.querySelector('.pendingStudent');
        const totalAddStudent = document.querySelector('.totalAddStudent');
+       const viewAllStuInMobile=document.querySelector('.viewAllStuInMobile');
+       const pendingStudentInMob=document.querySelector('.pendingStudentInMob');
 
        let users3 = JSON.parse(localStorage.getItem('users3')) || [];
        let approvedUsers2 = JSON.parse(localStorage.getItem('approvedUsers2')) || [];
@@ -1214,10 +1264,10 @@ directHireForm2?.addEventListener('submit', (e) => {
 
        // Render pending users
        if (approveORnot) {
-           users3.forEach((user) => {
+           users3.forEach((user, index) => {
+
                const userCard = document.createElement('div');
                userCard.classList.add('allSAplyed', 'user-entry', 'mb-4', 'flex', 'border-t-1', 'border-gray-300');
- 
                userCard.innerHTML = `
                    <h1 class="ml-10 w-[175px]">${user.name}</h1>
                    <h1 class="w-[170px] ">${user.batch || 'Not Provided'}</h1>
@@ -1251,18 +1301,60 @@ directHireForm2?.addEventListener('submit', (e) => {
                 });
 
                 approveORnot.appendChild(userCard);
+
+            //     //===============ForMobile(pending)
+                const userCardMob = document.createElement('div');
+                userCardMob.classList.add('allSAplyed', 'user-entry', 'mb-4', 'flex','flex-col','gap-3','pl-10','pt-5', 'border-t-1', 'border-gray-300');
+                userCardMob.innerHTML = `
+                   <span class="w-[200px] text-xl font-semibold text-center">${index + 1}</span>
+                   <h1 class=""><span class="font-semibold">Name  :  </span>${user.name}</h1>
+                   <h1 class="text-xl"><span class="font-semibold">Batch  :  </span>${user.batch || 'Not Provided'}</h1>
+                   <h1 class="text-xl"><span class="font-semibold">RollNo  :  </span>${user.roll || 'Not Provided'}</h1>
+                   <h1 class="text-xl"><span class="font-semibold">Mobile  :  </span>${user.mobile || 'Not Provided'}</h1>
+                   <h1 class="text-xl "><span class="font-semibold">Fee  :  </span>${user.fee || 'N/A'}</h1>
+                   <div class="flex mt-5">
+                     <div class="approveBtnS w-[100px] h-[40px] bg-[green] flex justify-center items-center rounded-md text-[#fff] cursor-pointer">
+                        <span>Approve</span>
+                    </div>
+                     <div class="approveDeleteBtnS w-[100px] h-[40px] bg-[red] ml-5 flex justify-center items-center rounded-md text-[#fff] cursor-pointer">
+                        <span>Delete</span>
+                    </div>
+                   </div>
+               `;
+
+                userCardMob.querySelector('.approveBtnS').addEventListener('click', () => {
+                   approvedUsers2.push(user);
+                   localStorage.setItem('approvedUsers2', JSON.stringify(approvedUsers2));
+
+                   users3 = users3.filter(u => u.email !== user.email);
+                  localStorage.setItem('users3', JSON.stringify(users3));
+
+                   userCardMob.remove();
+                   if (totalAddStudent) totalAddStudent.textContent = approvedUsers2.length;
+                   if (pendingStudent) pendingStudent.textContent = users3.length;
+                   renderApprovedUser(user);
+                });
+
+                userCardMob.querySelector('.approveDeleteBtnS').addEventListener('click', () => {
+                    if (confirm("Delete this user?")) {
+                        users3 = users3.filter(u => u.email !== user.email);
+                        localStorage.setItem('users3', JSON.stringify(users3));
+                        userCardMob.remove();
+                        if (pendingStudent) pendingStudent.textContent = users3.length;
+                    }
+                });
+
+                pendingStudentInMob.appendChild(userCardMob);
+
+
             });
         }
 
-        function renderApprovedUser(user) {
+        function renderApprovedUser(user, index) {
             if (!viewApproveORnot) return;
 
             const approvedCard = document.createElement('div');
             approvedCard.classList.add('approved-entry', 'mb-4', 'flex', 'border-t-1', 'border-gray-300');
-
-            const approvedFee = document.createElement('div');
-            approvedFee.classList.add('approvedFee', 'mb-4', 'flex', 'justify-around', 'border-t-1', 'border-gray-300');
-
             approvedCard.innerHTML = `
                 <h1 class="ml-10 vasn w-[180px]">${user.name}</h1>
                 <h1 class="w-[170px]">${user.batch || 'Not Provided'}</h1>
@@ -1273,6 +1365,37 @@ directHireForm2?.addEventListener('submit', (e) => {
                 <span class="approvedStudentDeleteBtn text-[red]  cursor-pointer"><i class="fa-solid fa-trash"></i></span>
             `;
 
+            viewApproveORnot.appendChild(approvedCard);
+
+            //=====================ForMobile
+            const approvedCardMob = document.createElement('div');
+            approvedCardMob.classList.add('approved-entry', 'mb-4', 'flex','flex-col','gap-3','pl-10','pt-5', 'border-t-1', 'border-gray-300');
+            approvedCardMob.innerHTML = `
+                <span class="w-[200px] text-xl font-semibold text-center">${index + 1}</span>
+                <h1 class="text-xl"><span class="font-semibold">Name  :  </span>${user.name}</h1>
+                <h1 class="text-xl"><span class="font-semibold">Batch  :  </span>${user.batch || 'Not Provided'}</h1>
+                <h1 class="text-xl"><span class="font-semibold">Roll No  :  </span>${user.roll || 'Not Provided'}</h1>
+                <h1 class="text-xl"><span class="font-semibold">Mobile  :  </span>${user.mobile || 'Not Provided'}</h1>
+                <h1 class="text-xl"><span class="font-semibold">Fee  :  </span>${user.fee || 'N/A'}</h1>
+                <div class="flex mt-5">
+                    <div class="approveBtnS w-[100px] h-[40px] bg-[green] flex justify-center items-center rounded-md text-[#fff] cursor-pointer">
+                        <span>Update</span>
+                    </div>
+                    <div class="approvedStudentDeleteBtn w-[100px] h-[40px] bg-[red] ml-5 flex justify-center items-center rounded-md text-[#fff] cursor-pointer">
+                        <span>Delete</span>
+                    </div>
+                </div>
+                
+            `;
+
+            viewAllStuInMobile.appendChild(approvedCardMob);
+
+
+
+
+
+            const approvedFee = document.createElement('div');
+            approvedFee.classList.add('approvedFee', 'mb-4', 'flex', 'justify-around', 'border-t-1', 'border-gray-300');
             approvedFee.innerHTML = `
                 <h1 class="pl-25 w-[350px] ">${user.name}</h1>
                 <h1 class="pl-10 w-[180px] ">${user.fee || 'Not Provided'}</h1>
@@ -1289,12 +1412,12 @@ directHireForm2?.addEventListener('submit', (e) => {
                     updateTotals();
                 }
             });
-
-            viewApproveORnot.appendChild(approvedCard);
             approveSalaryORnot.appendChild(approvedFee);
+
+
         } 
 
-        approvedUsers2.forEach(user => renderApprovedUser(user));
+        approvedUsers2.forEach((user, index) => renderApprovedUser(user, index));
         updateTotals();
 
 

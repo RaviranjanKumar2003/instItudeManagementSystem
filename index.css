@@ -152,11 +152,16 @@
 
 
   .studentDetailsView,
-  .teachersDetailsView {
+  .teachersDetailsView,
+  .teachersDetails,
+  .studentsDetails {
     display: none;
 
   }
-  .viewAllTechInMobile{
+  .viewAllTechInMobile,
+  .pendingTeacherInMob,
+  .viewAllStuInMobile,
+  .pendingStudentInMob{
     height: 500px;
     padding: 10px;
     border: 1px solid gray;
@@ -166,6 +171,8 @@
   .increaseHeightTeach{
     height: 500px;
   }
+
+
   
 
 }
