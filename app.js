@@ -442,9 +442,61 @@ function toggleNotice(){
 
 //=============================================== NOTICE ========================
 
+//========= First
 document.getElementById("messageForm")?.addEventListener("submit", function (e) {
     e.preventDefault();
     const message = document.getElementById("messageInput")?.value.trim();
+    if (!message) return alert("Please enter a message.");
+
+    // Save to localStorage
+    localStorage.setItem("savedMessage", message);
+
+    // Update boards
+    updateNoticeBoards(message);
+
+    alert("Your Notice Updated");
+    this.reset();
+});
+
+function updateNoticeBoards(message) {
+    const boardIds = ["noticeBoard1", "noticeBoard12", "noticeBoard123", "StuNoticeBoard1"];
+    const containerClasses = [".cutNoticeDive1", ".cutNoticeDive2", ".cutNoticeDive3", ".StucutNoticeDive1"];
+
+    boardIds.forEach(id => {
+        const board = document.getElementById(id);
+        if (board) board.textContent = message;
+    });
+
+    containerClasses.forEach(cls => {
+        document.querySelector(cls)?.classList.remove('hidden');
+    });
+}
+
+function hideNotice(cls) {
+    document.querySelector(cls)?.classList.add('hidden');
+}
+
+window.addEventListener("DOMContentLoaded", () => {
+    const saved = localStorage.getItem("savedMessage");
+    if (saved) updateNoticeBoards(saved);
+
+    const buttons = [
+        { btn: '.cutNotice1', container: '.cutNoticeDive1' },
+        { btn: '.cutNotice2', container: '.cutNoticeDive2' },
+        { btn: '.cutNotice3', container: '.cutNoticeDive3' },
+        { btn: '.StucutNotice1', container: '.StucutNoticeDive1' }
+    ];
+
+    buttons.forEach(({ btn, container }) => {
+        document.querySelector(btn)?.addEventListener("click", () => hideNotice(container));
+    });
+});
+
+//=========== Second
+
+document.getElementById("messageForm2")?.addEventListener("submit", function (e) {
+    e.preventDefault();
+    const message = document.getElementById("messageInput2")?.value.trim();
     if (!message) return alert("Please enter a message.");
 
     // Save to localStorage
@@ -713,18 +765,26 @@ window.addEventListener('DOMContentLoaded', () => {
 
     if (recentUser && adPart1 && adPart2) {
         adPart1.innerHTML = `
-            <h1 class="text-4xl font-semibold">Hello, ${recentUser.name}</h1>
+            <h1 class="text-4xl helloTeacherMob font-semibold">Hello, ${recentUser.name}</h1>
             <p class="mt-3">Your Account is Not Approved Till Now</p>
             <p class="mt-3">Our Team Is Checking Your Profile</p>
             <p class="mt-3">Soon You Will Be Hired To Our Insitute</p>
         `;
-        adPart2.innerHTML=`
-        <div>
-            <a href="#" class="exitLoginCheckT p-2 border-1 hover:border-2 hover:border-gray-300 text-[#000] rounded-md transform transition duration-300 hover:scale-110">Check Later</a>
-            <a href="./SLogin.html" class="p-2 bg-[blue] text-[#fff] rounded-md ml-5">Login</a>
-        </div>
-        
+        adPart2.innerHTML = `
+           <div>
+              <a href="#" class="exitLoginCheckt p-2 border-1 hover:border-2 hover:border-gray-300 text-[#000] rounded-md transform transition duration-300 hover:scale-110">Check Later</a>
+              <a href="./SLogin.html" class="p-2 bg-[blue] text-[#fff] rounded-md ml-5">Login</a>
+            </div>
         `;
+
+        const exitLoginCheckt = document.querySelector('.exitLoginCheckt');
+        if (exitLoginCheckt) {
+            exitLoginCheckt.addEventListener("click", function (e) {
+            e.preventDefault();
+            logoutUserTech();
+       });
+    }
+
 
         localStorage.removeItem('trecentRegisteredUser');
     }
@@ -736,7 +796,7 @@ window.addEventListener('DOMContentLoaded', () => {
        const teacherProfileName3 = document.querySelector('.teacherProfileName3');
        const teacherexitLogin = document.querySelector('.teacherexitLogin');
        const teacherexitLogin2 = document.querySelector('.teacherexitLogin2');
-       const exitLoginCheckT= document.querySelector('.exitLoginCheckT');
+       const exitLoginCheckt= document.querySelector('.exitLoginCheckt');
        const teacherloginImg = document.querySelector('.teacherloginImg');
        const teacherloginImg2 = document.querySelector('.teacherloginImg2');
 
@@ -759,19 +819,19 @@ window.addEventListener('DOMContentLoaded', () => {
         if (teacherloginImg2) teacherloginImg2.innerHTML = `<img src="${currentUserTech.image}" alt="User Image" class="h-full w-full rounded-full" />`;
 
         if (teacherexitLogin) {
-            teacherexitLogin.addEventListener("click", logoutUser);
+            teacherexitLogin.addEventListener("click", logoutUserTech);
         }
         if (teacherexitLogin2) {
-            teacherexitLogin2.addEventListener("click", logoutUser);
+            teacherexitLogin2.addEventListener("click", logoutUserTech);
         }
-        if(exitLoginCheckT){
-            exitLoginCheckT.addEventListener("click", logoutUser);
+        if(exitLoginCheckt){
+            exitLoginCheckt.addEventListener("click", logoutUserTech);
         }
     }
 
 });
 
-function logoutUser() {
+function logoutUserTech() {
     localStorage.removeItem('isLoggedInTeach');
     localStorage.removeItem('currentUserTech');
     window.location.href = "./TeacherLogin.html";

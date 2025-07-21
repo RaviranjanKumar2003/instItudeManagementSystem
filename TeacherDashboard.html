@@ -32,15 +32,15 @@
                     <a href="./index.html"><div class="teacherexitLogin2 text-[#d4d4d8] h-[40px] w-[100px] border-1 rounded-md flex justify-center items-center mt-3">Logout</div></a>
                 </div>
                 <div class="sidebarContainer text-lg">
-                    <a href="#" class="dashboard1 stuDash1  dasActive flex text-[#fff] ml-10 mt-15 hover:text-[red]" onclick="toggleStuDashboard()">
+                    <a href="#" class="dashboard1 teachDash1  dasActive flex text-[#fff] ml-10 mt-15 hover:text-[red]" onclick="toggleTeachDashboard()">
                         <i class="fa-solid fa-table-columns"></i>
                         <h1 class="ml-5 mt-[-5px]">Dashboard</h1>
                     </a>
-                    <a href="#" class="attendance1 stuAttendance1 flex text-[#d4d4d8] ml-10 mt-8 hover:text-[red]" onclick="toggleStuAttendance()">
+                    <a href="#" class="attendance1 teachAttendance1 flex text-[#d4d4d8] ml-10 mt-8 hover:text-[red]" onclick="toggleteachAttendance()">
                         <i class="fa-solid fa-clipboard-user"></i>
                         <h1 class="ml-5 mt-[-5px]">Attendance</h1>
                     </a>
-                    <a href="#" class="notice1 stuNitice1 flex text-[#d4d4d8] ml-10 mt-8 hover:text-[red]" onclick="toggleStuNotice()">
+                    <a href="#" class="notice1 teachnotice1 flex text-[#d4d4d8] ml-10 mt-8 hover:text-[red]" onclick="toggleTeachNotice()">
                         <i class="fa-solid fa-headset"></i>
                         <h1 class="ml-5 mt-[-5px]">Notice</h1>
                     </a>
@@ -56,22 +56,22 @@
                     <h1 class="teacherProfileName2 text-[#d4d4d8] text-xl mt-[10px]">Teacher</h1>
                 </div>
                 <div class="sidebarContainer text-lg">
-                    <a href="#" class="dashboard stuDash dasActive flex text-[#fff] ml-10 mt-15 hover:text-[red]" onclick="toggleStuDashboard()">
+                    <a href="#" class="dashboard teachDash dasActive flex text-[#fff] ml-10 mt-15 hover:text-[red]" onclick="toggleTeachDashboard()">
                         <i class="fa-solid fa-table-columns"></i>
                         <h1 class="ml-5 mt-[-5px]">Dashboard</h1>
                     </a>
-                    <a href="#" class="attendance stuAttendance flex text-[#d4d4d8] ml-10 mt-8 hover:text-[red]" onclick="toggleStuAttendance()">
+                    <a href="#" class="attendance teachAttendance flex text-[#d4d4d8] ml-10 mt-8 hover:text-[red]" onclick="toggleteachAttendance()">
                         <i class="fa-solid fa-clipboard-user"></i>
                         <h1 class="ml-5 mt-[-5px]">Attendance</h1>
                     </a>
-                    <a href="#" class="notice1 flex text-[#d4d4d8] ml-10 mt-8 hover:text-[red]" onclick="toggleStuNotice()">
+                    <a href="#" class="notice teachnotice  flex text-[#d4d4d8] ml-10 mt-8 hover:text-[red]" onclick="toggleTeachNotice()">
                         <i class="fa-solid fa-headset"></i>
                         <h1 class="ml-5 mt-[-5px]">Notice</h1>
                     </a>
                 </div>
             </div>
             <!-- FIRST -->
-            <div class="mainContaint1 teacherMainContainer w-[82%] ">
+            <div class="teachmainContaint1 teacherMainContainer w-[82%] ">
                 <div class="allCards1 h-[156px] flex justify-around">
                     <div class="addCard h-[150px] w-[270px] bg-[#6b6bf3] mt-[30px] rounded-md text-[#fff] p-7 text-xl">
                         <h1 class="font-bold">Name</h1>
@@ -127,27 +127,396 @@
                 </footer>
             </div>
             <!-- Second -->
-            <div class="mainContaint4 stuAttMainCon w-[82%] flex flex-col justify-center items-center hidden">
+            <div class="mainContaint4 teachAttMainCon w-[82%] flex flex-col justify-center items-center hidden">
                 <div class="w-[90%] h-[74.3%]  mt-5 overflow-auto">
-                    <div class="h-[40px] w-full bg-gradient-to-r from-[#0c1b2c] via-[#1a1a79] to-[#00d4ff] flex  justify-center items-center text-xl text-[#fff] rounded-t-md">
-                        <h1 class="dateAttentance">Please Enter Date For Attendance</h1>
+                    <div class="h-[40px] w-full bg-[blue] flex  justify-center items-center text-xl text-[#fff] rounded-t-md">
+                        <h1 class="at">Attendance</h1>
+                        <h1 class="dateAttentance hidden">Please Enter Date For Attendance Of <span class="switchBatch">K1</span></h1>
+                        <span class="attendanceCut ml-5 text-[red] hidden"><i class="fa-solid fa-rectangle-xmark"></i></span>
                     </div>
-                    <div class=" stuAtMain w-full h-[300px] flex flex-col  items-center border border-gray-300 ">
-                        <form action="#" class=" stuAtForm flex  justify-center  h-[50px] w-full mt-5 bg">
-                            <input type="date" placeholder="Enter Date" class="stuAtFormInput border-2 border-gray-400 rounded-md h-[40px] w-[30%]">
-                            <button type="submit" class="stuAtFormBtn p-2 w-[100px] h-[40px] text-[#fff] bg-[blue] rounded-lg ml-5 cursor-pointer font-semibold">Submit</button>
+                    <table class="viewAttendance table-auto border border-gray-400 w-full text-center ">
+                        <tr class="bg-gray-200">
+                            <th class="border border-gray-400 px-4 py-2">Batch</th>
+                            <th class="border border-gray-400 px-4 py-2">Take Attendance</th>
+                            <th class="border border-gray-400 px-4 py-2">View Attendance</th>
+                        </tr>
+                        <tr class="text-2xl font-semibold">
+                            <td class="border border-gray-300 px-2 py-2">K1</td>
+                            <td onclick="toggleShowBatch1()" class="border border-gray-300 px-2 py-2 text-[#4d4de0] cursor-pointer"><i class="fa-solid fa-square-plus"></i></td>
+                            <td onclick="toggleShowAttendanceBatch1()" class="border border-gray-300 px-2 py-2 text-[red] cursor-pointer"><i class="fa-solid fa-eye"></i></td>
+                        </tr>
+                        <tr class="text-2xl font-semibold">
+                            <td class="border border-gray-300 px-2 py-2">K2</td>
+                            <td onclick="toggleShowBatch2()" class="border border-gray-300 px-2 py-2 text-[#4d4de0] cursor-pointer"><i class="fa-solid fa-square-plus"></i></td>
+                            <td onclick="toggleShowAttendanceBatch2()" class="border border-gray-300 px-2 py-2 text-[red] cursor-pointer"><i class="fa-solid fa-eye"></i></td>
+                        </tr>
+                        <tr class="text-2xl font-semibold">
+                            <td class="border border-gray-300 px-2 py-2">K3</td>
+                            <td onclick="toggleShowBatch3()" class="border border-gray-300 px-2 py-2 text-[#4d4de0] cursor-pointer"><i class="fa-solid fa-square-plus"></i></td>
+                            <td onclick="toggleShowAttendanceBatch3()" class="border border-gray-300 px-2 py-2 text-[red] cursor-pointer"><i class="fa-solid fa-eye"></i></td>
+                        </tr>
+                        <tr class="text-2xl font-semibold">
+                            <td class="border border-gray-300 px-2 py-2">K4</td>
+                            <td onclick="toggleShowBatch4()" class="border border-gray-300 px-2 py-2 text-[#4d4de0] cursor-pointer"><i class="fa-solid fa-square-plus"></i></td>
+                            <td onclick="toggleShowAttendanceBatch4()" class="border border-gray-300 px-2 py-2 text-[red] cursor-pointer"><i class="fa-solid fa-eye"></i></td>
+                        </tr>
+                        <tr class="text-2xl font-semibold">
+                            <td class="border border-gray-300 px-2 py-2">K5</td>
+                            <td onclick="toggleShowBatch5()" class="border border-gray-300 px-2 py-2 text-[#4d4de0] cursor-pointer"><i class="fa-solid fa-square-plus"></i></td>
+                            <td onclick="toggleShowAttendanceBatch5()" class="border border-gray-300 px-2 py-2 text-[red] cursor-pointer"><i class="fa-solid fa-eye"></i></td>
+                        </tr>
+                        <tr class="text-2xl font-semibold">
+                            <td class="border border-gray-300 px-2 py-2">K6</td>
+                            <td onclick="toggleShowBatch6()" class="border border-gray-300 px-2 py-2 text-[#4d4de0] cursor-pointer"><i class="fa-solid fa-square-plus"></i></td>
+                            <td onclick="toggleShowAttendanceBatch6()" class="border border-gray-300 px-2 py-2 text-[red] cursor-pointer"><i class="fa-solid fa-eye"></i></td>
+                        </tr>
+                        <tr class="text-2xl font-semibold">
+                            <td class="border border-gray-300 px-2 py-2">K7</td>
+                            <td onclick="toggleShowBatch7()" class="border border-gray-300 px-2 py-2 text-[#4d4de0] cursor-pointer"><i class="fa-solid fa-square-plus"></i></td>
+                            <td onclick="toggleShowAttendanceBatch7()" class="border border-gray-300 px-2 py-2 text-[red] cursor-pointer"><i class="fa-solid fa-eye"></i></td>
+                        </tr>
+                        <tr class="text-2xl font-semibold">
+                            <td class="border border-gray-300 px-2 py-2">K8</td>
+                            <td onclick="toggleShowBatch8()" class="border border-gray-300 px-2 py-2 text-[#4d4de0] cursor-pointer"><i class="fa-solid fa-square-plus"></i></td>
+                            <td onclick="toggleShowAttendanceBatch8()" class="border border-gray-300 px-2 py-2 text-[red] cursor-pointer"><i class="fa-solid fa-eye"></i></td>
+                        </tr>
+                        <tr class="text-2xl font-semibold">
+                            <td class="border border-gray-300 px-2 py-2">K9</td>
+                            <td onclick="toggleShowBatch9()" class="border border-gray-300 px-2 py-2 text-[#4d4de0] cursor-pointer"><i class="fa-solid fa-square-plus"></i></td>
+                            <td onclick="toggleShowAttendanceBatch9()" class="border border-gray-300 px-2 py-2 text-[red] cursor-pointer"><i class="fa-solid fa-eye"></i></td>
+                        </tr>
+                        <tr class="text-2xl font-semibold">
+                            <td class="border border-gray-300 px-2 py-2">K10</td>
+                            <td onclick="toggleShowBatch10()" class="border border-gray-300 px-2 py-2 text-[#4d4de0] cursor-pointer"><i class="fa-solid fa-square-plus"></i></td>
+                            <td onclick="toggleShowAttendanceBatch10()" class="border border-gray-300 px-2 py-2 text-[red] cursor-pointer"><i class="fa-solid fa-eye"></i></td>
+                        </tr>
+                    </table>
+                    <!-- VIEWATTENDANCE -->
+                    <div class="viewAttendanceBatch1 AdView w-full h-[300px] flex flex-col  items-center border border-gray-300  hidden">
+                        <form action="#" class="presentAbsentFormBatch1 flex  justify-center  h-[50px] w-full mt-5">
+                            <input type="date" placeholder="Enter Date" class="adFormInput border-2 border-gray-400 rounded-md h-[40px] w-[30%]">
+                            <button type="submit" class="p-2 w-[100px] h-[40px] text-[#fff] bg-[blue] rounded-lg ml-5 cursor-pointer font-semibold">Submit</button>
                         </form>
-                        <div class="stuPreAb h-[35px] w-[60%] border-2 flex justify-between items-center  font-bold">
+                        <div class="adPreAb h-[35px] w-[60%] border-2 flex justify-between items-center  font-bold">
                             <h1 class="pl-5">Name</h1>
                             <h1 class="pr-5">Roll No</h1>
                             <h1 class="pr-5">Present/Absent</h1>
                         </div>
-                        <div class="stuAtJs w-[60%] h-auto border flex flex-col">
+                        <div class="viewResultBatch11 adAttjs w-[60%] h-auto border flex flex-col">
 
                         </div>
                     </div>
+
+                    <div class="viewAttendanceBatch2 AdView w-full h-[300px] flex flex-col  items-center border border-gray-300  hidden">
+                        <form action="#" class="presentAbsentFormBatch2 flex  justify-center  h-[50px] w-full mt-5">
+                            <input type="date" placeholder="Enter Date" class="adFormInput border-2 border-gray-400 rounded-md h-[40px] w-[30%]">
+                            <button type="submit" class="p-2 w-[100px] h-[40px] text-[#fff] bg-[blue] rounded-lg ml-5 cursor-pointer font-semibold">Submit</button>
+                        </form>
+                        <div class="adPreAb h-[35px] w-[60%] border-2 flex justify-between items-center  font-bold">
+                            <h1 class="pl-5">Name</h1>
+                            <h1 class="pr-5">Roll No</h1>
+                            <h1 class="pr-5">Present/Absent</h1>
+                        </div>
+                        <div class="viewResultBatch22 adAttjs w-[60%] h-auto border flex flex-col">
+
+                        </div>
+                    </div>
+
+                    <div class="viewAttendanceBatch3 AdView w-full h-[300px] flex flex-col  items-center border border-gray-300  hidden">
+                        <form action="#" class="presentAbsentFormBatch3 flex  justify-center  h-[50px] w-full mt-5">
+                            <input type="date" placeholder="Enter Date" class="adFormInput border-2 border-gray-400 rounded-md h-[40px] w-[30%]">
+                            <button type="submit" class="p-2 w-[100px] h-[40px] text-[#fff] bg-[blue] rounded-lg ml-5 cursor-pointer font-semibold">Submit</button>
+                        </form>
+                        <div class="adPreAb h-[35px] w-[60%] border-2 flex justify-between items-center  font-bold">
+                            <h1 class="pl-5">Name</h1>
+                            <h1 class="pr-5">Roll No</h1>
+                            <h1 class="pr-5">Present/Absent</h1>
+                        </div>
+                        <div class="viewResultBatch33 adAttjs w-[60%] h-auto border flex flex-col">
+
+                        </div>
+                    </div>
+
+                    <div class="viewAttendanceBatch4 AdView w-full h-[300px] flex flex-col  items-center border border-gray-300  hidden">
+                        <form action="#" class="presentAbsentFormBatch4 flex  justify-center  h-[50px] w-full mt-5">
+                            <input type="date" placeholder="Enter Date" class="adFormInput border-2 border-gray-400 rounded-md h-[40px] w-[30%]">
+                            <button type="submit" class="p-2 w-[100px] h-[40px] text-[#fff] bg-[blue] rounded-lg ml-5 cursor-pointer font-semibold">Submit</button>
+                        </form>
+                        <div class="adPreAb h-[35px] w-[60%] border-2 flex justify-between items-center  font-bold">
+                            <h1 class="pl-5">Name</h1>
+                            <h1 class="pr-5">Roll No</h1>
+                            <h1 class="pr-5">Present/Absent</h1>
+                        </div>
+                        <div class="viewResultBatch44 adAttjs w-[60%] h-auto border flex flex-col">
+
+                        </div>
+                    </div>
+
+                    <div class="viewAttendanceBatch5 AdView w-full h-[300px] flex flex-col  items-center border border-gray-300  hidden">
+                        <form action="#" class="presentAbsentFormBatch5 flex  justify-center  h-[50px] w-full mt-5">
+                            <input type="date" placeholder="Enter Date" class="adFormInput border-2 border-gray-400 rounded-md h-[40px] w-[30%]">
+                            <button type="submit" class="p-2 w-[100px] h-[40px] text-[#fff] bg-[blue] rounded-lg ml-5 cursor-pointer font-semibold">Submit</button>
+                        </form>
+                        <div class="adPreAb h-[35px] w-[60%] border-2 flex justify-between items-center  font-bold">
+                            <h1 class="pl-5">Name</h1>
+                            <h1 class="pr-5">Roll No</h1>
+                            <h1 class="pr-5">Present/Absent</h1>
+                        </div>
+                        <div class="viewResultBatch55 adAttjs w-[60%] h-auto border flex flex-col">
+
+                        </div>
+                    </div>
+
+                    <div class="viewAttendanceBatch6 AdView w-full h-[300px] flex flex-col  items-center border border-gray-300  hidden">
+                        <form action="#" class="presentAbsentFormBatch6 flex  justify-center  h-[50px] w-full mt-5">
+                            <input type="date" placeholder="Enter Date" class="adFormInput border-2 border-gray-400 rounded-md h-[40px] w-[30%]">
+                            <button type="submit" class="p-2 w-[100px] h-[40px] text-[#fff] bg-[blue] rounded-lg ml-5 cursor-pointer font-semibold">Submit</button>
+                        </form>
+                        <div class="adPreAb h-[35px] w-[60%] border-2 flex justify-between items-center  font-bold">
+                            <h1 class="pl-5">Name</h1>
+                            <h1 class="pr-5">Roll No</h1>
+                            <h1 class="pr-5">Present/Absent</h1>
+                        </div>
+                        <div class="viewResultBatch66 adAttjs w-[60%] h-auto border flex flex-col">
+
+                        </div>
+                    </div>
+
+                    <div class="viewAttendanceBatch7 AdView w-full h-[300px] flex flex-col  items-center border border-gray-300  hidden">
+                        <form action="#" class="presentAbsentFormBatch7 flex  justify-center  h-[50px] w-full mt-5">
+                            <input type="date" placeholder="Enter Date" class="adFormInput border-2 border-gray-400 rounded-md h-[40px] w-[30%]">
+                            <button type="submit" class="p-2 w-[100px] h-[40px] text-[#fff] bg-[blue] rounded-lg ml-5 cursor-pointer font-semibold">Submit</button>
+                        </form>
+                        <div class="adPreAb h-[35px] w-[60%] border-2 flex justify-between items-center  font-bold">
+                            <h1 class="pl-5">Name</h1>
+                            <h1 class="pr-5">Roll No</h1>
+                            <h1 class="pr-5">Present/Absent</h1>
+                        </div>
+                        <div class="viewResultBatch77 adAttjs w-[60%] h-auto border flex flex-col">
+
+                        </div>
+                    </div>
+
+                    <div class="viewAttendanceBatch8 AdView w-full h-[300px] flex flex-col  items-center border border-gray-300  hidden">
+                        <form action="#" class="presentAbsentFormBatch8 flex  justify-center  h-[50px] w-full mt-5">
+                            <input type="date" placeholder="Enter Date" class="adFormInput border-2 border-gray-400 rounded-md h-[40px] w-[30%]">
+                            <button type="submit" class="p-2 w-[100px] h-[40px] text-[#fff] bg-[blue] rounded-lg ml-5 cursor-pointer font-semibold">Submit</button>
+                        </form>
+                        <div class="adPreAb h-[35px] w-[60%] border-2 flex justify-between items-center  font-bold">
+                            <h1 class="pl-5">Name</h1>
+                            <h1 class="pr-5">Roll No</h1>
+                            <h1 class="pr-5">Present/Absent</h1>
+                        </div>
+                        <div class="viewResultBatch88 adAttjs w-[60%] h-auto border flex flex-col">
+
+                        </div>
+                    </div>
+
+                    <div class="viewAttendanceBatch9 AdView w-full h-[300px] flex flex-col  items-center border border-gray-300  hidden">
+                        <form action="#" class="presentAbsentFormBatch9 flex  justify-center  h-[50px] w-full mt-5">
+                            <input type="date" placeholder="Enter Date" class="adFormInput border-2 border-gray-400 rounded-md h-[40px] w-[30%]">
+                            <button type="submit" class="p-2 w-[100px] h-[40px] text-[#fff] bg-[blue] rounded-lg ml-5 cursor-pointer font-semibold">Submit</button>
+                        </form>
+                        <div class="adPreAb h-[35px] w-[60%] border-2 flex justify-between items-center  font-bold">
+                            <h1 class="pl-5">Name</h1>
+                            <h1 class="pr-5">Roll No</h1>
+                            <h1 class="pr-5">Present/Absent</h1>
+                        </div>
+                        <div class="viewResultBatch99 adAttjs w-[60%] h-auto border flex flex-col">
+
+                        </div>
+                    </div>
+
+                    <div class="viewAttendanceBatch101 AdView w-full h-[300px] flex flex-col  items-center border border-gray-300  hidden">
+                        <form action="#" class="presentAbsentFormBatch10 flex  justify-center  h-[50px] w-full mt-5">
+                            <input type="date" placeholder="Enter Date" class="adFormInput border-2 border-gray-400 rounded-md h-[40px] w-[30%]">
+                            <button type="submit" class="p-2 w-[100px] h-[40px] text-[#fff] bg-[blue] rounded-lg ml-5 cursor-pointer font-semibold">Submit</button>
+                        </form>
+                        <div class="adPreAb h-[35px] w-[60%] border-2 flex justify-between items-center  font-bold">
+                            <h1 class="pl-5">Name</h1>
+                            <h1 class="pr-5">Roll No</h1>
+                            <h1 class="pr-5">Present/Absent</h1>
+                        </div>
+                        <div class="viewResultBatch10 adAttjs w-[60%] h-auto border flex flex-col">
+
+                        </div>
+                    </div>
+                    <!-- TAKEATTENDANCE -->
+                    <div class="batch1 h-auto w-full border-2 flex flex-col justify-center items-center border-gray-300 hidden">
+                        <div class="attMob h-[40px] w-1/2 flex justify-between  font-bold">
+                            <h1>Name</h1>
+                            <h1>Roll No</h1>
+                            <h1>Present/Absent</h1>
+                        </div>
+                        <div class="attMob studentBatch11 flex flex-col justify-between w-1/2 pb-5  gap-3  border-gray-300">
+
+                        </div>
+                        <form action="#" class="takeAttendanceFormBatch1  flex flex-col justify-center items-center h-full w-full pb-5 border-t-4 border-gray-300 pt-5">
+                            <input type="date" placeholder="Enter Date" class="adFormInput border-2 border-gray-400 rounded-md h-[40px] w-[50%]">
+                            <button type="submit" class="p-2 w-[100px] text-[#fff] bg-[blue] rounded-lg mt-5 cursor-pointer font-semibold">Submit</button>
+                        </form>
+                    </div>
+
+                    <div class="batch2 h-auto w-full border-2 flex flex-col justify-center items-center border-gray-300 hidden">
+                        <div class="attMob h-[40px] w-1/2 flex justify-between  font-bold">
+                            <h1>Name</h1>
+                            <h1>Roll No</h1>
+                            <h1>Present/Absent</h1>
+                        </div>
+                        <div class="attMob studentBatch22 flex flex-col justify-between w-1/2 pb-5  gap-3  border-gray-300">
+
+                        </div>
+                        <form action="#" class="takeAttendanceFormBatch2 flex flex-col justify-center items-center h-full w-full pb-5 border-t-4 border-gray-300 pt-5">
+                            <input type="date" placeholder="Enter Date" class="adFormInput border-2 border-gray-400 rounded-md h-[40px] w-[50%]">
+                            <button type="submit" class="p-2 w-[100px] text-[#fff] bg-[blue] rounded-lg mt-5 cursor-pointer font-semibold">Submit</button>
+                        </form>
+                    </div>
+
+                    <div class="batch3 h-auto w-full border-2 flex flex-col justify-center items-center border-gray-300 hidden">
+                        <div class="attMob h-[40px] w-1/2 flex justify-between  font-bold">
+                            <h1>Name</h1>
+                            <h1>Roll No</h1>
+                            <h1>Present/Absent</h1>
+                        </div>
+                        <div class="attMob studentBatch33 flex flex-col justify-between w-1/2 pb-5  gap-3  border-gray-300">
+
+                        </div>
+                        <form action="#" class="takeAttendanceFormBatch3 flex flex-col justify-center items-center h-full w-full pb-5 border-t-4 border-gray-300 pt-5">
+                            <input type="date" placeholder="Enter Date" class="adFormInput border-2 border-gray-400 rounded-md h-[40px] w-[50%]">
+                            <button type="submit" class="p-2 w-[100px] text-[#fff] bg-[blue] rounded-lg mt-5 cursor-pointer font-semibold">Submit</button>
+                        </form>
+                    </div>
+
+                    <div class="batch4 h-auto w-full border-2 flex flex-col justify-center items-center border-gray-300 hidden">
+                        <div class="attMob h-[40px] w-1/2 flex justify-between  font-bold">
+                            <h1>Name</h1>
+                            <h1>Roll No</h1>
+                            <h1>Present/Absent</h1>
+                        </div>
+                        <div class="attMob studentBatch44 flex flex-col justify-between w-1/2 pb-5  gap-3  border-gray-300">
+
+                        </div>
+                        <form action="#" class="takeAttendanceFormBatch4 flex flex-col justify-center items-center h-full w-full pb-5 border-t-4 border-gray-300 pt-5">
+                            <input type="date" placeholder="Enter Date" class="adFormInput border-2 border-gray-400 rounded-md h-[40px] w-[50%]">
+                            <button type="submit" class="p-2 w-[100px] text-[#fff] bg-[blue] rounded-lg mt-5 cursor-pointer font-semibold">Submit</button>
+                        </form>
+                    </div>
+
+                    <div class="batch5 h-auto w-full border-2 flex flex-col justify-center items-center border-gray-300 hidden">
+                        <div class="attMob h-[40px] w-1/2 flex justify-between  font-bold">
+                            <h1>Students Name</h1>
+                            <h1>Roll No</h1>
+                            <h1>Present/Absent</h1>
+                        </div>
+                        <div class="attMob studentBatch55 flex flex-col justify-between w-1/2 pb-5  gap-3  border-gray-300">
+
+                        </div>
+                        <form action="#" class="takeAttendanceFormBatch5 flex flex-col justify-center items-center h-full w-full pb-5 border-t-4 border-gray-300 pt-5">
+                            <input type="date" placeholder="Enter Date" class="adFormInput border-2 border-gray-400 rounded-md h-[40px] w-[50%]">
+                            <button type="submit" class="p-2 w-[100px] text-[#fff] bg-[blue] rounded-lg mt-5 cursor-pointer font-semibold">Submit</button>
+                        </form>
+                    </div>
+
+                    <div class="batch6 h-auto w-full border-2 flex flex-col justify-center items-center border-gray-300 hidden">
+                        <div class="attMob h-[40px] w-1/2 flex justify-between  font-bold">
+                            <h1>Students Name</h1>
+                            <h1>Roll No</h1>
+                            <h1>Present/Absent</h1>
+                        </div>
+                        <div class="attMob studentBatch66 flex flex-col justify-between w-1/2 pb-5  gap-3  border-gray-300">
+
+                        </div>
+                        <form action="#" class="takeAttendanceFormBatch6 flex flex-col justify-center items-center h-full w-full pb-5 border-t-4 border-gray-300 pt-5">
+                            <input type="date" placeholder="Enter Date" class="adFormInput border-2 border-gray-400 rounded-md h-[40px] w-[50%]">
+                            <button type="submit" class="p-2 w-[100px] text-[#fff] bg-[blue] rounded-lg mt-5 cursor-pointer font-semibold">Submit</button>
+                        </form>
+                    </div>
+
+                    <div class="batch7 h-auto w-full border-2 flex flex-col justify-center items-center border-gray-300 hidden">
+                        <div class="attMob h-[40px] w-1/2 flex justify-between  font-bold">
+                            <h1>Name</h1>
+                            <h1>Roll No</h1>
+                            <h1>Present/Absent</h1>
+                        </div>
+                        <div class="attMob studentBatch77 flex flex-col justify-between w-1/2 pb-5  gap-3  border-gray-300">
+
+                        </div>
+                        <form action="#" class="takeAttendanceFormBatch7 flex flex-col justify-center items-center h-full w-full pb-5 border-t-4 border-gray-300 pt-5">
+                            <input type="date" placeholder="Enter Date" class="adFormInput border-2 border-gray-400 rounded-md h-[40px] w-[50%]">
+                            <button type="submit" class="p-2 w-[100px] text-[#fff] bg-[blue] rounded-lg mt-5 cursor-pointer font-semibold">Submit</button>
+                        </form>
+                    </div>
+
+                    <div class="batch8 h-auto w-full border-2 flex flex-col justify-center items-center border-gray-300 hidden">
+                        <div class="attMob h-[40px] w-1/2 flex justify-between  font-bold">
+                            <h1>Name</h1>
+                            <h1>Roll No</h1>
+                            <h1>Present/Absent</h1>
+                        </div>
+                        <div class="attMob studentBatch88 flex flex-col justify-between w-1/2 pb-5  gap-3  border-gray-300">
+
+                        </div>
+                        <form action="#" class="takeAttendanceFormBatch8 flex flex-col justify-center items-center h-full w-full pb-5 border-t-4 border-gray-300 pt-5">
+                            <input type="date" placeholder="Enter Date" class="adFormInput border-2 border-gray-400 rounded-md h-[40px] w-[50%]">
+                            <button type="submit" class="p-2 w-[100px] text-[#fff] bg-[blue] rounded-lg mt-5 cursor-pointer font-semibold">Submit</button>
+                        </form>
+                    </div>
+
+                    <div class="batch9 h-auto w-full border-2 flex flex-col justify-center items-center border-gray-300 hidden">
+                        <div class="attMob h-[40px] w-1/2 flex justify-between  font-bold">
+                            <h1>Name</h1>
+                            <h1>Roll No</h1>
+                            <h1>Present/Absent</h1>
+                        </div>
+                        <div class="attMob studentBatch99 flex flex-col justify-between w-1/2 pb-5  gap-3  border-gray-300">
+
+                        </div>
+                        <form action="#" class="takeAttendanceFormBatch9 flex flex-col justify-center items-center h-full w-full pb-5 border-t-4 border-gray-300 pt-5">
+                            <input type="date" placeholder="Enter Date" class="adFormInput border-2 border-gray-400 rounded-md h-[40px] w-[50%]">
+                            <button type="submit" class="p-2 w-[100px] text-[#fff] bg-[blue] rounded-lg mt-5 cursor-pointer font-semibold">Submit</button>
+                        </form>
+                    </div>
+
+                    <div class="batch10 h-auto w-full border-2 flex flex-col justify-center items-center border-gray-300 hidden">
+                        <div class="attMob h-[40px] w-1/2 flex justify-between  font-bold">
+                            <h1>Name</h1>
+                            <h1>Roll No</h1>
+                            <h1>Present/Absent</h1>
+                        </div>
+                        <div class="attMob studentBatch101 flex flex-col justify-between w-1/2 pb-5  gap-3  border-gray-300">
+
+                        </div>
+                        <form action="#" class="takeAttendanceFormBatch10 flex flex-col justify-center items-center h-full w-full pb-5 border-t-4 border-gray-300 pt-5">
+                            <input type="date" placeholder="Enter Date" class="adFormInput border-2 border-gray-400 rounded-md h-[40px] w-[50%]">
+                            <button type="submit" class="p-2 w-[100px] text-[#fff] bg-[blue] rounded-lg mt-5 cursor-pointer font-semibold">Submit</button>
+                        </form>
+                    </div>
                 </div>
-               <footer class="stuAttFooter h-[150px] w-full bg-[#000] mt-[25px]">
+               <footer class="h-[150px] w-full bg-[#000] mt-[25px]">
+                   <div class="media flex justify-center gap-3 pt-5">
+                     <span class="cursor-pointer flex justify-center items-center text-[#fff]  h-[50px] w-[50px] bg-[#343486] rounded-full"><i class="fa-brands fa-facebook-f"></i></span>
+                     <span class="cursor-pointer flex justify-center items-center text-[#fff]  h-[50px] w-[50px] bg-[#61f761] rounded-full"><i class="fa-brands fa-whatsapp"></i></span>
+                     <span class="cursor-pointer flex justify-center items-center text-[#fff]  h-[50px] w-[50px] bg-[#2e2e52] rounded-full"><i class="fa-brands fa-instagram"></i></span>
+                     <span class="cursor-pointer flex justify-center items-center text-[#fff]  h-[50px] w-[50px] bg-[#20cbcb] rounded-full"><i class="fa-brands fa-twitter"></i></span>
+                   </div>
+                   <div class="mt-5">
+                     <h1 class="flex justify-center text-[#d4d4d8]">Made in india</h1>
+                     <h1 class="flex justify-center text-[#d4d4d8]">Copyright © 2025 Raviranjan Gupta</h1>
+                   </div>
+                </footer>
+            </div>
+            <!-- THIRD -->
+             <div class="mainContaint6 techMainContainer3 w-[82%] flex flex-col justify-center items-center hidden">
+                <div class="w-[90%] h-[74.3%]  mt-5 overflow-auto">
+                    <div class="h-[60px] w-full bg-gradient-to-r from-[#0c1b2c] via-[#1a1a79] to-[#00d4ff] flex justify-center items-center text-xl text-[#fff] ">
+                        <h1>Announce Something</h1>
+                    </div>
+                    <form action="#" id="messageForm2" class="w-full h-[85%] border-1 flex flex-col justify-center items-center">
+                        <textarea name="message" placeholder="Write Your Message Here" rows="5" id="messageInput2" class="noticeSMS placeholder:text-[#5a5858] mt-5 text-[#1f1e1e] w-[80%] h-[80%] p-3 border-4 border-gray-300 rounded-lg focus:outline-none focus:ring-4 focus:border-2 focus:ring-orange-500 animate__animated animate__fadeInUp animate__delay-1s" required=""></textarea>
+                        <button type="submit" class="mt-[10px] text-[#fff] cursor-pointer flex-row  h-[40px] w-[150px] bg-[blue] rounded-4xl flex justify-center items-center">Submit</button>
+                    </form>
+                </div>
+               <footer class="h-[150px] w-full bg-[#000] mt-[25px]">
                    <div class="media flex justify-center gap-3 pt-5">
                      <span class="cursor-pointer flex justify-center items-center text-[#fff]  h-[50px] w-[50px] bg-[#343486] rounded-full"><i class="fa-brands fa-facebook-f"></i></span>
                      <span class="cursor-pointer flex justify-center items-center text-[#fff]  h-[50px] w-[50px] bg-[#61f761] rounded-full"><i class="fa-brands fa-whatsapp"></i></span>
@@ -165,40 +534,86 @@
 </body>
 <script src="./app.js"></script>
 <script>
-    function toggleStuAttendance(){
-        const stuMainContainer=document.querySelector('.stuMainContainer');
-        const stuAttendance=document.querySelector('.stuAttendance');
-        const stuAttendance1=document.querySelector('.stuAttendance1');
-        const stuDash=document.querySelector('.stuDash');
-        const stuDash1=document.querySelector('.stuDash1');
-        const stuAttMainCon=document.querySelector('.stuAttMainCon');
+    function toggleteachAttendance(){
+        const teacherMainContainer=document.querySelector('.teacherMainContainer');
+        teacherMainContainer.classList.add('hidden');
 
-        stuMainContainer.classList.add('hidden');
-        stuAttMainCon.classList.remove('hidden');
+        const teachAttMainCon=document.querySelector('.teachAttMainCon');
+        teachAttMainCon.classList.remove('hidden');
 
-        stuAttendance.classList.add('dasActive')
-        stuAttendance1.classList.add('dasActive')
-        stuDash.classList.remove('dasActive')
-        stuDash1.classList.remove('dasActive')
+        const techMainContainer3=document.querySelector('.techMainContainer3');
+        techMainContainer3.classList.add('hidden');
+
+        const teachAttendance=document.querySelector('.teachAttendance');
+        teachAttendance.classList.add('dasActive');
+        const teachAttendance1=document.querySelector('.teachAttendance1');
+        teachAttendance1.classList.add('dasActive');
+
+        const teachDash=document.querySelector('.teachDash');
+        teachDash.classList.remove('dasActive');
+        const teachDash1=document.querySelector('.teachDash1');
+        teachDash1.classList.remove('dasActive')
+
+        const teachnotice=document.querySelector('.teachnotice');
+        teachnotice.classList.remove('dasActive');
+        const teachnotice1=document.querySelector('.teachnotice1');
+        teachnotice1.classList.remove('dasActive');
+
 
     }
 
-    function toggleStuDashboard(){
-        const stuAttMainCon=document.querySelector('.stuAttMainCon');
-        const stuMainContainer=document.querySelector('.stuMainContainer');
-        const stuAttendance=document.querySelector('.stuAttendance');
-        const stuAttendance1=document.querySelector('.stuAttendance1');
-        const stuDash=document.querySelector('.stuDash');
-        const stuDash1=document.querySelector('.stuDash1');
+    function toggleTeachDashboard(){
+        const teacherMainContainer=document.querySelector('.teacherMainContainer');
+        teacherMainContainer.classList.remove('hidden');
 
-        stuAttMainCon.classList.add('hidden');
-        stuMainContainer.classList.remove('hidden');
+        const teachAttMainCon=document.querySelector('.teachAttMainCon');
+        teachAttMainCon.classList.add('hidden');
 
-        stuAttendance.classList.remove('dasActive')
-        stuAttendance1.classList.remove('dasActive')
-        stuDash.classList.add('dasActive')
-        stuDash1.classList.add('dasActive')
+        const techMainContainer3=document.querySelector('.techMainContainer3');
+        techMainContainer3.classList.add('hidden');
+
+        const teachAttendance=document.querySelector('.teachAttendance');
+        teachAttendance.classList.remove('dasActive');
+        const teachAttendance1=document.querySelector('.teachAttendance1');
+        teachAttendance1.classList.remove('dasActive');
+
+        const teachDash=document.querySelector('.teachDash');
+        teachDash.classList.add('dasActive');
+        const teachDash1=document.querySelector('.teachDash1');
+        teachDash1.classList.add('dasActive')
+
+        const teachnotice=document.querySelector('.teachnotice');
+        teachnotice.classList.remove('dasActive');
+        const teachnotice1=document.querySelector('.teachnotice1');
+        teachnotice1.classList.remove('dasActive');
+    }
+
+    function toggleTeachNotice(){
+        const teacherMainContainer=document.querySelector('.teacherMainContainer');
+        teacherMainContainer.classList.add('hidden');
+
+        const teachAttMainCon=document.querySelector('.teachAttMainCon');
+        teachAttMainCon.classList.add('hidden');
+
+        const techMainContainer3=document.querySelector('.techMainContainer3');
+        techMainContainer3.classList.remove('hidden');
+
+        const teachAttendance=document.querySelector('.teachAttendance');
+        teachAttendance.classList.remove('dasActive');
+        const teachAttendance1=document.querySelector('.teachAttendance1');
+        teachAttendance1.classList.remove('dasActive');
+
+        const teachDash=document.querySelector('.teachDash');
+        teachDash.classList.remove('dasActive');
+        const teachDash1=document.querySelector('.teachDash1');
+        teachDash1.classList.remove('dasActive')
+
+        const teachnotice=document.querySelector('.teachnotice');
+        teachnotice.classList.add('dasActive');
+        const teachnotice1=document.querySelector('.teachnotice1');
+        teachnotice1.classList.add('dasActive');
     }
 
 
-    //=========================================================
+</script>
+    

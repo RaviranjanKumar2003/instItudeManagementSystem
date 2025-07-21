@@ -199,12 +199,12 @@
                     </div>
                 </div>
 
-                <div class="viewAllTeacher h-[320px] flex  justify-center mt-[30px] hidden">
+                <div class="viewAllTeacher  h-[320px] flex  justify-center mt-[30px] hidden">
                     <div class="increaseHeightTeach w-[90%] h-[300px] flex flex-col pt-5">
                         <div class="w-[100%] h-[40px] bg-[#8a8af7] rounded-t-md  flex justify-center items-center  text-xl text-[#fff]">
                             <h1>Teachers</h1>
                         </div>
-                        <div class="teachersDetailsView h-auto w-full border-2 border-gray-300">
+                        <div class="teachersDetailsView h-auto overflow-auto w-full border-2 border-gray-300">
                             <div class="h-[40px] flex justify-around  font-bold">
                                 <h1>Name</h1>
                                 <h1>Mobile</h1>
@@ -1242,9 +1242,7 @@ directHireForm2?.addEventListener('submit', (e) => {
 });
 
 
-
-
- //=========================================== Student =====================================
+//=========================================== Student =====================================
 
     window.addEventListener('DOMContentLoaded', () => {
        const approveORnot = document.querySelector('.approveStudentORnot');
@@ -1422,68 +1420,126 @@ directHireForm2?.addEventListener('submit', (e) => {
 
 
             const studentCards = viewApproveORnot.querySelectorAll('.approved-entry');
-
             // Batch containers
             const batchToClassMap = {
-            "K1": document.querySelector('.studentBatch1'),
-            "K2": document.querySelector('.studentBatch2'),
-            "K3": document.querySelector('.studentBatch3'),
-            "K4": document.querySelector('.studentBatch4'),
-            "K5": document.querySelector('.studentBatch5'),
-            "K6": document.querySelector('.studentBatch6'),
-            "K7": document.querySelector('.studentBatch7'),
-            "K8": document.querySelector('.studentBatch8'),
-            "K9": document.querySelector('.studentBatch9'),
-            "K10": document.querySelector('.studentBatch10')
-        };
+               "K1": document.querySelector('.studentBatch1'),
+               "K2": document.querySelector('.studentBatch2'),
+               "K3": document.querySelector('.studentBatch3'),
+               "K4": document.querySelector('.studentBatch4'),
+               "K5": document.querySelector('.studentBatch5'),
+               "K6": document.querySelector('.studentBatch6'),
+               "K7": document.querySelector('.studentBatch7'),
+               "K8": document.querySelector('.studentBatch8'),
+               "K9": document.querySelector('.studentBatch9'),
+               "K10": document.querySelector('.studentBatch10')
+            };
 
-        // Counters for numbering in each batch
-        const batchCounters = {
-           "K1": 1, "K2": 1, "K3": 1, "K4": 1, "K5": 1,
-           "K6": 1, "K7": 1, "K8": 1, "K9": 1, "K10": 1
-        };
+             // Counters for numbering in each batch
+             const batchCounters = {
+              "K1": 1, "K2": 1, "K3": 1, "K4": 1, "K5": 1,
+              "K6": 1, "K7": 1, "K8": 1, "K9": 1, "K10": 1,
+             };
 
-         // Step 1: Collect student data from DOM
-        let studentData = [];
+              // Step 1: Collect student data from DOM
+             let studentData = [];
 
-        studentCards.forEach(card => {
-            const name = card.children[0]?.textContent.trim();
-            const batch = card.children[1]?.textContent.trim();
-            const roll = card.children[2]?.textContent.trim();
+            studentCards.forEach(card => {
+               const name = card.children[0]?.textContent.trim();
+               const batch = card.children[1]?.textContent.trim();
+               const roll = card.children[2]?.textContent.trim();
 
-           studentData.push({ name, batch, roll });
+              studentData.push({ name, batch, roll });
+            });
+
+             // Step 2: Sort by roll number (numeric)
+             studentData.sort((a, b) => Number(a.roll) - Number(b.roll));
+
+             // Step 3: Render into batches with numbering
+            studentData.forEach(({ name, batch, roll }) => {
+                 const cleanBatch = batch?.toUpperCase().trim();
+                 const container = batchToClassMap[cleanBatch];
+
+                if (container) {
+                   const count = batchCounters[cleanBatch]++;
+                   const entry = document.createElement('div');
+                   entry.classList.add('student-entry', 'w-full', 'h-full', 'gap-10', 'flex', 'border-t-1', 'border-gray-300', 'pt-5');
+
+                   entry.innerHTML = `
+                      <h1 class="student-name w-[230px]">${count}. ${name}</h1>
+                      <h1 class="student-roll w-[170px]">${roll}</h1>
+                      <select class="attendance-select border-2 border-gray-300">
+                          <option value="Present">Present</option>
+                          <option value="Absent">Absent</option>
+                      </select>
+                   `;
+                    container.appendChild(entry);
+                } else {
+                    console.warn("No container found for batch:", cleanBatch);
+                }
+            });
+
+          //=========second
+           const studentCards2 = viewApproveORnot.querySelectorAll('.approved-entry');
+           const batchToClassMap2 = {
+              "K11": document.querySelector('.studentBatch11'),
+              "K22": document.querySelector('.studentBatch22'),
+              "K33": document.querySelector('.studentBatch33'),
+              "K44": document.querySelector('.studentBatch44'),
+              "K55": document.querySelector('.studentBatch55'),
+              "K66": document.querySelector('.studentBatch66'),
+              "K77": document.querySelector('.studentBatch77'),
+              "K88": document.querySelector('.studentBatch88'),
+              "K99": document.querySelector('.studentBatch99'),
+              "K101": document.querySelector('.studentBatch101')
+            };
+
+            const batchCounters2 = {
+               "K11": 1, "K22": 1, "K33": 1, "K44": 1, "K55": 1,
+               "K66": 1, "K77": 1, "K88": 1, "K99": 1, "K101": 1
+            };
+
+           const studentData2 = [];
+
+           studentCards2.forEach(card => {
+              const name = card.children[0]?.textContent.trim();
+              const batch = card.children[1]?.textContent.trim();
+              const roll = card.children[2]?.textContent.trim();
+
+              studentData2.push({ name, batch, roll });
+            });
+  
+            studentData2.sort((a, b) => Number(a.roll) - Number(b.roll));
+
+            studentData2.forEach(({ name, batch, roll }) => {
+                const cleanBatch2 = batch?.toUpperCase().trim();
+                const container = batchToClassMap2[cleanBatch2];
+
+                if (container) {
+                    const count = batchCounters2[cleanBatch2]++;
+                    const entry = document.createElement('div');
+                    entry.classList.add('student-entry', 'w-full', 'h-full', 'gap-10', 'flex', 'border-t-1', 'border-gray-300', 'pt-5');
+
+                    entry.innerHTML = `
+                       <h1 class="student-name w-[230px]">${count}. ${name}</h1>
+                       <h1 class="student-roll w-[170px]">${roll}</h1>
+                       <select class="attendance-select border-2 border-gray-300">
+                           <option value="Present">Present</option>
+                           <option value="Absent">Absent</option>
+                    </select>
+                `;
+                 container.appendChild(entry);
+                } else {
+                    console.warn("No container found for batch:", cleanBatch2);
+                }
+
+            });
+            console.log("studentCards2:", studentCards2.length);
+studentData2.forEach(({ name, batch, roll }) => {
+   console.log("Processing:", name, batch, roll);
+});
+
+
         });
-
-        // Step 2: Sort by roll number (numeric)
-        studentData.sort((a, b) => Number(a.roll) - Number(b.roll));
-
-       // Step 3: Render into batches with numbering
-       studentData.forEach(({ name, batch, roll }) => {
-            const cleanBatch = batch?.toUpperCase().trim();
-            const container = batchToClassMap[cleanBatch];
-
-        if (container) {
-            const count = batchCounters[cleanBatch]++;
-            const entry = document.createElement('div');
-            entry.classList.add('student-entry', 'w-full', 'h-full', 'gap-10', 'flex', 'border-t-1', 'border-gray-300', 'pt-5');
-
-            entry.innerHTML = `
-                <h1 class="student-name w-[230px]">${count}. ${name}</h1>
-                <h1 class="student-roll w-[170px]">${roll}</h1>
-                <select class="attendance-select border-2 border-gray-300">
-                    <option value="Present">Present</option>
-                    <option value="Absent">Absent</option>
-                </select>
-            `;
-             container.appendChild(entry);
-            } else {
-            console.warn("No container found for batch:", cleanBatch);
-        }
-    });
-
-
-
-    });
 
 
     const directAdmissionForm = document.getElementById('directAdmissionForm');
@@ -1585,8 +1641,6 @@ directHireForm2?.addEventListener('submit', (e) => {
     if (totalFee) totalFee.textContent = totalFeeAmount;
     if (totalPendingFee) totalPendingFee.textContent = totalPendingFeeAmount;
 }
-
-
 
 
 //================================ Batch k5, k6, k7, k8, k9, k10
