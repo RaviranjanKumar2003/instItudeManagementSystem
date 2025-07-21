@@ -678,9 +678,9 @@ window.addEventListener('DOMContentLoaded', () => {
 });
 
 function logoutUser() {
-    localStorage.clear();
-    // localStorage.removeItem('isLoggedIn');
-    // localStorage.removeItem('currentUser');
+    // localStorage.clear();
+    localStorage.removeItem('isLoggedIn');
+    localStorage.removeItem('currentUser');
     window.location.href = "./login.html";
 }
 
@@ -962,11 +962,12 @@ window.addEventListener('DOMContentLoaded', () => {
             <a href="./SLogin.html" class="p-2 bg-[blue] text-[#fff] rounded-md ml-5">Login</a>
         </div>
     `;
+    
 
     // Now select the dynamically inserted logout button
-    const newExitLogin = document.querySelector('.stuexitLogin');
-    if (newExitLogin) {
-        newExitLogin.addEventListener("click", logoutUser);
+    const exitLoginCheck = document.querySelector('.exitLoginCheck');
+    if (exitLoginCheck) {
+        exitLoginCheck.addEventListener("click", logoutStu);
     }
 
     localStorage.removeItem('recentRegisteredUser2');
