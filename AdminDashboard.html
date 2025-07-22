@@ -1388,10 +1388,6 @@ directHireForm2?.addEventListener('submit', (e) => {
 
             viewAllStuInMobile.appendChild(approvedCardMob);
 
-
-
-
-
             const approvedFee = document.createElement('div');
             approvedFee.classList.add('approvedFee', 'mb-4', 'flex', 'justify-around', 'border-t-1', 'border-gray-300');
             approvedFee.innerHTML = `
@@ -1411,6 +1407,7 @@ directHireForm2?.addEventListener('submit', (e) => {
                 }
             });
             approveSalaryORnot.appendChild(approvedFee);
+            localStorage.setItem('approvedUsers2', JSON.stringify(approvedUsers2));
 
 
         } 
@@ -1479,67 +1476,9 @@ directHireForm2?.addEventListener('submit', (e) => {
             });
 
           //=========second
-           const studentCards2 = viewApproveORnot.querySelectorAll('.approved-entry');
-           const batchToClassMap2 = {
-              "K11": document.querySelector('.studentBatch11'),
-              "K22": document.querySelector('.studentBatch22'),
-              "K33": document.querySelector('.studentBatch33'),
-              "K44": document.querySelector('.studentBatch44'),
-              "K55": document.querySelector('.studentBatch55'),
-              "K66": document.querySelector('.studentBatch66'),
-              "K77": document.querySelector('.studentBatch77'),
-              "K88": document.querySelector('.studentBatch88'),
-              "K99": document.querySelector('.studentBatch99'),
-              "K101": document.querySelector('.studentBatch101')
-            };
+           
 
-            const batchCounters2 = {
-               "K11": 1, "K22": 1, "K33": 1, "K44": 1, "K55": 1,
-               "K66": 1, "K77": 1, "K88": 1, "K99": 1, "K101": 1
-            };
-
-           const studentData2 = [];
-
-           studentCards2.forEach(card => {
-              const name = card.children[0]?.textContent.trim();
-              const batch = card.children[1]?.textContent.trim();
-              const roll = card.children[2]?.textContent.trim();
-
-              studentData2.push({ name, batch, roll });
-            });
-  
-            studentData2.sort((a, b) => Number(a.roll) - Number(b.roll));
-
-            studentData2.forEach(({ name, batch, roll }) => {
-                const cleanBatch2 = batch?.toUpperCase().trim();
-                const container = batchToClassMap2[cleanBatch2];
-
-                if (container) {
-                    const count = batchCounters2[cleanBatch2]++;
-                    const entry = document.createElement('div');
-                    entry.classList.add('student-entry', 'w-full', 'h-full', 'gap-10', 'flex', 'border-t-1', 'border-gray-300', 'pt-5');
-
-                    entry.innerHTML = `
-                       <h1 class="student-name w-[230px]">${count}. ${name}</h1>
-                       <h1 class="student-roll w-[170px]">${roll}</h1>
-                       <select class="attendance-select border-2 border-gray-300">
-                           <option value="Present">Present</option>
-                           <option value="Absent">Absent</option>
-                    </select>
-                `;
-                 container.appendChild(entry);
-                } else {
-                    console.warn("No container found for batch:", cleanBatch2);
-                }
-
-            });
-            console.log("studentCards2:", studentCards2.length);
-studentData2.forEach(({ name, batch, roll }) => {
-   console.log("Processing:", name, batch, roll);
-});
-
-
-        });
+    });
 
 
     const directAdmissionForm = document.getElementById('directAdmissionForm');
@@ -1720,22 +1659,6 @@ batchIds.forEach(batchNum => {
     });
 });
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-   
-
-   
 
 
 </script>

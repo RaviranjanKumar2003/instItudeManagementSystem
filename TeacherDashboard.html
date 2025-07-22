@@ -71,7 +71,7 @@
                 </div>
             </div>
             <!-- FIRST -->
-            <div class="teachmainContaint1 teacherMainContainer w-[82%] ">
+            <div class="mainContaint1 teachmainContaint1 teacherMainContainer w-[82%] ">
                 <div class="allCards1 h-[156px] flex justify-around">
                     <div class="addCard h-[150px] w-[270px] bg-[#6b6bf3] mt-[30px] rounded-md text-[#fff] p-7 text-xl">
                         <h1 class="font-bold">Name</h1>
@@ -613,6 +613,60 @@
         const teachnotice1=document.querySelector('.teachnotice1');
         teachnotice1.classList.add('dasActive');
     }
+
+
+
+    //==========================================================================================
+
+    document.addEventListener("DOMContentLoaded", () => {
+    const approvedStudents = JSON.parse(localStorage.getItem("approvedUsers2")) || [];
+
+    console.log("✅ Loaded approved students:", approvedStudents.length);
+
+    const batchToClassMap2 = {
+        "K1": document.querySelector('.studentBatch11'),
+        "K2": document.querySelector('.studentBatch22'),
+        "K3": document.querySelector('.studentBatch33'),
+        "K4": document.querySelector('.studentBatch44'),
+        "K5": document.querySelector('.studentBatch55'),
+        "K6": document.querySelector('.studentBatch66'),
+        "K7": document.querySelector('.studentBatch77'),
+        "K8": document.querySelector('.studentBatch88'),
+        "K9": document.querySelector('.studentBatch99'),
+        "K10": document.querySelector('.studentBatch101')
+    };
+
+    const batchCounters2 = {
+        "K1": 1, "K2": 1, "K3": 1, "K4": 1, "K5": 1,
+        "K6": 1, "K7": 1, "K8": 1, "K9": 1, "K10": 1
+    };
+
+    approvedStudents.sort((a, b) => Number(a.roll) - Number(b.roll));
+
+    approvedStudents.forEach(({ name, batch, roll }) => {
+        const cleanBatch = batch?.toUpperCase().replace(/\s/g, '');
+        const container = batchToClassMap2[cleanBatch];
+
+        if (container) {
+            const count = batchCounters2[cleanBatch]++;
+            const entry = document.createElement('div');
+            entry.classList.add('student-entry', 'w-full', 'h-full', 'gap-10', 'flex', 'border-t-1', 'border-gray-300', 'pt-5');
+
+            entry.innerHTML = `
+                <h1 class="student-name w-[230px]">${count}. ${name}</h1>
+                <h1 class="student-roll w-[170px]">${roll}</h1>
+                <select class="attendance-select border-2 border-gray-300">
+                    <option value="Present">Present</option>
+                    <option value="Absent">Absent</option>
+                </select>
+            `;
+            container.appendChild(entry);
+        } else {
+            console.warn("❌ No container found for batch:", cleanBatch);
+        }
+    });
+});
+
 
 
 </script>
