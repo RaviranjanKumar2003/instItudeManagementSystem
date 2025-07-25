@@ -1071,10 +1071,67 @@
             <h1 class="w-[200px]">${user.mobile || 'Not Provided'}</h1>
             <h1 class="w-[180px]">${user.salary || 'Not Provided'}</h1>
             <h1 class="w-[230px]">${user.date}</h1>
-            <span class="approveBtn text-[green] cursor-pointer"><i class="fa-regular fa-pen-to-square"></i></span>
+            <span class="editBtn2 text-[green] cursor-pointer"><i class="fa-regular fa-pen-to-square"></i></span>
             <span class="approvedTeacherDeleteBtn text-[red] ml-40 cursor-pointer"><i class="fa-solid fa-trash"></i></span>
         `;
          if (viewApproveORnot) viewApproveORnot.appendChild(approvedCard);
+
+         const editBtn = approvedCard.querySelector('.editBtn2');
+
+function activateEditMode() {
+    const nameField = approvedCard.querySelectorAll('h1')[0];
+    const mobileField = approvedCard.querySelectorAll('h1')[1];
+    const salaryField = approvedCard.querySelectorAll('h1')[2];
+    const dateField = approvedCard.querySelectorAll('h1')[3];
+
+    // Replace Text with Input Fields (except Date)
+    nameField.innerHTML = `<input type="text" value="${user.name}" class="edit-name border w-[120px]">`;
+    mobileField.innerHTML = `<input type="text" value="${user.mobile}" class="edit-mobile border w-[150px]">`;
+    salaryField.innerHTML = `<input type="text" value="${user.salary}" class="edit-salary border w-[120px]">`;
+
+    // Change Edit Icon to Save Button
+    editBtn.innerHTML = `<i class="fa-solid fa-floppy-disk"></i> Save`;
+
+    // Remove previous click listeners to avoid stacking
+    editBtn.replaceWith(editBtn.cloneNode(true));
+    const saveBtn = approvedCard.querySelector('.editBtn2'); // Re-select after cloning
+
+    saveBtn.addEventListener('click', () => {
+        const newName = approvedCard.querySelector('.edit-name').value.trim();
+        const newMobile = approvedCard.querySelector('.edit-mobile').value.trim();
+        const newSalary = approvedCard.querySelector('.edit-salary').value.trim();
+
+        // Update User Object
+        user.name = newName;
+        user.mobile = newMobile;
+        user.salary = newSalary;
+
+        // Update LocalStorage
+        const indexInStorage = approvedUsers.findIndex(u => u.email === user.email);
+        if (indexInStorage !== -1) {
+            approvedUsers[indexInStorage] = user;
+            localStorage.setItem('approvedUsers', JSON.stringify(approvedUsers));
+        }
+
+        // Replace Inputs back to Plain Text
+        nameField.textContent = newName;
+        mobileField.textContent = newMobile;
+        salaryField.textContent = newSalary;
+        // Date remains same, no change
+
+        // Change Save Button back to Edit Icon
+        saveBtn.innerHTML = `<i class="fa-regular fa-pen-to-square"></i>`;
+
+        // Re-bind Edit Click for next time
+        saveBtn.replaceWith(saveBtn.cloneNode(true));
+        const finalEditBtn = approvedCard.querySelector('.editBtn2');
+        finalEditBtn.addEventListener('click', activateEditMode, { once: true });
+    }, { once: true });
+}
+
+// Initial Edit Button Click Binding
+editBtn.addEventListener('click', activateEditMode, { once: true });
+
 
         const approvedCardMob = document.createElement('div');
         approvedCardMob.classList.add('approvedEntryMob','flex', 'flex-col','justify-center','gap-3','pl-10','text-xl', 'mb-4', 'border-t-2', 'border-gray-300');
@@ -1359,11 +1416,78 @@ directHireForm2?.addEventListener('submit', (e) => {
                 <h1 class="w-[140px]">${user.roll || 'Not Provided'}</h1>
                 <h1 class="w-[170px]">${user.mobile || 'Not Provided'}</h1>
                 <h1 class="w-[160px]">${user.fee || 'N/A'}</h1>
-                <span class="approveBtnS text-[green] w-[170px] cursor-pointer"><i class="fa-regular fa-pen-to-square"></i></span>
+                <span class="editBtn text-[green] w-[170px] cursor-pointer"><i class="fa-regular fa-pen-to-square"></i></span>
                 <span class="approvedStudentDeleteBtn text-[red]  cursor-pointer"><i class="fa-solid fa-trash"></i></span>
             `;
 
             viewApproveORnot.appendChild(approvedCard);
+
+            const editBtn = approvedCard.querySelector('.editBtn');
+
+            function activateEditMode() {
+                const nameField = approvedCard.querySelector('.vasn');
+                const batchField = approvedCard.querySelectorAll('h1')[1];
+                const rollField = approvedCard.querySelectorAll('h1')[2];
+                const mobileField = approvedCard.querySelectorAll('h1')[3];
+                const feeField = approvedCard.querySelectorAll('h1')[4];
+
+               // Replace Text with Inputs
+               nameField.innerHTML = `<input type="text" value="${user.name}" class="edit-name border w-[120px]">`;
+               batchField.innerHTML = `<input type="text" value="${user.batch}" class="edit-batch border w-[120px]">`;
+               rollField.innerHTML = `<input type="text" value="${user.roll}" class="edit-roll border w-[120px]">`;
+               mobileField.innerHTML = `<input type="text" value="${user.mobile}" class="edit-mobile border w-[120px]">`;
+               feeField.innerHTML = `<input type="text" value="${user.fee}" class="edit-fee border w-[120px]">`;
+
+               // Change Edit icon to Save button
+               editBtn.innerHTML = `<i class="fa-solid fa-floppy-disk"></i> Save`;
+
+               // Remove previous click to prevent stacking
+               editBtn.replaceWith(editBtn.cloneNode(true));
+               const newSaveBtn = approvedCard.querySelector('.editBtn'); // Re-select it
+
+               // Add Save Functionality
+              newSaveBtn.addEventListener('click', () => {
+                const newName = approvedCard.querySelector('.edit-name').value.trim();
+                const newBatch = approvedCard.querySelector('.edit-batch').value.trim();
+                const newRoll = approvedCard.querySelector('.edit-roll').value.trim();
+                const newMobile = approvedCard.querySelector('.edit-mobile').value.trim();
+                const newFee = approvedCard.querySelector('.edit-fee').value.trim();
+
+                // Update user object
+                user.name = newName;
+                user.batch = newBatch;
+                user.roll = newRoll;
+                user.mobile = newMobile;
+                user.fee = newFee;
+
+                // Update Local Storage
+                const indexInStorage = approvedUsers2.findIndex(u => u.email === user.email);
+                   if (indexInStorage !== -1) {
+                       approvedUsers2[indexInStorage] = user;
+                       localStorage.setItem('approvedUsers2', JSON.stringify(approvedUsers2));
+                    }
+
+                    // Replace Inputs back to plain text (remove border)
+                    nameField.textContent = newName;
+                    batchField.textContent = newBatch;
+                    rollField.textContent = newRoll;
+                    mobileField.textContent = newMobile;
+                    feeField.textContent = newFee;
+
+                    // Change Save button back to Edit icon
+                    newSaveBtn.innerHTML = `<i class="fa-regular fa-pen-to-square"></i>`;
+
+                    // Re-bind the Edit click again
+                    newSaveBtn.replaceWith(newSaveBtn.cloneNode(true));
+                    const finalEditBtn = approvedCard.querySelector('.editBtn');
+                    finalEditBtn.addEventListener('click', activateEditMode, { once: true });
+                }, { once: true });
+            }
+
+           // First click on Edit Button
+           editBtn.addEventListener('click', activateEditMode, { once: true });
+
+
 
             //=====================ForMobile
             const approvedCardMob = document.createElement('div');
